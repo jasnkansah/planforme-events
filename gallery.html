@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gallery | Plan For Me Events</title>
+<meta name="description" content="Real wedding galleries and styled shoots by Plan For Me Events — Central Florida's certified wedding planning specialist. 13 albums, 130 photos.">
+<meta property="og:title" content="Gallery | Plan For Me Events">
+<meta property="og:description" content="Real wedding galleries and styled shoots by Plan For Me Events — Central Florida's certified wedding planning specialist. 13 albums, 130 photos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300;1,500&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+<div class="cur" id="cur"></div><div class="crng" id="crng"></div>
+<nav id="nav">
+  <a href="index.html" class="nlogo">
+    <img class="lgt" src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998703/pfm-logo_ixua6l.png" alt="Plan For Me Events" style="height:72px;width:auto;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));">
+    <img class="drk" src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998703/pfm-logo_ixua6l.png" alt="Plan For Me Events" style="height:72px;width:auto;">
+  </a>
+  <ul class="nls"><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html" style="color:var(--pnk);">Gallery</a></li><li><a href="testimonials.html">Reviews</a></li><li><a href="faq.html">FAQ</a></li><li><a href="blog/index.html">Blog</a></li></ul>
+  <a href="https://planformeevents.co" target="_blank" class="btn bp nbtn">Book a Session</a>
+</nav>
+
+<style>
+
+/* ── REAL GALLERY PAGE ── */
+.gal-page{padding:72px 0 80px;}
+.gal-section{margin-bottom:72px;}
+.gal-section-hdr{
+  padding:0 56px;
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-bottom:28px;
+  border-left:3px solid var(--cha);
+  padding-left:32px;
+  margin-left:56px;
+}
+.gal-section-name{
+  font-family:var(--sc);font-weight:500;font-size:clamp(26px,3.5vw,40px);
+  color:var(--aug);line-height:1.1;
+}
+.gal-section-meta{
+  font-size:7.5px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--cha);display:block;margin-top:6px;
+}
+.gal-section-type{
+  font-size:8px;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(35,31,32,.3);white-space:nowrap;padding-bottom:4px;
+}
+.gal-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:3px;
+  padding:0 56px;
+}
+/* First photo in each album spans 2 columns for visual hierarchy */
+.gal-grid .gal-img:first-child{
+  grid-column:span 2;
+  height:500px;
+}
+.gal-img{
+  overflow:hidden;
+  height:340px;
+  position:relative;
+  cursor:pointer;
+  background:var(--off);
+}
+.gal-img img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+  transition:transform .6s cubic-bezier(.25,.46,.45,.94);
+  image-rendering:-webkit-optimize-contrast;
+}
+.gal-img:hover img{transform:scale(1.05);}
+.gal-img::after{
+  content:'';
+  position:absolute;inset:0;
+  background:rgba(35,31,32,0);
+  transition:background .3s;
+  pointer-events:none;
+}
+.gal-img:hover::after{background:rgba(35,31,32,.06);}
+.gal-divider{
+  height:1px;background:rgba(35,31,32,.06);
+  margin:0 56px 72px;
+}
+/* Lightbox */
+.gal-lightbox{
+  position:fixed;inset:0;
+  background:rgba(10,3,5,.95);
+  z-index:9999;
+  display:none;
+  align-items:center;justify-content:center;
+  flex-direction:column;
+}
+.gal-lightbox.active{display:flex;}
+.gal-lb-img{
+  max-width:90vw;max-height:85vh;
+  object-fit:contain;
+  display:block;
+}
+.gal-lb-close{
+  position:absolute;top:24px;right:32px;
+  font-size:28px;color:rgba(255,255,255,.6);
+  cursor:pointer;background:none;border:none;
+  transition:color .2s;
+}
+.gal-lb-close:hover{color:#fff;}
+.gal-lb-nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  font-size:28px;color:rgba(255,255,255,.5);
+  cursor:pointer;background:none;border:none;
+  padding:16px;transition:color .2s;
+}
+.gal-lb-nav:hover{color:#fff;}
+.gal-lb-prev{left:20px;}
+.gal-lb-next{right:20px;}
+.gal-lb-caption{
+  color:rgba(255,255,255,.5);font-size:10px;letter-spacing:3px;
+  text-transform:uppercase;margin-top:16px;
+}
+@media(max-width:1100px){
+  .gal-grid{grid-template-columns:repeat(2,1fr);padding:0 32px;}
+  .gal-grid .gal-img:first-child{grid-column:span 2;}
+  .gal-section-hdr{margin-left:32px;padding-left:24px;}
+  .gal-divider{margin:0 32px 60px;}
+}
+@media(max-width:768px){
+  .gal-grid{grid-template-columns:1fr 1fr;gap:2px;padding:0 16px;}
+  .gal-grid .gal-img:first-child{grid-column:span 2;height:300px;}
+  .gal-img{height:220px;}
+  .gal-section-hdr{margin-left:16px;padding-left:16px;padding-right:16px;}
+  .gal-divider{margin:0 16px 48px;}
+}
+
+</style>
+
+<div class="pghero" style="padding-top:112px;">
+  <div class="pghbg"></div>
+  <div class="pgc">
+    <span class="pgey">Weddings &middot; Elopements &middot; Styled Shoots</span>
+    <h1 class="pgt">Gallery</h1>
+  </div>
+</div>
+
+<div class="gal-page">
+  <div class="gal-section">
+    <div class="gal-section-hdr">
+      <div><h2 class="gal-section-name">Nathaly &amp; Andrew</h2><span class="gal-section-meta">Real Wedding &middot; Winter Park, FL</span></div>
+      <span class="gal-section-type">5 Photos</span>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-img" onclick="openLightbox(0,0)"><img src="https://lh3.googleusercontent.com/pw/AP1GczP-RFXCLyFEnY7yqidmXghdoGFnuksaSeGegwRexdeBvzO0OEc58l9ke3Xi05_hiqnrmKI0QmSaxyxva7afTSDCfShOapqXL3ty8dFhS_gaF8q1-AU=w800-h600-no" alt="Nathaly and Andrew Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(0,1)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNj4ImH_-8gYzEiBcLhZcwwwzwAvGT8_jQyYfrACPPuFNgRMYMu8CPw__YED25ORnXCeXhtHj90RN3u4x4PPL4rYhFVzIqrOS2Xb1cuFGCrflORv6k=w800-h600-no" alt="Nathaly and Andrew Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(0,2)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNp6Z1KPyLVZP61GpwMtRznFEH72T4FzcdXRv2hH64rMOXgxIZ6UoEz9UmEhRLOkigbmBfXOQu1a5Awv_PFCgMT-i29PfJw23CbC0Z03bDNYVD0sHo=w800-h600-no" alt="Nathaly and Andrew Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(0,3)"><img src="https://lh3.googleusercontent.com/pw/AP1GczO9H-x9S7pkidppqLbxp9NjeLeB6nsJq4G1G-RtypsoJSDd5LMi6TyxV54_WM5WiP1O-2QDrRtg8tZyp2pOl8U_mOpj3NhqKKgUzYJOUHbTZ1eD4iE=w800-h600-no" alt="Nathaly and Andrew Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(0,4)"><img src="https://lh3.googleusercontent.com/pw/AP1GczOIbFU8Iv5MH0pWEpV9ll6sFN-4Pj-SV5S1X-mHEE5msIYRKiXhxogPkA4MRPTCgbFIYSScVgUZ_pZ04j6w_Gjekuswkk7gFOSNnOkI2hkBwL3zgjw=w800-h600-no" alt="Nathaly and Andrew Real Wedding Winter Park, FL" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="gal-divider"></div>
+
+  <div class="gal-section">
+    <div class="gal-section-hdr">
+      <div><h2 class="gal-section-name">Amanda &amp; Jose</h2><span class="gal-section-meta">Real Wedding &middot; Orlando, FL</span></div>
+      <span class="gal-section-type">10 Photos</span>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-img" onclick="openLightbox(1,0)"><img src="https://lh3.googleusercontent.com/pw/AP1GczOPYEcGOJEoL0lSRxt0grpmHOTUdVvm2qQfliJdm5mh4MkzS9zS3WnZdF2U0ASBjjs9T1cKeBHUbp-Xr8sUuEK4Kjkgw-PwkP2zFASI1ZnedRLssR8=w800-h600-no" alt="Amanda and Jose Real Wedding Orlando, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(1,1)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPNRERbMgugefNnPruadRE2CAcAesFSVCqmAVGd4lYu4wclDYs8SxFdjMI3pjqrEUjLi-AFpts0AZweDjB8sWndKMyiRea8a9J8zr3AheqgdsV5hhQ=w800-h600-no" alt="Amanda and Jose Real Wedding Orlando, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(1,2)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPn6xcrvE86utqqCXMkHYeXC3_kevpWuk1BmysnH0mpz0HJtZ-bOsqD6BFFbrkbz5N7_3JSuRvaKcZSfj5CZoH6cHgBKoBfFBSkqxRuuqPDn_ShYI8=w800-h600-no" alt="Amanda and Jose Real Wedding Orlando, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(1,3)"><img src="https://lh3.googleusercontent.com/pw/AP1GczOMh3TFxPt0lcCEskA0aDiAucchhCU5WN_J8bqpLpNT_pqKFW3hyD8piPaR9pGK46Xab7uJaXD0SqIYu2WXzzvr_1mumSrCiCURQYy6mtjtkgizOvk=w800-h600-no" alt="Amanda and Jose Real Wedding Orlando, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(1,4)"><img src="https://lh3.googleusercontent.com/pw/AP1GczOigCvOe5OT99JCUllNq6i64Qv_ZvncQfhfjqgxb1grQKRJ_kCCW7PAZ7uvNqoNzy_ueWlr12iFfvQfQfM8bG2nB4uqA_8CZFO23rKTYe_kWd8zJ_U=w800-h600-no" alt="Amanda and Jose Real Wedding Orlando, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(1,5)"><img src="https://lh3.googleusercontent.com/pw/AP1GczMnzo90hMjm5NIQ19zXtaAkHIjRr_LXaiuhLGkItI0ZFBgAk6zRLKkvw_swSbySwut-3JhqniPqL7dXCRJuL7-tAHF1vwZD5V4rpUChtWnYwRWLQZc=w800-h600-no" alt="Amanda and Jose Real Wedding Orlando, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(1,6)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPCsCjCKOjXiNgZOu-iU6NFYprzaJEm_GyU0hb5IX6KeHSoyd5QvyfmNEe_SZj4-E9BKY_GfEosY3UNMFQhPUHeTljLRqmbckPDMnbyVIjdRepcZQk=w800-h600-no" alt="Amanda and Jose Real Wedding Orlando, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(1,7)"><img src="https://lh3.googleusercontent.com/pw/AP1GczO-gXr_kOTfUelH9EoP9lJnjj0Ux19YJsND82cR35lddME1nV9JUfqHIvjEHNXKW4OA9iIuLcArL5-gialkYi6hInucsis9rpVAQ3glXLRk0LQlhJY=w800-h600-no" alt="Amanda and Jose Real Wedding Orlando, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(1,8)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPqwFHlEWQHHSmvbvvLBVXUO7_1ayCV58JDvhhByUOk8_82iVUawBWyrfPac4UuejJwUeYRP--O4es1iWpBJTHZ0h162Z7sIhi7DVujXzYwptqxclY=w800-h600-no" alt="Amanda and Jose Real Wedding Orlando, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(1,9)"><img src="https://lh3.googleusercontent.com/pw/AP1GczMHL-gzQtNtO0UUKPAjBm_EFRUYTGqogVUawhcKQ0ITZMTzYDrYj2YuRurQ4NCu8EEj_DX_u9Mo_ySSBCzYozIjdlmN4eC_mzstto4nATtk9B0fdC0=w800-h600-no" alt="Amanda and Jose Real Wedding Orlando, FL" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="gal-divider"></div>
+
+  <div class="gal-section">
+    <div class="gal-section-hdr">
+      <div><h2 class="gal-section-name">Kasey &amp; Austin</h2><span class="gal-section-meta">Real Wedding &middot; Central Florida</span></div>
+      <span class="gal-section-type">10 Photos</span>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-img" onclick="openLightbox(2,0)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNWG6hIM_dewIzjalSvLe5cY2fTd8ooedtfNimuGKjdy4_4S6-ZI8AaAsLRlhUPJHAW6k98iMcJFg9iQPFouUCw2KEC3vKNIOoq0sqbp27LYnH9ZfE=w800-h600-no" alt="Kasey and Austin Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(2,1)"><img src="https://lh3.googleusercontent.com/pw/AP1GczP7fSzBEnI5GGRbopS6JU2dgYWNe45z1EdhKY-riM48jE8oQJVWjKe3cdly91LJWWHzXmgm3D66IUlCNOI4zsjXFyQHJtGHsGx6YBSCSQQITM3BTtA=w800-h600-no" alt="Kasey and Austin Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(2,2)"><img src="https://lh3.googleusercontent.com/pw/AP1GczM_rhhX9fBY_Ax2VOvC3-OioE7Wnnk4TjT8zVALRq05CwVtZqiFgcrBuZo9QriKkV74KobPgWH0laiLR_nA7jeZ8xp-qfAEIvB69goBb_QwvWSQKjQ=w800-h600-no" alt="Kasey and Austin Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(2,3)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPo0NLgWC39my7hOPkTd5yMIn4EhejfRsplAk6iUQ6Tb2ohi79AH8GAy_UNLluGDhIhDXe1NiZkBpRqteqkz7PVWW_J_M9tYFKD6Afc_6LO5K4ZfMQ=w800-h600-no" alt="Kasey and Austin Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(2,4)"><img src="https://lh3.googleusercontent.com/pw/AP1GczOYsO1XDgTxGI2TFpHeiIL54q1KWo3uj0ZflCDPUf0EuRpF5xLXZhCXWOIbL_HnQzlyFunm0sKh8XZU8oILk0yz8YvYLRh1b0E65neppibF0ZXe4EU=w800-h600-no" alt="Kasey and Austin Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(2,5)"><img src="https://lh3.googleusercontent.com/pw/AP1GczOzzFHlEFWAmNtBX1BqmxWHwREJ4DlS9nCR84PUXa6abMe0FINfxFwY2uQ-6WDfPmpIh7-EUEbXMEqQt00g8IkCYn5MDbg0hjiRrcOFmBV278-WagA=w800-h600-no" alt="Kasey and Austin Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(2,6)"><img src="https://lh3.googleusercontent.com/pw/AP1GczOBr3G51Gb6oYYE3wf2Uugu6miHt1WtGG7qYQ8N-Mis4xlmx98HrDUVOHDx9kdUAvwwi_fNfvByE6XXw5Brwk_S3HVta5WSfYZF1fDW8vvAOllS2dg=w800-h600-no" alt="Kasey and Austin Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(2,7)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPCPhuvHdldVOBtni9tITSLDSjADJrhD3PfTguTtQa9E23OjlPUXPwmgdvfQllwDS-qVyhWoOuBQzllkp1ytwgDuhrLC8gJYZhzFfH8_AxXzaTJxm0=w800-h600-no" alt="Kasey and Austin Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(2,8)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNt7CmMcUlBkTtw7lftl5N6wCro39zWjypHPGrXIEUjx9YgPkEuxh7MarVp2bKGM0QrqjelyFVya5m_RApGP51KB9q9ga_1QH3KlDOHx6ib_PnULXo=w800-h600-no" alt="Kasey and Austin Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(2,9)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPhXKyvhfMwWBxMSKl46qJN63lDwXuuHMTL5N2ENNqArISdxOd2iUb8SMA73qQcABLElPZYZZxrcv0QIVwOKtWWR2hWNNyOFkHmLTfloPGdFyShfo4=w800-h600-no" alt="Kasey and Austin Real Wedding Central Florida" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="gal-divider"></div>
+
+  <div class="gal-section">
+    <div class="gal-section-hdr">
+      <div><h2 class="gal-section-name">Erika &amp; Aaron</h2><span class="gal-section-meta">Real Wedding &middot; Winter Park, FL</span></div>
+      <span class="gal-section-type">10 Photos</span>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-img" onclick="openLightbox(3,0)"><img src="https://lh3.googleusercontent.com/pw/AP1GczN8GSnDOQ-gSmPIoEjj7jvtgWPgBL8BDx32ma5xjwwtCDkvwkWg6pu-iub629rXiWyLRTNveued8R5UOb1Oc8_AQ9VDK2RF2d_Flxk2twxTgKU6u1c=w1600-no" alt="Erika and Aaron Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(3,1)"><img src="https://lh3.googleusercontent.com/pw/AP1GczOhHO2TtBMKNPUaDlqPFbL5qyD_0dwJHxBIRUpWagkH1BNvJ0DSqhu6Ju6XZImupH8TXxtoWCRZwrNSFsg9X4XhXqraFqBFPQahpUL2IffBHjcxc9M=w1600-no" alt="Erika and Aaron Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(3,2)"><img src="https://lh3.googleusercontent.com/pw/AP1GczN5oi3E3GRr3Jo4bOhfRIlMaIMQVpDjH_kI6a_YuZ5s2OQ1VBqyBbDHjcaC3-V2VevTB_xu9AO10TdJXZzodUR91-2tOBRxhEQrKwMdfixDN_NbZ0k=w1600-no" alt="Erika and Aaron Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(3,3)"><img src="https://lh3.googleusercontent.com/pw/AP1GczP8PdnyrWsJsDMEB-jp0fLyFAuqigi522LA3vFqF7GIoytoGHAGxSXRUMCxKdI4qZk3qEX_WmTBxWdmYFkGcRlr08lpsuyZxkSH69f-wDO2j2BDJEeY=w1600-no" alt="Erika and Aaron Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(3,4)"><img src="https://lh3.googleusercontent.com/pw/AP1GczMrwoG-R5wc_Jq-hTsEHsUquxyEhltyV1BJHUT6GZBm81fPibeNWBiHbAS2aolvjt3tj_xvSI1qubKeDhXsV5zd9g0xoiiqZXErMZcPmXd8elp86SM=w1600-no" alt="Erika and Aaron Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(3,5)"><img src="https://lh3.googleusercontent.com/pw/AP1GczMbm-QOv3dIuMHaF9JRgwrSfCX2-pwkZFefCcHsJCteR5--mPgh7u9cR7K8YygJzDi2rtopd72oIUl4xrhQm9zH2XctaMkeQCnLbLMm02AbK_jdwDY=w1600-no" alt="Erika and Aaron Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(3,6)"><img src="https://lh3.googleusercontent.com/pw/AP1GczOuF5RH_m__h3NG2Jqj9aXEECrcaLQnLhnYN3H-pdB0mlhzsNkzZz6Wh5-R01vDmdGl2thrmCm8d_X2TtrQdsVq6Hh9fogPSCCbRVuF_ux9U9D2GQs=w1600-no" alt="Erika and Aaron Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(3,7)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPIZI4JpRx4CAgo3TOST9aVpco5wZuujO7iaiyzahBqCFPRvBueWx4S7-kkjuIjwMdQS0jmW4o8Ld2akiip1Yv_iNNzmi061qGKtkp1036Qnkct9dQ=w1600-no" alt="Erika and Aaron Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(3,8)"><img src="https://lh3.googleusercontent.com/pw/AP1GczM_m9VFlnYu_6_50Wau17UDlKH9qba86yGcLIv0t1JTjeBHwdoYzPdIbaVuV4cTL5NorlGQ2YPbSUOxD9Y7c2VfK0aToLMb_3FoBZXrKhDTZduULTw=w1600-no" alt="Erika and Aaron Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(3,9)"><img src="https://lh3.googleusercontent.com/pw/AP1GczMMiiPWgHp72P2Z4tSMsuzlqU6X56JBLorWx_cl6Q3IZZezFO9YV0wRkGWyjJw0WDOzgauol_WvQ7eRRTyGEFIga9YTbnlnEHcy3f53neXPQRIaFPA=w1600-no" alt="Erika and Aaron Real Wedding Winter Park, FL" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="gal-divider"></div>
+
+  <div class="gal-section">
+    <div class="gal-section-hdr">
+      <div><h2 class="gal-section-name">Janele &amp; Malcolm</h2><span class="gal-section-meta">Real Wedding &middot; Glenville, IL</span></div>
+      <span class="gal-section-type">9 Photos</span>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-img" onclick="openLightbox(4,0)"><img src="https://lh3.googleusercontent.com/pw/AP1GczMIW6RQBZicx5AlciA39AnEE3iOpyaTMQpnq8rdOIYacXlHcQWcCC6lI6jolQjWy5KpYcpq7RSJ3rexJ9VM8OY8PVMLF4GUNWSPaz95PEMVqxf90dE=w800-h600-no" alt="Janele and Malcolm Real Wedding Glenville, IL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(4,1)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPRg4ph7W665tA76S5EFlBl3tjc2LEoKOMvtHlgvJzesamoK1E2-MISwBnaguCxcyQ_WBeyFg80qlqf6XqfrxzXNerDPSFiiAF6PoEJEtyXU6sxqoI=w800-h600-no" alt="Janele and Malcolm Real Wedding Glenville, IL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(4,2)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNg7L2lhM2xQszWEcAi8fz-71iKSgaAYdGENN-Pg1W1tZt-lmDExylz0iFGgtf8pMeqGfSxuLkx9_OwZ5sbmhO8XemPBN6RAalX6bYQjt-yw1YBZfk=w800-h600-no" alt="Janele and Malcolm Real Wedding Glenville, IL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(4,3)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNkmJmCq4-xc30xabjNvVZCBEsHf-VcJiiqheLiCpleSchkMwVOZbzdNjBhirFRo9ktk--7Z-Pody__xkYebS30NWsW7Bni2UvZbnnaUv-s277ymjI=w800-h600-no" alt="Janele and Malcolm Real Wedding Glenville, IL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(4,4)"><img src="https://lh3.googleusercontent.com/pw/AP1GczM3ZoPL0LtK5ndQaAlWi6Vt6BGsZaOURhyLju-pu1xUFBP5Nl-tSAhIrhK2L4Xt6RdEYpMCzgxCxprie8VCxpMel_Zn5wokywJvaJgSJBV5yWJvMUo=w800-h600-no" alt="Janele and Malcolm Real Wedding Glenville, IL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(4,5)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPF1gThThNYFVy6TnQHg9kVOQ3XfVAL9p2qd70yX_64PvwgRWjqQag3Elkuc_tD74UJIPVTYmf8zhvNPrm0l8o1i4l8PG4_6hrlCVOKFH76LYTFdcI=w800-h600-no" alt="Janele and Malcolm Real Wedding Glenville, IL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(4,6)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNJXgyGBiI-zs8VHu_E0OEJ7VYMWNu8Z3YcvCc67Uezr6ltKXHCTL5i15Osro5UVGxp6_mgzZm1GC3k6DiMstpEwEbsuCBxqaHqSuonZ7avz4xn0Mo=w800-h600-no" alt="Janele and Malcolm Real Wedding Glenville, IL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(4,7)"><img src="https://lh3.googleusercontent.com/pw/AP1GczOcy6v-U2q9jgfX2Yx2kb1k8ZURTTv9NA_VGPEgBGCd8YH--PABmaS24USlh1jllSinblfq0qYfkqqtSBW-X_gym-kzgqgMHAzpc1bjY2dRJ1wynuo=w800-h600-no" alt="Janele and Malcolm Real Wedding Glenville, IL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(4,8)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPWMgeW5oveFJ0fk15xHK8hImoopXApI465CbvmQKv0Kvcc05JXyrLQbiQSvK6OliB7MpFgZSQjtwrSGOdh8xoBEMRZFz63DYtgrc8myIZx4bkyYKU=w800-h600-no" alt="Janele and Malcolm Real Wedding Glenville, IL" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="gal-divider"></div>
+
+  <div class="gal-section">
+    <div class="gal-section-hdr">
+      <div><h2 class="gal-section-name">Victoria &amp; Terry</h2><span class="gal-section-meta">Real Wedding &middot; Lake Mary, FL</span></div>
+      <span class="gal-section-type">8 Photos</span>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-img" onclick="openLightbox(5,0)"><img src="https://lh3.googleusercontent.com/pw/AP1GczOm2SmehU-XHVj_jubK2ry-nwWbwUOdf-YXWe3iYBB9omJHtRCUUq9cxB-X2z5PxzHacTYp4zzmS5WBSyfIg7FLq_BDpSsLqEokTvXrkERgVN2ptQk=w800-h600-no" alt="Victoria and Terry Real Wedding Lake Mary, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(5,1)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPOQJeJSkiXmflZh7tEYeA57iJZlm8phhEYvOOSu_MrGkD2Jc--pnn8R7YOAuIETfNNbHFbIqsgM7Z0h3qWypG2qWk2HABnZ2ISuno8axqP7ku0xRc=w800-h600-no" alt="Victoria and Terry Real Wedding Lake Mary, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(5,2)"><img src="https://lh3.googleusercontent.com/pw/AP1GczOiZrHnwfgM67t6Hml7MNX3qkzEDIiQ6NAkjHln4xrP5qQYWtHL09yqKNKyIZrH5bFvECxwCnqO8mRK4hhNZw322-3b3YCxYC02y-upN_7Z4UbZFdU=w800-h600-no" alt="Victoria and Terry Real Wedding Lake Mary, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(5,3)"><img src="https://lh3.googleusercontent.com/pw/AP1GczM3p685bqPcXSfbSwnVvhhwx_uWF7lqgcBPUaTvGgjBRoSWOqqpc3mzP50XlnhzBKXtdX7VbZ2R4s3YJDzczlNl_GVsXnzH-waprlJxNyHzvpgM0Fk=w800-h600-no" alt="Victoria and Terry Real Wedding Lake Mary, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(5,4)"><img src="https://lh3.googleusercontent.com/pw/AP1GczMO2c5CnWfRyK4F5xY3g9qNgGOiz_ws6HXLEy6jX6qJwBDKJ50AfPAOV3qLN5kIAbpTKk6a1nPlnM3d4O2RvWY4xaiUu3VbagXp23OEjM5KwNI49Jg=w800-h600-no" alt="Victoria and Terry Real Wedding Lake Mary, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(5,5)"><img src="https://lh3.googleusercontent.com/pw/AP1GczN1t54pnAp_i8fsqL5jP-Sa-_t3XskmqIy86f71hL01yrW5PSkKwIgHG5JOf6x5Fv9QoLknlcSer2nNrzk0lTgB7N1jty6H0aM0e4wkYM5DLwd-zhE=w800-h600-no" alt="Victoria and Terry Real Wedding Lake Mary, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(5,6)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPWmGgvFet9fj9pSiNEuqjOo2prT4buAJR4R2Lqd3LgvbnOUP9D8VeQo22qmdq9Fs5iab16wuMuo334R_2BkigN7tfIA8mIbey6aO1-U4sL-_sd-P0=w800-h600-no" alt="Victoria and Terry Real Wedding Lake Mary, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(5,7)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNzNbl9fdNy8xkWG76dq--ewm_iG9udgrFQ1CXZ_diG5o11qe0G6od1ay6mUBT-pQjtORHOn-aQulHcjEnUK4e0Ianxvqznl3tOydO7_AoKSJDfd-s=w800-h600-no" alt="Victoria and Terry Real Wedding Lake Mary, FL" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="gal-divider"></div>
+
+  <div class="gal-section">
+    <div class="gal-section-hdr">
+      <div><h2 class="gal-section-name">Amanda &amp; Collin</h2><span class="gal-section-meta">Real Wedding &middot; Central Florida</span></div>
+      <span class="gal-section-type">9 Photos</span>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-img" onclick="openLightbox(6,0)"><img src="https://lh3.googleusercontent.com/pw/AP1GczN1jkffOS2t8JixWAzXjr891oqqkHKgSrcZFewKDc31IuErbmcyHDaZ4PKLLV2nsj4kJmTWUqiNlKpKWuCrZdeLbMokj3pLKHxTNdEIdo2gFahJiTM=w800-h600-no" alt="Amanda and Collin Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(6,1)"><img src="https://lh3.googleusercontent.com/pw/AP1GczOpOybUbDEl29gMFBXf4EhoUlaq5xcJ2Sr6f5k85Od7JN6Y_TYAF-U6vp6tfHrVlYy-s6BABTcsPLP-lDFG4TipzgNgdx0jKjuLd2xC9oEe4B_Ue8g=w800-h600-no" alt="Amanda and Collin Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(6,2)"><img src="https://lh3.googleusercontent.com/pw/AP1GczObn20QhsXAT8sjVJGSZg6mLwuXSfazdCxnI08ajCVFTZtE7dGpm3zEyICXnw8ja7dbqwym8NWsYMTphbO7Y92qp5phwzir5P122vUkQfrtH7w_rek=w800-h600-no" alt="Amanda and Collin Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(6,3)"><img src="https://lh3.googleusercontent.com/pw/AP1GczOihr2kI7KrAeT3Jh8fCuKksTbLHqJIWd2y5u53LyBPdMmDohIZCRQyscB_Uui6Y8kYRcle61rdHP1E_NwzkWZNKRw6CodzPWLJ7dJwGcFdpD60NT0=w800-h600-no" alt="Amanda and Collin Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(6,4)"><img src="https://lh3.googleusercontent.com/pw/AP1GczOhRbByLk58POMfvsyqxxVE61fI4GuYh_ucLWzpho2Osti2VgFsjyVTF6exfVCnFmi1KyePMkHKGbI8-MLKr9fALuKYH63dcetHRoVJ7L9QHwlThj8=w800-h600-no" alt="Amanda and Collin Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(6,5)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNrwCK-eZKKYb-WyiwiyUSLojwq53QORINsnIzi848Gb2JXUEneY-CtzC5YwrCUcCT_knSjctCeGH-QPCV3KlxM2Q_Mv1ly6caIr76bpUytBTwAyIU=w800-h600-no" alt="Amanda and Collin Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(6,6)"><img src="https://lh3.googleusercontent.com/pw/AP1GczOgIwqus6TpMlOpiFBEFfjPkSAnK1NHg9zxV2vura0V0tVKUtFCKOXZ_duOrCfx-bsB6FQ_HlY52WmIolfJNHYHRlNNMTuVMA5iFNKdRCvh6xSW8M8=w800-h600-no" alt="Amanda and Collin Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(6,7)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNsxMBTxw-gFtaWYaTJ8amfCo2K9aqRhlGVGhuBypotBm9l8Orofxb4E5B2BDyoL6wdMFnJH5nHFjjweWEccYn1XoM2SAExK0vhqugWlFrPLjbHISE=w800-h600-no" alt="Amanda and Collin Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(6,8)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPLZaex3JAECpapQAzDQIqyLLAgOhbBt51mNXrZfDBgK5wdBf1mIa8wL1Xe8pY6-CZICgypVyakyQx9AF_5RB7EX03ugCKH9GDZMXxdmXWQshBBFpI=w800-h600-no" alt="Amanda and Collin Real Wedding Central Florida" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="gal-divider"></div>
+
+  <div class="gal-section">
+    <div class="gal-section-hdr">
+      <div><h2 class="gal-section-name">Latoya &amp; DeVar</h2><span class="gal-section-meta">Real Wedding &middot; Orlando, FL</span></div>
+      <span class="gal-section-type">8 Photos</span>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-img" onclick="openLightbox(7,0)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPtvRa9FWxturdqk06JSJwU6t0knqaHZTP-W-yMWbKbjBgDKP2HRhdY-s6NAQ2PN6z1sL4CmwuJY9beg7AFLObHugPhPvhoSOuOjxPUfuualXgSH9U=w800-h600-no" alt="Latoya and DeVar Real Wedding Orlando, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(7,1)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPwvlEaTyN5MkS400kvJPneZ_Fcv9DH9hGxBE0yv_ucOcnOszhiRFV4D8SbNrz8wVGEBePR53z_ZF4mID3a2l-FwPGBb_8njJwwv88ek3BI3xgKJEE=w800-h600-no" alt="Latoya and DeVar Real Wedding Orlando, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(7,2)"><img src="https://lh3.googleusercontent.com/pw/AP1GczOvxfjP3LAl1yRP-Z2ZYCBT0pxKkNWZyu-j8wE8slsAziX6BqUWM66DgJ1qj161y2WFKF0qdLqLuM9812wVm5Vjru_CMpb51r94RupVPihjJZLSgxA=w800-h600-no" alt="Latoya and DeVar Real Wedding Orlando, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(7,3)"><img src="https://lh3.googleusercontent.com/pw/AP1GczMGYztRVbyAN__tlEL67CVD8MUrLzbwLQ8SZ-YkwpY9uHaY8skFgnqiBLdizz3fXfoAPGoVQu3-hvrNOCMVdiZeiIjtv3vdIqoS7dRq0EzZiRI_mWM=w800-h600-no" alt="Latoya and DeVar Real Wedding Orlando, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(7,4)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNevE_ouXS0GWa0KHCThesRN9oDmYeDGYiPQHB22sN4fMIsFnCOJevYfG2gexKhNcaRdlUFvknW3DMGocDKJq5MI_BjPhYtUJ8oJ9Qmquff9-tceqk=w800-h600-no" alt="Latoya and DeVar Real Wedding Orlando, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(7,5)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNUhwGmBtB3rWzwkHzBVhqxVbeVyZoZzn1zd-i7hAc9Qz-onS7ota17uSv-cr4y_vJsqqlojMTH1Hj3qW6ZbZYcsed75LIrGVn-K903O709BeZk00Y=w800-h600-no" alt="Latoya and DeVar Real Wedding Orlando, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(7,6)"><img src="https://lh3.googleusercontent.com/pw/AP1GczM8wDjKVMmuxXUALC--0xE12lZGh-udJ3-OzIvVT0iVquH-viEwIxwqHJD9i9AgnAy2MPrwyeRtJByGZq3nob0gm4kVaSFroEHl9D9XNnJXV-EA07E=w800-h600-no" alt="Latoya and DeVar Real Wedding Orlando, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(7,7)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPuznX_8uxAovbgJSLLPvg6kG9VVs7vTmUPbjzWMnUJro3eOpi4AJ6PDQi8BLFjuAMjNQzXrkqYW6ZJxgN9drBxQrz4mb_vWKzhYhqBRfT4fXZAm4Y=w800-h600-no" alt="Latoya and DeVar Real Wedding Orlando, FL" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="gal-divider"></div>
+
+  <div class="gal-section">
+    <div class="gal-section-hdr">
+      <div><h2 class="gal-section-name">Brooklyn Bridge Elopement Shoot</h2><span class="gal-section-meta">Styled Shoot &middot; Brooklyn Bridge, NYC</span></div>
+      <span class="gal-section-type">9 Photos</span>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-img" onclick="openLightbox(8,0)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPgnlQiaOv_AY5_6V5n8ytHM-HVtfxLpIifD69cjJdt6eSA8qtwbzwl3D9Igw0_8K4Ja7wkt3Y1HwnkgA1rd1JjhzBnfNJER7kHOIeN5tvBU3JERzc=w800-h600-no" alt="Brooklyn Bridge Elopement Shoot Styled Shoot Brooklyn Bridge, NYC" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(8,1)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNxZC1lZVa4cjkuFBSpEb7EioPjURvrru7Q3MefldlZD1pZEKbu94e287jDTg3CzC9LVs5OBkPqAZIiMe8uDqDQ7bw_BK8M2i9km_gVFbByCLqj3lU=w800-h600-no" alt="Brooklyn Bridge Elopement Shoot Styled Shoot Brooklyn Bridge, NYC" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(8,2)"><img src="https://lh3.googleusercontent.com/pw/AP1GczP20wHZJx18hXekXWgRzbv1WWJKlgfQKzcri2sMbe95mjapDFBd8xfEHOYSDRcCx-u4vK7Zb88-zCLSnez4t2j1KK6ccVbCEM01X77oTfklxZPm0ws=w800-h600-no" alt="Brooklyn Bridge Elopement Shoot Styled Shoot Brooklyn Bridge, NYC" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(8,3)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPyeGxeadSqo2I-GzWpY0cYq8XE1liK6VkdeUDZPmem4MC5yrxPWMwVrua1CksNl5wd7NDjuNQszFa5cS616WWZwz46zkrxg1secuNjl4cKvDXZJ4k=w800-h600-no" alt="Brooklyn Bridge Elopement Shoot Styled Shoot Brooklyn Bridge, NYC" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(8,4)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNJzhmGa8css7VFnQOFcmGBF6jye9mh9ibZ9y35HJk4W9XK1QGHk5MNpODAsWuCbFxIjrkRtFlBH4d4g6Mu4INCic4Y6HQmguKe4ngsL9wta-lRHCw=w800-h600-no" alt="Brooklyn Bridge Elopement Shoot Styled Shoot Brooklyn Bridge, NYC" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(8,5)"><img src="https://lh3.googleusercontent.com/pw/AP1GczONUt6nYTNzEqMiV7b52tYRbMNGbSPpwaFa0Fca-6y1RxtLUcvQ8KaKK5c8oUxaD8h5walGj0IqpEyoeCBdx5wmHjn7GomdT4IbRhwdm2p4CAx58C4=w800-h600-no" alt="Brooklyn Bridge Elopement Shoot Styled Shoot Brooklyn Bridge, NYC" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(8,6)"><img src="https://lh3.googleusercontent.com/pw/AP1GczN4IgdNNl8GUb1F5fKyD7JVpa6WTAQRz9dEojmIJDV2oZ7CCDi1U4zuW09_Izp-25dSMx6C8yQHLJjYWIFYUV_dMCsA4tvCH3UmWygRPxBWrKTXYo8=w800-h600-no" alt="Brooklyn Bridge Elopement Shoot Styled Shoot Brooklyn Bridge, NYC" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(8,7)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPxn_brAACAg_b2WzNsAJ_mcJQPqwhK7hKerT0zweoRT4Jk3tadfUw5den1A5NYkHvNC84luLWWFgjQ6XKsoi3ykVWJVP2vYP9men5M4RhzKvZcAyg=w800-h600-no" alt="Brooklyn Bridge Elopement Shoot Styled Shoot Brooklyn Bridge, NYC" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(8,8)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNRaxu1-GGY0RhMBs2D5UrVkTJYkadIrjCMhluCc8mu9M6mwxsyZj6Ks7XnhI3gJaMPZ92g3M6QqRRgP0Wlg0tFLBn0IyAKpgc149Mkhev-HE9K9Is=w800-h600-no" alt="Brooklyn Bridge Elopement Shoot Styled Shoot Brooklyn Bridge, NYC" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="gal-divider"></div>
+
+  <div class="gal-section">
+    <div class="gal-section-hdr">
+      <div><h2 class="gal-section-name">NYC Styled Shoot</h2><span class="gal-section-meta">Styled Shoot &middot; New York City, NY</span></div>
+      <span class="gal-section-type">9 Photos</span>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-img" onclick="openLightbox(9,0)"><img src="https://lh3.googleusercontent.com/pw/AP1GczOq8PCGHcRD7LF63ZtMmlm4Cv9oqfXDhhRmFsbA6uX0v28YJ7pPOy97IoCUfJpteVjiRxv12iBo9eF3KwrcIg3wTu8mvHD7JOoDkwR1DxeC809l3XQ=w800-h600-no" alt="NYC Styled Shoot Styled Shoot New York City, NY" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(9,1)"><img src="https://lh3.googleusercontent.com/pw/AP1GczMvyes74-ZlkafB8EjE4e465I2TNVdqxbbbweAH2_wW8xFUNZ8Z_RhOzeyUbseHgL81bKygKV2cxE__nsECsNbPSehkgPrBuZoUTwQ2S-asjxuAg8E=w800-h600-no" alt="NYC Styled Shoot Styled Shoot New York City, NY" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(9,2)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNyl6dCherdEMl0bcQ6PCUAFVvWTzmThiSjxxLPyfKUmdCJCfYhXB0e8T38N6PFUcc5IshB8AdS4Ss3FdejDTWjSXdPQYVxxY8rYdQshUJnmdUQnXc=w800-h600-no" alt="NYC Styled Shoot Styled Shoot New York City, NY" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(9,3)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPzfjISg1eKvOVkFdgkFcpkYnsl-HxJj6RU1IgxEXbAiRyhXGyGYx-Nun9ewjPoj6zSvGCd-8smaqKQroZnWVua8eNNoXlShlFERaiJUsEWJ-0Akq4=w800-h600-no" alt="NYC Styled Shoot Styled Shoot New York City, NY" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(9,4)"><img src="https://lh3.googleusercontent.com/pw/AP1GczO5P4EqETJPkW9GKe01UTHmnyFlJptTAx8rQeBm6GxaA3NKTeBWJO7DLbxgJRlEyn3xo68oh1ymH-P8nz9uxG2YNwPXiSgcFpwETLQwT5wLebZWnKo=w800-h600-no" alt="NYC Styled Shoot Styled Shoot New York City, NY" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(9,5)"><img src="https://lh3.googleusercontent.com/pw/AP1GczMvfOAzqgGc_5ojQGUyJrhGHoQRFJyho-DI3CSfsTDLwg_VKkBkwBSPZ1UQVixB7PSWsofPrS-BK3TwCJ2_DgDPQYuylEt0KtBe7wEYyRosWQ92EUQ=w800-h600-no" alt="NYC Styled Shoot Styled Shoot New York City, NY" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(9,6)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNchzIQ-T_EP6i_-nJKC-QNS0xh6Z0KhLbasbj7PgAaa7xN7tb0o15AxOg7r_opJenzQGzylm2h3Ih1-7Y8fWhv_2O-yeeqzabD5y8t2sCzXCI1gT0=w800-h600-no" alt="NYC Styled Shoot Styled Shoot New York City, NY" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(9,7)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPfUjZLz-WIHKSl4Js73em5aRjIWdfZikbmP_QUsfwgzv8CCqo8b6d_N4BXyYVKDTHz3IwIzAnNRxaeunF-EtQ-h6NdQmb2tfar42P-Zjfs8TBj8_U=w800-h600-no" alt="NYC Styled Shoot Styled Shoot New York City, NY" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(9,8)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNbXzIPMFrDECk1_aR-b2mEzaKqh9aJ5LUyrDfSMDMzXjPLX2OxPzoOGEdzLyRSs1-LrrfD3ARHyh2ElK8ljJ56TaHTZre6JDwslBz7aSe0am3i1WA=w800-h600-no" alt="NYC Styled Shoot Styled Shoot New York City, NY" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="gal-divider"></div>
+
+  <div class="gal-section">
+    <div class="gal-section-hdr">
+      <div><h2 class="gal-section-name">Necole &amp; Nicholas</h2><span class="gal-section-meta">Real Wedding &middot; Daytona Beach, FL</span></div>
+      <span class="gal-section-type">9 Photos</span>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-img" onclick="openLightbox(10,0)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPWoV_YD1AkNR-R7_SnDZM9dtuNTofotSJ5X5EuQ63fPEjrGYUOunJ7hdb5Sjdum2yvQpEmSNKmrSFvx1Gy91tW2SCkZeElQarFFTAfBgRJPPaeM88=w800-h600-no" alt="Necole and Nicholas Real Wedding Daytona Beach, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(10,1)"><img src="https://lh3.googleusercontent.com/pw/AP1GczODhYgPaoHXN6URtjzXc9WhghNTZZ9Ay2QRFZDObjVRCzqyxC5U8E0BrcDF1cPeu3-hRr39nWI9dLmrcHRBQ6Afl0JyE20rKJrbi_fGFS8HQFLYSbs=w800-h600-no" alt="Necole and Nicholas Real Wedding Daytona Beach, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(10,2)"><img src="https://lh3.googleusercontent.com/pw/AP1GczMglErB3SZuO6FZa_Vt23RnuTp_bEPesEeaVGX6AowQzFClwsgeFOg2VBEVjHqr4i6hyaCPEgtw4HJTba5r6gJ-dYSI-as4G1DcqU-Y1yjkiPpoHOI=w800-h600-no" alt="Necole and Nicholas Real Wedding Daytona Beach, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(10,3)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNJbNxdOBORu7h5eQo0Gf_kLHtHFlSh2uAOiRPqISNYSu3REscWclmIE5O82NgYmi1lPZbSodrp5MTcj1tvLA3TTR2cVH5xfpN0YHB9PrTptvBHh3A=w800-h600-no" alt="Necole and Nicholas Real Wedding Daytona Beach, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(10,4)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNybnP1ZYgPLdLBQdMQzQsj-FEnF6z2iDr41nZ4_26pAoRg8u823p-M9MomsHX2HhsRjVYnDgZooEeyB74jgBAlhhiitHQQPL7wLOgcuPywlZHKN7k=w800-h600-no" alt="Necole and Nicholas Real Wedding Daytona Beach, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(10,5)"><img src="https://lh3.googleusercontent.com/pw/AP1GczMxqlW8uig71VN2E2SvJ_oP0Hao6fQLNkNiHolY3bY4ichYvDy2lvQ427lPfPtwX4P9BuRD8bQ2DHMDPcCjFmxiJCbBOqBdq00t-Pdyx65X1i6wtJE=w800-h600-no" alt="Necole and Nicholas Real Wedding Daytona Beach, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(10,6)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPJ9NxUnTsSCMACFqAZfUe082vqyvGsYumlB5mGE7nLgq6WWHKcRWBvqFdJ7J6KqbPCctXoZ-oS_BDejr9wpF0K-3mJgGJ3IgmsxwO9qeyW7TlGHsA=w800-h600-no" alt="Necole and Nicholas Real Wedding Daytona Beach, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(10,7)"><img src="https://lh3.googleusercontent.com/pw/AP1GczOFXcM24YLa52aemjWPMqPpCGjvMh5iS5z9JA3p_E5QD3Eo-5Tz66zC1QNOCS57bokdAsS-OOnpLSMmdWTHz-zEo7F4cHh8QgoUljpeynWOjhlRQ9U=w800-h600-no" alt="Necole and Nicholas Real Wedding Daytona Beach, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(10,8)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNXwHpNPzNbGoA2ulz1GRK4AaxwScYZjIPSZSGNYh72X5DJz-Bulr8luCeZXxezUHzUwdxlmiOiyrkyxlZ2q957_E1XUPwMgdThaXwpFMQaIKhJ8l4=w800-h600-no" alt="Necole and Nicholas Real Wedding Daytona Beach, FL" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="gal-divider"></div>
+
+  <div class="gal-section">
+    <div class="gal-section-hdr">
+      <div><h2 class="gal-section-name">Cassandra &amp; Alexander</h2><span class="gal-section-meta">Real Wedding &middot; Winter Park, FL</span></div>
+      <span class="gal-section-type">17 Photos</span>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-img" onclick="openLightbox(11,0)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPyQnG9oDl7ci85h1FWKdr2mzneafUyAQ719RF6XgVWHTF-1UndiW4SfCEdfvY39H_TkklcN4Fw9uePt7qd151YnXMxGaKuvTw-qhaRKCrc6_UodPA=w1600-no" alt="Cassandra and Alexander Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(11,1)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNvH6e_kds7Eq1_gc9t720wLenqPznkM7AA-LibI5YzH2lzIDLlAWE2_xLTERk13ZlkSYS9hAtkOGyuMUEC7CKD9hxsghd9kDXjgrbEZw-k98RsW5s=w1600-no" alt="Cassandra and Alexander Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(11,2)"><img src="https://lh3.googleusercontent.com/pw/AP1GczMYKxiNGFr0Zyi5l9EhnL6PnQT55c4ePwBDyI0KP9nuVdpFrHUXxZrsV0Luy1tKtplx6Dkn-Zexi_PM1BAOccJCwKtNpwRzM2ZYsQfS4K9spfdKqOI=w1600-no" alt="Cassandra and Alexander Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(11,3)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPylU87POPswH_pxyYX2f0bi_JPgwO0OoZ0e2JxxSR9F8Smy4PfU1mOyuNT424cT4xgegUnHguoTmW55bImxw55y6NNf6gohbKbJni3D6GEUg5m6VU=w1600-no" alt="Cassandra and Alexander Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(11,4)"><img src="https://lh3.googleusercontent.com/pw/AP1GczMb4Vx13YiX-HR4s1hcfkBa7l5_k5cPd9azXrkAKfOMg6WVLd63ARyD-cTmW7Lh15JKWf9wUHATETkFuVjLQ5tBg-5zfVErnA84wgIALCf0pzL8Wss=w1600-no" alt="Cassandra and Alexander Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(11,5)"><img src="https://lh3.googleusercontent.com/pw/AP1GczN3y2SvXH_dHqId1goAw9zZkYXmZXmwnxqk_IzAahOPiZrvzA7wKsCpKxSmSqWa2kRWY3hb2VQp_lM6sjyPAX0hTUHzk3Ox3Yp436lQhYHU63Wljzo=w1600-no" alt="Cassandra and Alexander Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(11,6)"><img src="https://lh3.googleusercontent.com/pw/AP1GczOfM7OmvYbOYPLmN9zUGhy1ns5Hzo-BkHsPikzLuP3azmPoiobLDSB0QwQFND-NimkK2NudIR0Ihz269fMye_ymnfyRNKxApiJh2ZXB3hVVxRamamY=w1600-no" alt="Cassandra and Alexander Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(11,7)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNsu0ngRFQtq1o8-u6y3p26KUsnZFFLI7bTH9g-kRfGsZTrX4A6Q2Ca-zBRVYc5W1ZyQ-tQ9sDeDLigwwWPNhYeX5IXiE4hhHFvHC3B5wjwIriNby0=w1600-no" alt="Cassandra and Alexander Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(11,8)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPswj-InXrt_kMpqPRv8Mjozz-6ebdmJb6h7W56OK69raEsEaTDhdPKXaOXriAbSahV2W4cbXNsGaQpexbMEczDGZTApVS1gN9x5-FXMfRx3Z57j5Q=w1600-no" alt="Cassandra and Alexander Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(11,9)"><img src="https://lh3.googleusercontent.com/pw/AP1GczMVaDsvSqhFu7JSvPKW7yVmS9kUfymIKCvrTYKidNn1WOwkPzReav3R5gLzYY4qBpoZMmsfsvSNwlKXPsOQlbeSiUfvdkRU7NSX70TovVh_iEdqbl0=w1600-no" alt="Cassandra and Alexander Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(11,10)"><img src="https://lh3.googleusercontent.com/pw/AP1GczMw7tzWmPirTjSJ-2mwE78H-CNa1zD8Sy1hj_Il5O1dWPAVcbsP6z-OLER7eA6WhafiQ1jS6szDSJAQunzpv1yfTUyKbB1waloJ33L-P8TvTCYn_yg=w1600-no" alt="Cassandra and Alexander Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(11,11)"><img src="https://lh3.googleusercontent.com/pw/AP1GczO9XitrvrzEWzNKtOjIqRFfbdtB6w64JjYn_0ccjm_sMxMqY59W2JaJ5syBGZ16kFXusiH3Xw4gfANK7kTq03Cf_iVP83wwqc7pXxKrk3q7gukDMAc=w1600-no" alt="Cassandra and Alexander Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(11,12)"><img src="https://lh3.googleusercontent.com/pw/AP1GczMS0z1hWuMll0nyH1ebZpbQFyYLn0jG167rNl12EMu4sKyTLdVYUY0Lrj_hnZeNk9LzjTOlQtrzs1UATVw5nqyX5eOYVMp6-t7uNJkFudOJTDJP9TQ=w1600-no" alt="Cassandra and Alexander Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(11,13)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPsaSfgoPeiX0r4BBew7lwweqR3QjQfmstIYcWoKkf7lNiVUtLFWlaxH5zWNT0HgXXrqAoeLdN-whlJkmKDlTdCcJ6UORa8_HS-opcVlTFWgrmhvfA=w1600-no" alt="Cassandra and Alexander Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(11,14)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPUEi7me7mWYgyCwnKGf6Z8scR4vrkeZJtBIVUbzTHUEc9fc0tsJSptkJDyn2fTWxCDfyhPZI8XvNQKnvolwGQw8rxf3HlKzEcWFKgggVQRpueNrKI=w1600-no" alt="Cassandra and Alexander Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(11,15)"><img src="https://lh3.googleusercontent.com/pw/AP1GczOGC-cr6q-jT15iUI8QiMMwXDcVssLOMkqOlZne4k8jV9yBEfw0bK_00KSL62Ldm80zZTkOUF8p4BabpM6gZyFu9nAEI4SDNEiLr25bECP8V12x3m4=w1600-no" alt="Cassandra and Alexander Real Wedding Winter Park, FL" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(11,16)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNZDgXTE9kuCj5yS61m5qHzpHLxowODcpGqVWfKUOLHqd-0IiJbuhvTEqlZz-ukHwtl733pa_j5SW4OXHd8cQTQiDTUCC_EgXwzY7AHNyIjTuGpbDo=w1600-no" alt="Cassandra and Alexander Real Wedding Winter Park, FL" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="gal-divider"></div>
+
+  <div class="gal-section">
+    <div class="gal-section-hdr">
+      <div><h2 class="gal-section-name">Hillary &amp; Michael</h2><span class="gal-section-meta">Real Wedding &middot; Central Florida</span></div>
+      <span class="gal-section-type">17 Photos</span>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-img" onclick="openLightbox(12,0)"><img src="https://lh3.googleusercontent.com/pw/AP1GczMTMrFW8K46bNSk1t5IqFNgVpF75R_2wUcOVY34dVF6X7xiMwpPb1tp-3IlISc0n5GGBb9LREK2JEoqytBH4ITrEkXedSW8LaRfNDcU2ONQz5zJrG4=w1600-no" alt="Hillary and Michael Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(12,1)"><img src="https://lh3.googleusercontent.com/pw/AP1GczOb7GmCAhHm8ocWOyO0R-mMUHD5FCXbhdJco2ObGCtLDcwa5y2uywgsgzksZos_yshAGkGU5q2khXJoe1yoy5zDD4Wl9nM0kPyyGUryDZovf3Yjot8=w1600-no" alt="Hillary and Michael Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(12,2)"><img src="https://lh3.googleusercontent.com/pw/AP1GczM_KmnTtZbsr4ezLhrSZrZRE5qTVlkV_sbjEQHfKfBfmfCn6T6_zHsQT5rCjRMVH_D_-BZc53jh3C_G0PHz8JdPPjpd8xMt9Du_59RAnef22IJH8bo=w1600-no" alt="Hillary and Michael Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(12,3)"><img src="https://lh3.googleusercontent.com/pw/AP1GczP0FhG_m8kjoFRZLsQxwUrdWJfeMgqRJi3MocsV0dinQoCv7O2LftkC9IVWo6bX6GIgMhHbD5lD24S85CSNktavfwBiihIFQz1P9rYeBK1UW70TizY=w1600-no" alt="Hillary and Michael Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(12,4)"><img src="https://lh3.googleusercontent.com/pw/AP1GczN-l8J8pK70uJzBo3p7wLGD4yaPojZz7RfOhBzef7N3kzR9jqTq3EYyjwgCNwI51Vm-1SjsFqTBiXSJwOnx_lIgP-iRsflfZuwM374fZeDUU1_xL-c=w1600-no" alt="Hillary and Michael Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(12,5)"><img src="https://lh3.googleusercontent.com/pw/AP1GczMclM1Dcb6AI_hE3AG3K7pR892LIutfUphmbzwLD-Smgg8sntTuNQfCLSr0IF7l_qh0t-DP8Gn6A0w1jPY0ghbL8LYPCQ57xCaWZLvZGCHf0cR5wMU=w1600-no" alt="Hillary and Michael Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(12,6)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPpRzTC1bt4xJ6dhSb_-IeT0nIC1JCQsuWtnnJ2wLCH4g-j1zYvmCJDKrMjySDlkZSnNSMaO2CODHJXjaV1Ost-aeNSpQXJ6qzhUtRop0vm2D39FCw=w1600-no" alt="Hillary and Michael Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(12,7)"><img src="https://lh3.googleusercontent.com/pw/AP1GczO9mHYgEmwazWgZOFapPNh5_JavjBWGPbQ5raNfurrRBkbekGNJiBONvj2BrSxwdxvmiLFL84qISyn9sfi8BZXNti8beBkq0_eFkBQbr5rbvpmscpU=w1600-no" alt="Hillary and Michael Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(12,8)"><img src="https://lh3.googleusercontent.com/pw/AP1GczN1JA3nThvmErDorsRUuxmqqi4CRXY7xU1NNVsIeYVu1rqkpC13MExhtDoIElNqgiXarKnwBM32Tmi0VroTPToMaksBJD_PeAIrAhEHhI_tuevC2UY=w1600-no" alt="Hillary and Michael Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(12,9)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNPSsaZhGBLwIRJdFxqp-O5nfVPS8x18gKR5L94sj81VoEF8nX0iqzSaZstOPlCzqugdFlk5ZjyeArzxYMX34ZKOnw_7zVbpNSxuCgq_BDmy8OEld0=w1600-no" alt="Hillary and Michael Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(12,10)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNiS3aRP4FVCBrke6eXF2AiAlWiEcZBPGki0eCLF0m3tY5McmDIsyORJnf81IOTl3eScd4oBolXseYAyQ_W8Ctc0NZ_6xQp9mPnNgIJL5KpVHPZZ_Q=w1600-no" alt="Hillary and Michael Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(12,11)"><img src="https://lh3.googleusercontent.com/pw/AP1GczNSUeZE9YybTkBL14iOB7a5kgwdeIjFd9GX-qk0juCmLbR_Eo8yX7LxYU6AlOo8rn49V0hCDiVaXNR_PTyGnQnoNFf2i0X7jD1U6rzdyjizGjpJqi4=w1600-no" alt="Hillary and Michael Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(12,12)"><img src="https://lh3.googleusercontent.com/pw/AP1GczMZ4SauLnalwVstOhGmaKAoV5ib9XaTQ4uvY8IPuXQUE9JQY4YaK3QsNNkwBjYOnJdB_oKDjQna9iTb7CO8zhUCaQo3DUbB0rIP--QwQChLT_lrPmo=w1600-no" alt="Hillary and Michael Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(12,13)"><img src="https://lh3.googleusercontent.com/pw/AP1GczMhlTMSjslCGp-cSVFsF-Xn_6dp5K2eUoSJkLN-1sivHSZvBX6UXj8FhlXCKW9oD1OvUmJ-uUeadiIdF33qaUL4DCHXXH7wC5-6HevFSHuDcA8CvTk=w1600-no" alt="Hillary and Michael Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(12,14)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPdsRHGgcJkGYNLwdm_P7gXrxwHSq1LxCF1fo-iA4lj8iYkq2cZVzdwD7JdTuELd3PhmoMIbiJiWZG8EfryCVOTfllOzdJ10GaJ2nqeHNyRlXC2fF8=w1600-no" alt="Hillary and Michael Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(12,15)"><img src="https://lh3.googleusercontent.com/pw/AP1GczPqPI1JpPVlTQjy82qP3YYORfXNoCC_odIdyiocgwnKV9yhxphk7itzi5mpGrW79ocLtLvJE6olS8oUwEgJQdZv141HEYoK-1nJ1YmT6V_YqxET8so=w1600-no" alt="Hillary and Michael Real Wedding Central Florida" loading="lazy"></div>
+      <div class="gal-img" onclick="openLightbox(12,16)"><img src="https://lh3.googleusercontent.com/pw/AP1GczMO1futGUqorrQw4RjM7Zl-GA2EYsKC-g0Afw67tHrkmpYUzHbXsd0NP6-quvsSE9W_dk3iOvjq0itayMDzTVQRZBtdO84bSPrwftR_nJaUt77pTiA=w1600-no" alt="Hillary and Michael Real Wedding Central Florida" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="gal-divider"></div>
+
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="gal-lightbox" id="galLightbox">
+  <button class="gal-lb-close" onclick="closeLightbox()">&times;</button>
+  <button class="gal-lb-nav gal-lb-prev" onclick="lbNav(-1)">&#8592;</button>
+  <img class="gal-lb-img" id="lbImg" src="" alt="">
+  <button class="gal-lb-nav gal-lb-next" onclick="lbNav(1)">&#8594;</button>
+  <span class="gal-lb-caption" id="lbCaption"></span>
+</div>
+
+<script>
+const galPhotos=[["https://lh3.googleusercontent.com/pw/AP1GczP-RFXCLyFEnY7yqidmXghdoGFnuksaSeGegwRexdeBvzO0OEc58l9ke3Xi05_hiqnrmKI0QmSaxyxva7afTSDCfShOapqXL3ty8dFhS_gaF8q1-AU=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczNj4ImH_-8gYzEiBcLhZcwwwzwAvGT8_jQyYfrACPPuFNgRMYMu8CPw__YED25ORnXCeXhtHj90RN3u4x4PPL4rYhFVzIqrOS2Xb1cuFGCrflORv6k=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczNp6Z1KPyLVZP61GpwMtRznFEH72T4FzcdXRv2hH64rMOXgxIZ6UoEz9UmEhRLOkigbmBfXOQu1a5Awv_PFCgMT-i29PfJw23CbC0Z03bDNYVD0sHo=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczO9H-x9S7pkidppqLbxp9NjeLeB6nsJq4G1G-RtypsoJSDd5LMi6TyxV54_WM5WiP1O-2QDrRtg8tZyp2pOl8U_mOpj3NhqKKgUzYJOUHbTZ1eD4iE=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczOIbFU8Iv5MH0pWEpV9ll6sFN-4Pj-SV5S1X-mHEE5msIYRKiXhxogPkA4MRPTCgbFIYSScVgUZ_pZ04j6w_Gjekuswkk7gFOSNnOkI2hkBwL3zgjw=w800-h600-no"], ["https://lh3.googleusercontent.com/pw/AP1GczOPYEcGOJEoL0lSRxt0grpmHOTUdVvm2qQfliJdm5mh4MkzS9zS3WnZdF2U0ASBjjs9T1cKeBHUbp-Xr8sUuEK4Kjkgw-PwkP2zFASI1ZnedRLssR8=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczPNRERbMgugefNnPruadRE2CAcAesFSVCqmAVGd4lYu4wclDYs8SxFdjMI3pjqrEUjLi-AFpts0AZweDjB8sWndKMyiRea8a9J8zr3AheqgdsV5hhQ=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczPn6xcrvE86utqqCXMkHYeXC3_kevpWuk1BmysnH0mpz0HJtZ-bOsqD6BFFbrkbz5N7_3JSuRvaKcZSfj5CZoH6cHgBKoBfFBSkqxRuuqPDn_ShYI8=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczOMh3TFxPt0lcCEskA0aDiAucchhCU5WN_J8bqpLpNT_pqKFW3hyD8piPaR9pGK46Xab7uJaXD0SqIYu2WXzzvr_1mumSrCiCURQYy6mtjtkgizOvk=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczOigCvOe5OT99JCUllNq6i64Qv_ZvncQfhfjqgxb1grQKRJ_kCCW7PAZ7uvNqoNzy_ueWlr12iFfvQfQfM8bG2nB4uqA_8CZFO23rKTYe_kWd8zJ_U=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczMnzo90hMjm5NIQ19zXtaAkHIjRr_LXaiuhLGkItI0ZFBgAk6zRLKkvw_swSbySwut-3JhqniPqL7dXCRJuL7-tAHF1vwZD5V4rpUChtWnYwRWLQZc=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczPCsCjCKOjXiNgZOu-iU6NFYprzaJEm_GyU0hb5IX6KeHSoyd5QvyfmNEe_SZj4-E9BKY_GfEosY3UNMFQhPUHeTljLRqmbckPDMnbyVIjdRepcZQk=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczO-gXr_kOTfUelH9EoP9lJnjj0Ux19YJsND82cR35lddME1nV9JUfqHIvjEHNXKW4OA9iIuLcArL5-gialkYi6hInucsis9rpVAQ3glXLRk0LQlhJY=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczPqwFHlEWQHHSmvbvvLBVXUO7_1ayCV58JDvhhByUOk8_82iVUawBWyrfPac4UuejJwUeYRP--O4es1iWpBJTHZ0h162Z7sIhi7DVujXzYwptqxclY=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczMHL-gzQtNtO0UUKPAjBm_EFRUYTGqogVUawhcKQ0ITZMTzYDrYj2YuRurQ4NCu8EEj_DX_u9Mo_ySSBCzYozIjdlmN4eC_mzstto4nATtk9B0fdC0=w800-h600-no"], ["https://lh3.googleusercontent.com/pw/AP1GczNWG6hIM_dewIzjalSvLe5cY2fTd8ooedtfNimuGKjdy4_4S6-ZI8AaAsLRlhUPJHAW6k98iMcJFg9iQPFouUCw2KEC3vKNIOoq0sqbp27LYnH9ZfE=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczP7fSzBEnI5GGRbopS6JU2dgYWNe45z1EdhKY-riM48jE8oQJVWjKe3cdly91LJWWHzXmgm3D66IUlCNOI4zsjXFyQHJtGHsGx6YBSCSQQITM3BTtA=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczM_rhhX9fBY_Ax2VOvC3-OioE7Wnnk4TjT8zVALRq05CwVtZqiFgcrBuZo9QriKkV74KobPgWH0laiLR_nA7jeZ8xp-qfAEIvB69goBb_QwvWSQKjQ=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczPo0NLgWC39my7hOPkTd5yMIn4EhejfRsplAk6iUQ6Tb2ohi79AH8GAy_UNLluGDhIhDXe1NiZkBpRqteqkz7PVWW_J_M9tYFKD6Afc_6LO5K4ZfMQ=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczOYsO1XDgTxGI2TFpHeiIL54q1KWo3uj0ZflCDPUf0EuRpF5xLXZhCXWOIbL_HnQzlyFunm0sKh8XZU8oILk0yz8YvYLRh1b0E65neppibF0ZXe4EU=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczOzzFHlEFWAmNtBX1BqmxWHwREJ4DlS9nCR84PUXa6abMe0FINfxFwY2uQ-6WDfPmpIh7-EUEbXMEqQt00g8IkCYn5MDbg0hjiRrcOFmBV278-WagA=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczOBr3G51Gb6oYYE3wf2Uugu6miHt1WtGG7qYQ8N-Mis4xlmx98HrDUVOHDx9kdUAvwwi_fNfvByE6XXw5Brwk_S3HVta5WSfYZF1fDW8vvAOllS2dg=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczPCPhuvHdldVOBtni9tITSLDSjADJrhD3PfTguTtQa9E23OjlPUXPwmgdvfQllwDS-qVyhWoOuBQzllkp1ytwgDuhrLC8gJYZhzFfH8_AxXzaTJxm0=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczNt7CmMcUlBkTtw7lftl5N6wCro39zWjypHPGrXIEUjx9YgPkEuxh7MarVp2bKGM0QrqjelyFVya5m_RApGP51KB9q9ga_1QH3KlDOHx6ib_PnULXo=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczPhXKyvhfMwWBxMSKl46qJN63lDwXuuHMTL5N2ENNqArISdxOd2iUb8SMA73qQcABLElPZYZZxrcv0QIVwOKtWWR2hWNNyOFkHmLTfloPGdFyShfo4=w800-h600-no"], ["https://lh3.googleusercontent.com/pw/AP1GczN8GSnDOQ-gSmPIoEjj7jvtgWPgBL8BDx32ma5xjwwtCDkvwkWg6pu-iub629rXiWyLRTNveued8R5UOb1Oc8_AQ9VDK2RF2d_Flxk2twxTgKU6u1c=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczOhHO2TtBMKNPUaDlqPFbL5qyD_0dwJHxBIRUpWagkH1BNvJ0DSqhu6Ju6XZImupH8TXxtoWCRZwrNSFsg9X4XhXqraFqBFPQahpUL2IffBHjcxc9M=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczN5oi3E3GRr3Jo4bOhfRIlMaIMQVpDjH_kI6a_YuZ5s2OQ1VBqyBbDHjcaC3-V2VevTB_xu9AO10TdJXZzodUR91-2tOBRxhEQrKwMdfixDN_NbZ0k=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczP8PdnyrWsJsDMEB-jp0fLyFAuqigi522LA3vFqF7GIoytoGHAGxSXRUMCxKdI4qZk3qEX_WmTBxWdmYFkGcRlr08lpsuyZxkSH69f-wDO2j2BDJEeY=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczMrwoG-R5wc_Jq-hTsEHsUquxyEhltyV1BJHUT6GZBm81fPibeNWBiHbAS2aolvjt3tj_xvSI1qubKeDhXsV5zd9g0xoiiqZXErMZcPmXd8elp86SM=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczMbm-QOv3dIuMHaF9JRgwrSfCX2-pwkZFefCcHsJCteR5--mPgh7u9cR7K8YygJzDi2rtopd72oIUl4xrhQm9zH2XctaMkeQCnLbLMm02AbK_jdwDY=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczOuF5RH_m__h3NG2Jqj9aXEECrcaLQnLhnYN3H-pdB0mlhzsNkzZz6Wh5-R01vDmdGl2thrmCm8d_X2TtrQdsVq6Hh9fogPSCCbRVuF_ux9U9D2GQs=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczPIZI4JpRx4CAgo3TOST9aVpco5wZuujO7iaiyzahBqCFPRvBueWx4S7-kkjuIjwMdQS0jmW4o8Ld2akiip1Yv_iNNzmi061qGKtkp1036Qnkct9dQ=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczM_m9VFlnYu_6_50Wau17UDlKH9qba86yGcLIv0t1JTjeBHwdoYzPdIbaVuV4cTL5NorlGQ2YPbSUOxD9Y7c2VfK0aToLMb_3FoBZXrKhDTZduULTw=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczMMiiPWgHp72P2Z4tSMsuzlqU6X56JBLorWx_cl6Q3IZZezFO9YV0wRkGWyjJw0WDOzgauol_WvQ7eRRTyGEFIga9YTbnlnEHcy3f53neXPQRIaFPA=w1600-no"], ["https://lh3.googleusercontent.com/pw/AP1GczMIW6RQBZicx5AlciA39AnEE3iOpyaTMQpnq8rdOIYacXlHcQWcCC6lI6jolQjWy5KpYcpq7RSJ3rexJ9VM8OY8PVMLF4GUNWSPaz95PEMVqxf90dE=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczPRg4ph7W665tA76S5EFlBl3tjc2LEoKOMvtHlgvJzesamoK1E2-MISwBnaguCxcyQ_WBeyFg80qlqf6XqfrxzXNerDPSFiiAF6PoEJEtyXU6sxqoI=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczNg7L2lhM2xQszWEcAi8fz-71iKSgaAYdGENN-Pg1W1tZt-lmDExylz0iFGgtf8pMeqGfSxuLkx9_OwZ5sbmhO8XemPBN6RAalX6bYQjt-yw1YBZfk=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczNkmJmCq4-xc30xabjNvVZCBEsHf-VcJiiqheLiCpleSchkMwVOZbzdNjBhirFRo9ktk--7Z-Pody__xkYebS30NWsW7Bni2UvZbnnaUv-s277ymjI=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczM3ZoPL0LtK5ndQaAlWi6Vt6BGsZaOURhyLju-pu1xUFBP5Nl-tSAhIrhK2L4Xt6RdEYpMCzgxCxprie8VCxpMel_Zn5wokywJvaJgSJBV5yWJvMUo=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczPF1gThThNYFVy6TnQHg9kVOQ3XfVAL9p2qd70yX_64PvwgRWjqQag3Elkuc_tD74UJIPVTYmf8zhvNPrm0l8o1i4l8PG4_6hrlCVOKFH76LYTFdcI=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczNJXgyGBiI-zs8VHu_E0OEJ7VYMWNu8Z3YcvCc67Uezr6ltKXHCTL5i15Osro5UVGxp6_mgzZm1GC3k6DiMstpEwEbsuCBxqaHqSuonZ7avz4xn0Mo=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczOcy6v-U2q9jgfX2Yx2kb1k8ZURTTv9NA_VGPEgBGCd8YH--PABmaS24USlh1jllSinblfq0qYfkqqtSBW-X_gym-kzgqgMHAzpc1bjY2dRJ1wynuo=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczPWMgeW5oveFJ0fk15xHK8hImoopXApI465CbvmQKv0Kvcc05JXyrLQbiQSvK6OliB7MpFgZSQjtwrSGOdh8xoBEMRZFz63DYtgrc8myIZx4bkyYKU=w800-h600-no"], ["https://lh3.googleusercontent.com/pw/AP1GczOm2SmehU-XHVj_jubK2ry-nwWbwUOdf-YXWe3iYBB9omJHtRCUUq9cxB-X2z5PxzHacTYp4zzmS5WBSyfIg7FLq_BDpSsLqEokTvXrkERgVN2ptQk=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczPOQJeJSkiXmflZh7tEYeA57iJZlm8phhEYvOOSu_MrGkD2Jc--pnn8R7YOAuIETfNNbHFbIqsgM7Z0h3qWypG2qWk2HABnZ2ISuno8axqP7ku0xRc=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczOiZrHnwfgM67t6Hml7MNX3qkzEDIiQ6NAkjHln4xrP5qQYWtHL09yqKNKyIZrH5bFvECxwCnqO8mRK4hhNZw322-3b3YCxYC02y-upN_7Z4UbZFdU=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczM3p685bqPcXSfbSwnVvhhwx_uWF7lqgcBPUaTvGgjBRoSWOqqpc3mzP50XlnhzBKXtdX7VbZ2R4s3YJDzczlNl_GVsXnzH-waprlJxNyHzvpgM0Fk=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczMO2c5CnWfRyK4F5xY3g9qNgGOiz_ws6HXLEy6jX6qJwBDKJ50AfPAOV3qLN5kIAbpTKk6a1nPlnM3d4O2RvWY4xaiUu3VbagXp23OEjM5KwNI49Jg=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczN1t54pnAp_i8fsqL5jP-Sa-_t3XskmqIy86f71hL01yrW5PSkKwIgHG5JOf6x5Fv9QoLknlcSer2nNrzk0lTgB7N1jty6H0aM0e4wkYM5DLwd-zhE=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczPWmGgvFet9fj9pSiNEuqjOo2prT4buAJR4R2Lqd3LgvbnOUP9D8VeQo22qmdq9Fs5iab16wuMuo334R_2BkigN7tfIA8mIbey6aO1-U4sL-_sd-P0=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczNzNbl9fdNy8xkWG76dq--ewm_iG9udgrFQ1CXZ_diG5o11qe0G6od1ay6mUBT-pQjtORHOn-aQulHcjEnUK4e0Ianxvqznl3tOydO7_AoKSJDfd-s=w800-h600-no"], ["https://lh3.googleusercontent.com/pw/AP1GczN1jkffOS2t8JixWAzXjr891oqqkHKgSrcZFewKDc31IuErbmcyHDaZ4PKLLV2nsj4kJmTWUqiNlKpKWuCrZdeLbMokj3pLKHxTNdEIdo2gFahJiTM=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczOpOybUbDEl29gMFBXf4EhoUlaq5xcJ2Sr6f5k85Od7JN6Y_TYAF-U6vp6tfHrVlYy-s6BABTcsPLP-lDFG4TipzgNgdx0jKjuLd2xC9oEe4B_Ue8g=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczObn20QhsXAT8sjVJGSZg6mLwuXSfazdCxnI08ajCVFTZtE7dGpm3zEyICXnw8ja7dbqwym8NWsYMTphbO7Y92qp5phwzir5P122vUkQfrtH7w_rek=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczOihr2kI7KrAeT3Jh8fCuKksTbLHqJIWd2y5u53LyBPdMmDohIZCRQyscB_Uui6Y8kYRcle61rdHP1E_NwzkWZNKRw6CodzPWLJ7dJwGcFdpD60NT0=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczOhRbByLk58POMfvsyqxxVE61fI4GuYh_ucLWzpho2Osti2VgFsjyVTF6exfVCnFmi1KyePMkHKGbI8-MLKr9fALuKYH63dcetHRoVJ7L9QHwlThj8=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczNrwCK-eZKKYb-WyiwiyUSLojwq53QORINsnIzi848Gb2JXUEneY-CtzC5YwrCUcCT_knSjctCeGH-QPCV3KlxM2Q_Mv1ly6caIr76bpUytBTwAyIU=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczOgIwqus6TpMlOpiFBEFfjPkSAnK1NHg9zxV2vura0V0tVKUtFCKOXZ_duOrCfx-bsB6FQ_HlY52WmIolfJNHYHRlNNMTuVMA5iFNKdRCvh6xSW8M8=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczNsxMBTxw-gFtaWYaTJ8amfCo2K9aqRhlGVGhuBypotBm9l8Orofxb4E5B2BDyoL6wdMFnJH5nHFjjweWEccYn1XoM2SAExK0vhqugWlFrPLjbHISE=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczPLZaex3JAECpapQAzDQIqyLLAgOhbBt51mNXrZfDBgK5wdBf1mIa8wL1Xe8pY6-CZICgypVyakyQx9AF_5RB7EX03ugCKH9GDZMXxdmXWQshBBFpI=w800-h600-no"], ["https://lh3.googleusercontent.com/pw/AP1GczPtvRa9FWxturdqk06JSJwU6t0knqaHZTP-W-yMWbKbjBgDKP2HRhdY-s6NAQ2PN6z1sL4CmwuJY9beg7AFLObHugPhPvhoSOuOjxPUfuualXgSH9U=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczPwvlEaTyN5MkS400kvJPneZ_Fcv9DH9hGxBE0yv_ucOcnOszhiRFV4D8SbNrz8wVGEBePR53z_ZF4mID3a2l-FwPGBb_8njJwwv88ek3BI3xgKJEE=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczOvxfjP3LAl1yRP-Z2ZYCBT0pxKkNWZyu-j8wE8slsAziX6BqUWM66DgJ1qj161y2WFKF0qdLqLuM9812wVm5Vjru_CMpb51r94RupVPihjJZLSgxA=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczMGYztRVbyAN__tlEL67CVD8MUrLzbwLQ8SZ-YkwpY9uHaY8skFgnqiBLdizz3fXfoAPGoVQu3-hvrNOCMVdiZeiIjtv3vdIqoS7dRq0EzZiRI_mWM=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczNevE_ouXS0GWa0KHCThesRN9oDmYeDGYiPQHB22sN4fMIsFnCOJevYfG2gexKhNcaRdlUFvknW3DMGocDKJq5MI_BjPhYtUJ8oJ9Qmquff9-tceqk=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczNUhwGmBtB3rWzwkHzBVhqxVbeVyZoZzn1zd-i7hAc9Qz-onS7ota17uSv-cr4y_vJsqqlojMTH1Hj3qW6ZbZYcsed75LIrGVn-K903O709BeZk00Y=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczM8wDjKVMmuxXUALC--0xE12lZGh-udJ3-OzIvVT0iVquH-viEwIxwqHJD9i9AgnAy2MPrwyeRtJByGZq3nob0gm4kVaSFroEHl9D9XNnJXV-EA07E=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczPuznX_8uxAovbgJSLLPvg6kG9VVs7vTmUPbjzWMnUJro3eOpi4AJ6PDQi8BLFjuAMjNQzXrkqYW6ZJxgN9drBxQrz4mb_vWKzhYhqBRfT4fXZAm4Y=w800-h600-no"], ["https://lh3.googleusercontent.com/pw/AP1GczPgnlQiaOv_AY5_6V5n8ytHM-HVtfxLpIifD69cjJdt6eSA8qtwbzwl3D9Igw0_8K4Ja7wkt3Y1HwnkgA1rd1JjhzBnfNJER7kHOIeN5tvBU3JERzc=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczNxZC1lZVa4cjkuFBSpEb7EioPjURvrru7Q3MefldlZD1pZEKbu94e287jDTg3CzC9LVs5OBkPqAZIiMe8uDqDQ7bw_BK8M2i9km_gVFbByCLqj3lU=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczP20wHZJx18hXekXWgRzbv1WWJKlgfQKzcri2sMbe95mjapDFBd8xfEHOYSDRcCx-u4vK7Zb88-zCLSnez4t2j1KK6ccVbCEM01X77oTfklxZPm0ws=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczPyeGxeadSqo2I-GzWpY0cYq8XE1liK6VkdeUDZPmem4MC5yrxPWMwVrua1CksNl5wd7NDjuNQszFa5cS616WWZwz46zkrxg1secuNjl4cKvDXZJ4k=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczNJzhmGa8css7VFnQOFcmGBF6jye9mh9ibZ9y35HJk4W9XK1QGHk5MNpODAsWuCbFxIjrkRtFlBH4d4g6Mu4INCic4Y6HQmguKe4ngsL9wta-lRHCw=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczONUt6nYTNzEqMiV7b52tYRbMNGbSPpwaFa0Fca-6y1RxtLUcvQ8KaKK5c8oUxaD8h5walGj0IqpEyoeCBdx5wmHjn7GomdT4IbRhwdm2p4CAx58C4=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczN4IgdNNl8GUb1F5fKyD7JVpa6WTAQRz9dEojmIJDV2oZ7CCDi1U4zuW09_Izp-25dSMx6C8yQHLJjYWIFYUV_dMCsA4tvCH3UmWygRPxBWrKTXYo8=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczPxn_brAACAg_b2WzNsAJ_mcJQPqwhK7hKerT0zweoRT4Jk3tadfUw5den1A5NYkHvNC84luLWWFgjQ6XKsoi3ykVWJVP2vYP9men5M4RhzKvZcAyg=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczNRaxu1-GGY0RhMBs2D5UrVkTJYkadIrjCMhluCc8mu9M6mwxsyZj6Ks7XnhI3gJaMPZ92g3M6QqRRgP0Wlg0tFLBn0IyAKpgc149Mkhev-HE9K9Is=w800-h600-no"], ["https://lh3.googleusercontent.com/pw/AP1GczOq8PCGHcRD7LF63ZtMmlm4Cv9oqfXDhhRmFsbA6uX0v28YJ7pPOy97IoCUfJpteVjiRxv12iBo9eF3KwrcIg3wTu8mvHD7JOoDkwR1DxeC809l3XQ=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczMvyes74-ZlkafB8EjE4e465I2TNVdqxbbbweAH2_wW8xFUNZ8Z_RhOzeyUbseHgL81bKygKV2cxE__nsECsNbPSehkgPrBuZoUTwQ2S-asjxuAg8E=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczNyl6dCherdEMl0bcQ6PCUAFVvWTzmThiSjxxLPyfKUmdCJCfYhXB0e8T38N6PFUcc5IshB8AdS4Ss3FdejDTWjSXdPQYVxxY8rYdQshUJnmdUQnXc=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczPzfjISg1eKvOVkFdgkFcpkYnsl-HxJj6RU1IgxEXbAiRyhXGyGYx-Nun9ewjPoj6zSvGCd-8smaqKQroZnWVua8eNNoXlShlFERaiJUsEWJ-0Akq4=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczO5P4EqETJPkW9GKe01UTHmnyFlJptTAx8rQeBm6GxaA3NKTeBWJO7DLbxgJRlEyn3xo68oh1ymH-P8nz9uxG2YNwPXiSgcFpwETLQwT5wLebZWnKo=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczMvfOAzqgGc_5ojQGUyJrhGHoQRFJyho-DI3CSfsTDLwg_VKkBkwBSPZ1UQVixB7PSWsofPrS-BK3TwCJ2_DgDPQYuylEt0KtBe7wEYyRosWQ92EUQ=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczNchzIQ-T_EP6i_-nJKC-QNS0xh6Z0KhLbasbj7PgAaa7xN7tb0o15AxOg7r_opJenzQGzylm2h3Ih1-7Y8fWhv_2O-yeeqzabD5y8t2sCzXCI1gT0=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczPfUjZLz-WIHKSl4Js73em5aRjIWdfZikbmP_QUsfwgzv8CCqo8b6d_N4BXyYVKDTHz3IwIzAnNRxaeunF-EtQ-h6NdQmb2tfar42P-Zjfs8TBj8_U=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczNbXzIPMFrDECk1_aR-b2mEzaKqh9aJ5LUyrDfSMDMzXjPLX2OxPzoOGEdzLyRSs1-LrrfD3ARHyh2ElK8ljJ56TaHTZre6JDwslBz7aSe0am3i1WA=w800-h600-no"], ["https://lh3.googleusercontent.com/pw/AP1GczPWoV_YD1AkNR-R7_SnDZM9dtuNTofotSJ5X5EuQ63fPEjrGYUOunJ7hdb5Sjdum2yvQpEmSNKmrSFvx1Gy91tW2SCkZeElQarFFTAfBgRJPPaeM88=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczODhYgPaoHXN6URtjzXc9WhghNTZZ9Ay2QRFZDObjVRCzqyxC5U8E0BrcDF1cPeu3-hRr39nWI9dLmrcHRBQ6Afl0JyE20rKJrbi_fGFS8HQFLYSbs=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczMglErB3SZuO6FZa_Vt23RnuTp_bEPesEeaVGX6AowQzFClwsgeFOg2VBEVjHqr4i6hyaCPEgtw4HJTba5r6gJ-dYSI-as4G1DcqU-Y1yjkiPpoHOI=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczNJbNxdOBORu7h5eQo0Gf_kLHtHFlSh2uAOiRPqISNYSu3REscWclmIE5O82NgYmi1lPZbSodrp5MTcj1tvLA3TTR2cVH5xfpN0YHB9PrTptvBHh3A=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczNybnP1ZYgPLdLBQdMQzQsj-FEnF6z2iDr41nZ4_26pAoRg8u823p-M9MomsHX2HhsRjVYnDgZooEeyB74jgBAlhhiitHQQPL7wLOgcuPywlZHKN7k=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczMxqlW8uig71VN2E2SvJ_oP0Hao6fQLNkNiHolY3bY4ichYvDy2lvQ427lPfPtwX4P9BuRD8bQ2DHMDPcCjFmxiJCbBOqBdq00t-Pdyx65X1i6wtJE=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczPJ9NxUnTsSCMACFqAZfUe082vqyvGsYumlB5mGE7nLgq6WWHKcRWBvqFdJ7J6KqbPCctXoZ-oS_BDejr9wpF0K-3mJgGJ3IgmsxwO9qeyW7TlGHsA=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczOFXcM24YLa52aemjWPMqPpCGjvMh5iS5z9JA3p_E5QD3Eo-5Tz66zC1QNOCS57bokdAsS-OOnpLSMmdWTHz-zEo7F4cHh8QgoUljpeynWOjhlRQ9U=w800-h600-no", "https://lh3.googleusercontent.com/pw/AP1GczNXwHpNPzNbGoA2ulz1GRK4AaxwScYZjIPSZSGNYh72X5DJz-Bulr8luCeZXxezUHzUwdxlmiOiyrkyxlZ2q957_E1XUPwMgdThaXwpFMQaIKhJ8l4=w800-h600-no"], ["https://lh3.googleusercontent.com/pw/AP1GczPyQnG9oDl7ci85h1FWKdr2mzneafUyAQ719RF6XgVWHTF-1UndiW4SfCEdfvY39H_TkklcN4Fw9uePt7qd151YnXMxGaKuvTw-qhaRKCrc6_UodPA=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczNvH6e_kds7Eq1_gc9t720wLenqPznkM7AA-LibI5YzH2lzIDLlAWE2_xLTERk13ZlkSYS9hAtkOGyuMUEC7CKD9hxsghd9kDXjgrbEZw-k98RsW5s=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczMYKxiNGFr0Zyi5l9EhnL6PnQT55c4ePwBDyI0KP9nuVdpFrHUXxZrsV0Luy1tKtplx6Dkn-Zexi_PM1BAOccJCwKtNpwRzM2ZYsQfS4K9spfdKqOI=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczPylU87POPswH_pxyYX2f0bi_JPgwO0OoZ0e2JxxSR9F8Smy4PfU1mOyuNT424cT4xgegUnHguoTmW55bImxw55y6NNf6gohbKbJni3D6GEUg5m6VU=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczMb4Vx13YiX-HR4s1hcfkBa7l5_k5cPd9azXrkAKfOMg6WVLd63ARyD-cTmW7Lh15JKWf9wUHATETkFuVjLQ5tBg-5zfVErnA84wgIALCf0pzL8Wss=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczN3y2SvXH_dHqId1goAw9zZkYXmZXmwnxqk_IzAahOPiZrvzA7wKsCpKxSmSqWa2kRWY3hb2VQp_lM6sjyPAX0hTUHzk3Ox3Yp436lQhYHU63Wljzo=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczOfM7OmvYbOYPLmN9zUGhy1ns5Hzo-BkHsPikzLuP3azmPoiobLDSB0QwQFND-NimkK2NudIR0Ihz269fMye_ymnfyRNKxApiJh2ZXB3hVVxRamamY=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczNsu0ngRFQtq1o8-u6y3p26KUsnZFFLI7bTH9g-kRfGsZTrX4A6Q2Ca-zBRVYc5W1ZyQ-tQ9sDeDLigwwWPNhYeX5IXiE4hhHFvHC3B5wjwIriNby0=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczPswj-InXrt_kMpqPRv8Mjozz-6ebdmJb6h7W56OK69raEsEaTDhdPKXaOXriAbSahV2W4cbXNsGaQpexbMEczDGZTApVS1gN9x5-FXMfRx3Z57j5Q=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczMVaDsvSqhFu7JSvPKW7yVmS9kUfymIKCvrTYKidNn1WOwkPzReav3R5gLzYY4qBpoZMmsfsvSNwlKXPsOQlbeSiUfvdkRU7NSX70TovVh_iEdqbl0=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczMw7tzWmPirTjSJ-2mwE78H-CNa1zD8Sy1hj_Il5O1dWPAVcbsP6z-OLER7eA6WhafiQ1jS6szDSJAQunzpv1yfTUyKbB1waloJ33L-P8TvTCYn_yg=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczO9XitrvrzEWzNKtOjIqRFfbdtB6w64JjYn_0ccjm_sMxMqY59W2JaJ5syBGZ16kFXusiH3Xw4gfANK7kTq03Cf_iVP83wwqc7pXxKrk3q7gukDMAc=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczMS0z1hWuMll0nyH1ebZpbQFyYLn0jG167rNl12EMu4sKyTLdVYUY0Lrj_hnZeNk9LzjTOlQtrzs1UATVw5nqyX5eOYVMp6-t7uNJkFudOJTDJP9TQ=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczPsaSfgoPeiX0r4BBew7lwweqR3QjQfmstIYcWoKkf7lNiVUtLFWlaxH5zWNT0HgXXrqAoeLdN-whlJkmKDlTdCcJ6UORa8_HS-opcVlTFWgrmhvfA=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczPUEi7me7mWYgyCwnKGf6Z8scR4vrkeZJtBIVUbzTHUEc9fc0tsJSptkJDyn2fTWxCDfyhPZI8XvNQKnvolwGQw8rxf3HlKzEcWFKgggVQRpueNrKI=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczOGC-cr6q-jT15iUI8QiMMwXDcVssLOMkqOlZne4k8jV9yBEfw0bK_00KSL62Ldm80zZTkOUF8p4BabpM6gZyFu9nAEI4SDNEiLr25bECP8V12x3m4=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczNZDgXTE9kuCj5yS61m5qHzpHLxowODcpGqVWfKUOLHqd-0IiJbuhvTEqlZz-ukHwtl733pa_j5SW4OXHd8cQTQiDTUCC_EgXwzY7AHNyIjTuGpbDo=w1600-no"], ["https://lh3.googleusercontent.com/pw/AP1GczMTMrFW8K46bNSk1t5IqFNgVpF75R_2wUcOVY34dVF6X7xiMwpPb1tp-3IlISc0n5GGBb9LREK2JEoqytBH4ITrEkXedSW8LaRfNDcU2ONQz5zJrG4=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczOb7GmCAhHm8ocWOyO0R-mMUHD5FCXbhdJco2ObGCtLDcwa5y2uywgsgzksZos_yshAGkGU5q2khXJoe1yoy5zDD4Wl9nM0kPyyGUryDZovf3Yjot8=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczM_KmnTtZbsr4ezLhrSZrZRE5qTVlkV_sbjEQHfKfBfmfCn6T6_zHsQT5rCjRMVH_D_-BZc53jh3C_G0PHz8JdPPjpd8xMt9Du_59RAnef22IJH8bo=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczP0FhG_m8kjoFRZLsQxwUrdWJfeMgqRJi3MocsV0dinQoCv7O2LftkC9IVWo6bX6GIgMhHbD5lD24S85CSNktavfwBiihIFQz1P9rYeBK1UW70TizY=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczN-l8J8pK70uJzBo3p7wLGD4yaPojZz7RfOhBzef7N3kzR9jqTq3EYyjwgCNwI51Vm-1SjsFqTBiXSJwOnx_lIgP-iRsflfZuwM374fZeDUU1_xL-c=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczMclM1Dcb6AI_hE3AG3K7pR892LIutfUphmbzwLD-Smgg8sntTuNQfCLSr0IF7l_qh0t-DP8Gn6A0w1jPY0ghbL8LYPCQ57xCaWZLvZGCHf0cR5wMU=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczPpRzTC1bt4xJ6dhSb_-IeT0nIC1JCQsuWtnnJ2wLCH4g-j1zYvmCJDKrMjySDlkZSnNSMaO2CODHJXjaV1Ost-aeNSpQXJ6qzhUtRop0vm2D39FCw=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczO9mHYgEmwazWgZOFapPNh5_JavjBWGPbQ5raNfurrRBkbekGNJiBONvj2BrSxwdxvmiLFL84qISyn9sfi8BZXNti8beBkq0_eFkBQbr5rbvpmscpU=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczN1JA3nThvmErDorsRUuxmqqi4CRXY7xU1NNVsIeYVu1rqkpC13MExhtDoIElNqgiXarKnwBM32Tmi0VroTPToMaksBJD_PeAIrAhEHhI_tuevC2UY=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczNPSsaZhGBLwIRJdFxqp-O5nfVPS8x18gKR5L94sj81VoEF8nX0iqzSaZstOPlCzqugdFlk5ZjyeArzxYMX34ZKOnw_7zVbpNSxuCgq_BDmy8OEld0=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczNiS3aRP4FVCBrke6eXF2AiAlWiEcZBPGki0eCLF0m3tY5McmDIsyORJnf81IOTl3eScd4oBolXseYAyQ_W8Ctc0NZ_6xQp9mPnNgIJL5KpVHPZZ_Q=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczNSUeZE9YybTkBL14iOB7a5kgwdeIjFd9GX-qk0juCmLbR_Eo8yX7LxYU6AlOo8rn49V0hCDiVaXNR_PTyGnQnoNFf2i0X7jD1U6rzdyjizGjpJqi4=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczMZ4SauLnalwVstOhGmaKAoV5ib9XaTQ4uvY8IPuXQUE9JQY4YaK3QsNNkwBjYOnJdB_oKDjQna9iTb7CO8zhUCaQo3DUbB0rIP--QwQChLT_lrPmo=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczMhlTMSjslCGp-cSVFsF-Xn_6dp5K2eUoSJkLN-1sivHSZvBX6UXj8FhlXCKW9oD1OvUmJ-uUeadiIdF33qaUL4DCHXXH7wC5-6HevFSHuDcA8CvTk=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczPdsRHGgcJkGYNLwdm_P7gXrxwHSq1LxCF1fo-iA4lj8iYkq2cZVzdwD7JdTuELd3PhmoMIbiJiWZG8EfryCVOTfllOzdJ10GaJ2nqeHNyRlXC2fF8=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczPqPI1JpPVlTQjy82qP3YYORfXNoCC_odIdyiocgwnKV9yhxphk7itzi5mpGrW79ocLtLvJE6olS8oUwEgJQdZv141HEYoK-1nJ1YmT6V_YqxET8so=w1600-no", "https://lh3.googleusercontent.com/pw/AP1GczMO1futGUqorrQw4RjM7Zl-GA2EYsKC-g0Afw67tHrkmpYUzHbXsd0NP6-quvsSE9W_dk3iOvjq0itayMDzTVQRZBtdO84bSPrwftR_nJaUt77pTiA=w1600-no"]];
+const galNames=["Nathaly & Andrew", "Amanda & Jose", "Kasey & Austin", "Erika & Aaron", "Janele & Malcolm", "Victoria & Terry", "Amanda & Collin", "Latoya & DeVar", "Brooklyn Bridge Elopement Shoot", "NYC Styled Shoot", "Necole & Nicholas", "Cassandra & Alexander", "Hillary & Michael"];
+let lbAlbum=0,lbIdx=0;
+function openLightbox(album,idx){lbAlbum=album;lbIdx=idx;document.getElementById('lbImg').src=galPhotos[album][idx];document.getElementById('lbCaption').textContent=galNames[album];document.getElementById('galLightbox').classList.add('active');document.body.style.overflow='hidden';}
+function closeLightbox(){document.getElementById('galLightbox').classList.remove('active');document.body.style.overflow='';}
+function lbNav(dir){lbIdx=(lbIdx+dir+galPhotos[lbAlbum].length)%galPhotos[lbAlbum].length;document.getElementById('lbImg').src=galPhotos[lbAlbum][lbIdx];}
+document.addEventListener('keydown',function(e){if(!document.getElementById('galLightbox').classList.contains('active'))return;if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='ArrowRight')lbNav(1);if(e.key==='Escape')closeLightbox();});
+</script>
+
+<footer>
+<div class="footer-creds"><span class="footer-creds-label">Certifications &amp; Awards</span><div class="badge-strip"><a href="https://www.thebridalsociety.com" target="_blank" rel="noopener" class="badge-link" title="The Bridal Society"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-bridal-society_oa2smb.png" alt="The Bridal Society" class="badge-img"></a><a href="https://www.certifiedweddingplanner.org" target="_blank" rel="noopener" class="badge-link" title="CWPS"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-cwps_y4zln5.png" alt="CWPS" class="badge-img"></a><a href="https://www.timelinegenius.com" target="_blank" rel="noopener" class="badge-link" title="Timeline Genius"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998907/pfm-badge-timeline-genius_embhqz.png" alt="Timeline Genius" class="badge-img"></a><a href="https://www.weddingwire.com" target="_blank" rel="noopener" class="badge-link" title="WeddingWire 2023"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-weddingwire-2023_z50evm.png" alt="WeddingWire 2023" class="badge-img"></a><a href="https://www.weddingwire.com" target="_blank" rel="noopener" class="badge-link" title="WeddingWire 2021"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998908/pfm-badge-weddingwire-2021_kxtugk.jpg" alt="WeddingWire 2021" class="badge-img"></a><a href="https://www.theknot.com" target="_blank" rel="noopener" class="badge-link" title="The Knot 2023"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998910/pfm-badge-theknot-2023_akhes4.png" alt="The Knot 2023" class="badge-img"></a></div></div>
+<div class="fi">
+  <div><span class="fls">pfm</span><span class="flsub">Plan For Me Events</span><p class="fbl">Premium wedding planning guidance and coordination across Central Florida.</p></div>
+  <div class="fc"><span class="fch">Services</span><ul><li><a href="services.html">Guidance Sessions</a></li><li><a href="services.html">Coordination</a></li></ul></div>
+  <div class="fc"><span class="fch">Navigate</span><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="testimonials.html">Reviews</a></li><li><a href="faq.html">FAQ</a></li><li><a href="blog/index.html">Blog</a></li></ul></div>
+  <div class="fc"><span class="fch">Areas Served</span><ul><li><a href="#">Orlando</a></li><li><a href="#">Kissimmee</a></li><li><a href="#">Tampa</a></li><li><a href="#">Daytona Beach</a></li><li><a href="#">Winter Haven</a></li><li><a href="#">Haines City</a></li></ul></div>
+</div>
+<div class="fbtm"><span class="fcp">&copy; 2025 Plan For Me Events</span><span class="far">Central Florida Wedding Planning</span></div>
+</footer>
+<script>
+window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('s',scrollY>55);});
+var cur=document.getElementById('cur'),crng=document.getElementById('crng');
+if(cur&&crng){var mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});(function L(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;crng.style.left=rx+'px';crng.style.top=ry+'px';requestAnimationFrame(L);})();}
+</script>
+</body>
+</html>
