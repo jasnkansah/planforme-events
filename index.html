@@ -31,7 +31,7 @@
 html{scroll-behavior:smooth;}
 body{background:var(--wht);color:var(--aug);font-family:var(--ss);font-weight:300;overflow-x:hidden;}
 .cursor{position:fixed;width:8px;height:8px;background:var(--cha);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s;}
-.crng{position:fixed;width:36px;height:36px;border:1px solid rgba(209,124,130,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
+
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 56px;display:flex;align-items:center;justify-content:space-between;transition:all .5s;}
@@ -152,10 +152,10 @@ nav.s .hm span{background:var(--aug);}
 .dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all .4s;border:none;padding:0;}
 .dot.on{background:#fff;transform:scale(1.4);}
 /* scroll cue */
-.hscroll{position:absolute;right:36px;bottom:36px;z-index:7;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fu .8s ease 1.6s forwards;}
-.hscroll span{font-size:6px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.3);writing-mode:vertical-lr;}
-.sbar{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,191,204,.7),transparent);animation:sb 2s ease-in-out infinite;}
-@keyframes sb{0%,100%{opacity:.5}50%{opacity:1}}
+
+. span{font-size:6px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.3);writing-mode:vertical-lr;}
+
+50%{opacity:1}}
 @keyframes fu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 
 /* ── VOGUE HERO H1 ── */
@@ -593,8 +593,8 @@ footer{background:var(--aug);}
 </style>
 </head>
 <body>
-<div class="cursor" id="cur"></div>
-<div class="crng" id="crng"></div>
+
+
 
 <div class="mm" id="mm">
   <a href="#" onclick="go('home');cMM()">Home</a>
@@ -619,7 +619,7 @@ footer{background:var(--aug);}
     <li><a href="testimonials.html">Testimonials</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="blog/index.html">Blog</a></li>
-    <li><a href="#" class="nc" href="services.html">Book a Session</a></li>
+    <li><a href="#" class="nc" href="services.html">Let's Plan Together</a></li>
   </ul>
   <div class="hm" id="hm" onclick="tMM()"><span></span><span></span><span></span></div>
 </nav>
@@ -650,8 +650,6 @@ footer{background:var(--aug);}
   <div class="hero-vig-top"></div>
     <div class="hero-vig-left"></div>
   <div class="hero-dots" id="dots"></div>
-  <div class="hscroll">
-    <span>Scroll</span><div class="sbar"></div>
   </div>
 
   <!-- HERO CONTENT -->
@@ -665,7 +663,7 @@ footer{background:var(--aug);}
     </div>
     <p class="hero-sub-text">Weddings · Elopements · Micro Weddings · Proposals · Central Florida</p>
     <div class="hero-btns">
-      <a href="#" class="btn bp" onclick="go('services');return false;">Book a Guidance Session</a>
+      <a href="#" class="btn bp" onclick="go('services');return false;">Let's Plan Together</a>
       <a href="#" class="btn bw" onclick="go('gallery');return false;">View Our Work</a>
     </div>
   </div>
@@ -963,7 +961,7 @@ footer{background:var(--aug);}
       <div class="guid-note">
         <p>Available for <strong>weddings, micro weddings, elopements, and proposal planning</strong> across Orlando, Kissimmee, Tampa, and Daytona Beach.</p>
       </div>
-      <a href="/cdn-cgi/l/email-protection#a4ccc1c8c8cbe4d4c8c5cac2cbd6c9c1c1d2c1cad0d78ac7cbc9" class="btn bm" style="margin-top:28px;">Book This Session</a>
+      <a href="/cdn-cgi/l/email-protection#a4ccc1c8c8cbe4d4c8c5cac2cbd6c9c1c1d2c1cad0d78ac7cbc9" class="btn bm" style="margin-top:28px;">Let's Plan Together</a>
     </div>
   </div>
 
@@ -985,7 +983,7 @@ footer{background:var(--aug);}
       <div class="guid-note" style="background:rgba(255,255,255,.05);border-color:rgba(255,191,204,.3);">
         <p style="color:rgba(255,255,255,.45);">Available for <strong style="color:var(--pnk);">all event types.</strong> Ideal for couples who have already booked vendors but want a professional set of eyes on everything.</p>
       </div>
-      <a href="/cdn-cgi/l/email-protection#bbd3ded7d7d4fbcbd7dad5ddd4c9d6dedecdded5cfc895d8d4d6" class="btn bp" style="margin-top:28px;">Book This Session</a>
+      <a href="/cdn-cgi/l/email-protection#bbd3ded7d7d4fbcbd7dad5ddd4c9d6dedecdded5cfc895d8d4d6" class="btn bp" style="margin-top:28px;">Let's Plan Together</a>
     </div>
   </div>
 
@@ -1090,7 +1088,7 @@ footer{background:var(--aug);}
     <p class="bt">Plan For Me Events was born from a simple observation: the couples who needed professional planning guidance most were often the ones who felt it wasn't an option for them.</p>
     <p class="bt" style="margin-top:10px;">As a certified wedding and event planner, I've worked alongside couples through every kind of celebration. And across every single one, the difference between a stressful journey and a joyful one almost always came down to having the right guidance at the right time.</p>
     <p class="bt" style="margin-top:10px;">So I created guidance sessions — so any couple, planning any kind of celebration, can have a certified planner in their corner. No long-term contract. No day-of requirement. Just expertise when you need it most.</p>
-    <a href="#" class="btn bd" onclick="go('services');return false;" style="margin-top:28px;">Book a Session</a>
+    <a href="#" class="btn bd" onclick="go('services');return false;" style="margin-top:28px;">Let's Plan Together</a>
   </div>
 </div>
 <div class="vals">
@@ -1167,13 +1165,13 @@ footer{background:var(--aug);}
   padding:0 56px;
 }
 /* First photo in each album spans 2 columns for visual hierarchy */
-.gal-grid .gal-img:first-child{
+.gal-grid .gal-img:first-child{aspect-ratio:16/9;height:auto;
   grid-column:span 2;
-  height:500px;
+  
 }
-.gal-img{
+.gal-img{aspect-ratio:4/3;height:auto;
   overflow:hidden;
-  height:340px;
+  
   position:relative;
   cursor:pointer;
   background:var(--off);
@@ -1943,7 +1941,7 @@ document.addEventListener('keydown',function(e){if(!document.getElementById('gal
 </div>
 
 <div class="fi">
-  <div><span class="fls">pfm</span><span class="flsub">Plan For Me Events</span><p class="fbl">Premium wedding planning guidance and coordination across Central Florida.</p></div>
+  <div><a href="index.html"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998703/pfm-logo_ixua6l.png" alt="Plan For Me Events" style="height:56px;width:auto;filter:brightness(0) invert(1);opacity:.85;margin-bottom:10px;display:block;"></a><span class="flsub">Plan For Me Events</span><p class="fbl">Premium wedding planning guidance and coordination across Central Florida.</p></div>
   <div class="fc"><span class="fch">Services</span><ul><li><a href="services.html">Guidance Sessions</a></li><li><a href="services.html">Coordination</a></li></ul></div>
   <div class="fc"><span class="fch">Navigate</span><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="testimonials.html">Testimonials</a></li><li><a href="blog/index.html">Blog</a></li></ul></div>
   <div class="fc"><span class="fch">Areas Served</span><ul><li><a href="#">Orlando</a></li><li><a href="#">Kissimmee</a></li><li><a href="#">Tampa</a></li><li><a href="#">Daytona Beach</a></li><li><a href="#">Winter Haven</a></li></ul></div>
@@ -2230,7 +2228,7 @@ tqTimer=setInterval(function(){goTQ((tqIdx+1)%tqSlides.length);},5500);
   </div>
 </div>
 <div class="fi">
-  <div><span class="fls">pfm</span><span class="flsub">Plan For Me Events</span><p class="fbl">Premium wedding planning guidance and coordination across Central Florida.</p></div>
+  <div><a href="index.html"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998703/pfm-logo_ixua6l.png" alt="Plan For Me Events" style="height:56px;width:auto;filter:brightness(0) invert(1);opacity:.85;margin-bottom:10px;display:block;"></a><span class="flsub">Plan For Me Events</span><p class="fbl">Premium wedding planning guidance and coordination across Central Florida.</p></div>
   <div class="fc"><span class="fch">Services</span><ul><li><a href="services.html">Guidance Sessions</a></li><li><a href="services.html">Coordination</a></li></ul></div>
   <div class="fc"><span class="fch">Navigate</span><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="blog/index.html">Blog</a></li></ul></div>
   <div class="fc"><span class="fch">Areas Served</span><ul><li><a href="#">Orlando</a></li><li><a href="#">Kissimmee</a></li><li><a href="#">Tampa</a></li><li><a href="#">Daytona Beach</a></li><li><a href="#">Poinciana</a></li><li><a href="#">Winter Haven</a></li></ul></div>
@@ -2241,7 +2239,7 @@ tqTimer=setInterval(function(){goTQ((tqIdx+1)%tqSlides.length);},5500);
 
 <div id="page-blog" class="page">
 <div class="pghero"><div class="pghbg"></div><div class="pgc"><span class="pgey">Real Weddings &amp; Planning Inspiration</span><h1 class="pgt">The Blog</h1></div></div>
-<div style="padding:80px 56px;text-align:center;"><span class="lbl">Coming Soon</span><h2 class="h2" style="margin-bottom:16px;">Planning Wisdom &amp; Real Wedding Stories</h2><p class="bt" style="max-width:520px;margin:0 auto 32px;">Educational guides, vendor tips, and real wedding stories from couples across Central Florida — coming soon.</p><a href="#" class="btn bd" onclick="go('services');return false;">Book a Guidance Session</a></div>
+<div style="padding:80px 56px;text-align:center;"><span class="lbl">Coming Soon</span><h2 class="h2" style="margin-bottom:16px;">Planning Wisdom &amp; Real Wedding Stories</h2><p class="bt" style="max-width:520px;margin:0 auto 32px;">Educational guides, vendor tips, and real wedding stories from couples across Central Florida — coming soon.</p><a href="#" class="btn bd" onclick="go('services');return false;">Let's Plan Together</a></div>
 <footer>
 <div class="footer-creds"><span class="footer-creds-label">Certifications &amp; Awards</span><div class="badge-strip">
   <a href="https://www.thebridalsociety.com" target="_blank" rel="noopener" class="badge-link" title="The Bridal Society — Certified Wedding Planner">
@@ -2263,7 +2261,7 @@ tqTimer=setInterval(function(){goTQ((tqIdx+1)%tqSlides.length);},5500);
     <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998910/pfm-badge-theknot-2023_akhes4.png" alt="The Knot Best of Weddings 2023" class="badge-img">
   </a>
   </div></div>
-  <div class="fi"><div><span class="fls">pfm</span><span class="flsub">Plan For Me Events</span><p class="fbl">Premium wedding planning guidance and coordination across Central Florida.</p></div><div class="fc"><span class="fch">Navigate</span><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="testimonials.html">Reviews</a></li></ul></div></div>
+  <div class="fi"><div><a href="index.html"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998703/pfm-logo_ixua6l.png" alt="Plan For Me Events" style="height:56px;width:auto;filter:brightness(0) invert(1);opacity:.85;margin-bottom:10px;display:block;"></a><span class="flsub">Plan For Me Events</span><p class="fbl">Premium wedding planning guidance and coordination across Central Florida.</p></div><div class="fc"><span class="fch">Navigate</span><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="testimonials.html">Reviews</a></li></ul></div></div>
   <div class="fbtm"><span class="fcp">© 2025 Plan For Me Events</span><span class="far">Central Florida Wedding Planning</span></div>
 </footer>
 </div>
@@ -2368,7 +2366,7 @@ tqTimer=setInterval(function(){goTQ((tqIdx+1)%tqSlides.length);},5500);
     <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998910/pfm-badge-theknot-2023_akhes4.png" alt="The Knot Best of Weddings 2023" class="badge-img">
   </a>
   </div></div>
-  <div class="fi"><div><span class="fls">pfm</span><span class="flsub">Plan For Me Events</span><p class="fbl">Premium wedding planning guidance and coordination across Central Florida.</p></div><div class="fc"><span class="fch">Navigate</span><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="testimonials.html">Reviews</a></li></ul></div></div>
+  <div class="fi"><div><a href="index.html"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998703/pfm-logo_ixua6l.png" alt="Plan For Me Events" style="height:56px;width:auto;filter:brightness(0) invert(1);opacity:.85;margin-bottom:10px;display:block;"></a><span class="flsub">Plan For Me Events</span><p class="fbl">Premium wedding planning guidance and coordination across Central Florida.</p></div><div class="fc"><span class="fch">Navigate</span><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="testimonials.html">Reviews</a></li></ul></div></div>
   <div class="fbtm"><span class="fcp">© 2025 Plan For Me Events</span><span class="far">Central Florida Wedding Plannin
 </footer>
 </div>
@@ -2454,6 +2452,65 @@ function hidePosts(){
   document.getElementById('blog-index').style.display='block';
   window.scrollTo({top:0,behavior:'smooth'});
 }
+</script>
+
+<div id="inquiryModal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(10,3,5,.88);backdrop-filter:blur(8px);align-items:center;justify-content:center;overflow-y:auto;">
+  <div style="background:#FAF6F1;max-width:560px;width:92%;margin:40px auto;padding:52px 44px;position:relative;">
+    <button onclick="closeInquiry()" style="position:absolute;top:18px;right:22px;background:none;border:none;font-size:24px;cursor:pointer;color:#231F20;line-height:1;">&times;</button>
+    <span style="font-size:7px;letter-spacing:4px;text-transform:uppercase;color:#D17C82;display:block;margin-bottom:10px;">Plan For Me Events</span>
+    <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:30px;color:#231F20;margin-bottom:8px;line-height:1.2;">Let&#39;s Plan Together</h2>
+    <p style="font-size:13px;color:rgba(35,31,32,.55);margin-bottom:28px;line-height:1.7;">Tell us about your wedding and we&#39;ll be in touch within 48 hours.</p>
+    <form id="inquiryForm" onsubmit="submitInquiry(event)" style="display:flex;flex-direction:column;gap:14px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div><label style="font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:#231F20;display:block;margin-bottom:5px;">First Name *</label><input type="text" name="first_name" required style="width:100%;padding:11px 13px;border:1px solid rgba(35,31,32,.15);background:#fff;font-size:13px;font-family:inherit;box-sizing:border-box;"></div>
+        <div><label style="font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:#231F20;display:block;margin-bottom:5px;">Last Name *</label><input type="text" name="last_name" required style="width:100%;padding:11px 13px;border:1px solid rgba(35,31,32,.15);background:#fff;font-size:13px;font-family:inherit;box-sizing:border-box;"></div>
+      </div>
+      <div><label style="font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:#231F20;display:block;margin-bottom:5px;">Email Address *</label><input type="email" name="email" required style="width:100%;padding:11px 13px;border:1px solid rgba(35,31,32,.15);background:#fff;font-size:13px;font-family:inherit;box-sizing:border-box;"></div>
+      <div><label style="font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:#231F20;display:block;margin-bottom:5px;">Phone Number</label><input type="tel" name="phone" style="width:100%;padding:11px 13px;border:1px solid rgba(35,31,32,.15);background:#fff;font-size:13px;font-family:inherit;box-sizing:border-box;"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div><label style="font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:#231F20;display:block;margin-bottom:5px;">Wedding Date</label><input type="date" name="wedding_date" style="width:100%;padding:11px 13px;border:1px solid rgba(35,31,32,.15);background:#fff;font-size:13px;font-family:inherit;box-sizing:border-box;"></div>
+        <div><label style="font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:#231F20;display:block;margin-bottom:5px;">Guest Count</label><input type="number" name="guests" placeholder="e.g. 75" style="width:100%;padding:11px 13px;border:1px solid rgba(35,31,32,.15);background:#fff;font-size:13px;font-family:inherit;box-sizing:border-box;"></div>
+      </div>
+      <div><label style="font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:#231F20;display:block;margin-bottom:5px;">Service Interest *</label>
+      <select name="service" required style="width:100%;padding:11px 13px;border:1px solid rgba(35,31,32,.15);background:#fff;font-size:13px;font-family:inherit;box-sizing:border-box;">
+        <option value="">Select a service...</option>
+        <option>You Plan, I Guide — $150</option>
+        <option>You Plan, I Guide Intensive — $350</option>
+        <option>You Plan, I Manage Petite — $1,500</option>
+        <option>You Plan, I Manage — $2,000</option>
+        <option>Not sure yet</option>
+      </select></div>
+      <div><label style="font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:#231F20;display:block;margin-bottom:5px;">Tell Us About Your Wedding</label><textarea name="message" rows="3" placeholder="Venue, vision, anything you'd like us to know..." style="width:100%;padding:11px 13px;border:1px solid rgba(35,31,32,.15);background:#fff;font-size:13px;font-family:inherit;resize:vertical;box-sizing:border-box;"></textarea></div>
+      <button type="submit" style="width:100%;padding:15px;background:#FFBFCC;border:none;font-size:8px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;font-family:inherit;margin-top:6px;transition:background .3s;">Send Inquiry &rarr;</button>
+    </form>
+    <div id="inquirySuccess" style="display:none;text-align:center;padding:48px 0;">
+      <div style="width:48px;height:48px;border-radius:50%;background:#D17C82;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:20px;color:#fff;">&#10003;</div>
+      <h3 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;color:#231F20;margin-bottom:8px;">Thank you!</h3>
+      <p style="font-size:13px;color:rgba(35,31,32,.6);line-height:1.7;">We&#39;ve received your inquiry and will be in touch within 48 hours.</p>
+    </div>
+  </div>
+</div>
+<script>
+function openInquiry(){
+  var m=document.getElementById('inquiryModal');
+  m.style.display='flex';
+  document.body.style.overflow='hidden';
+}
+function closeInquiry(){
+  var m=document.getElementById('inquiryModal');
+  m.style.display='none';
+  document.body.style.overflow='';
+  document.getElementById('inquiryForm').style.display='flex';
+  document.getElementById('inquirySuccess').style.display='none';
+  document.getElementById('inquiryForm').reset();
+}
+function submitInquiry(e){
+  e.preventDefault();
+  document.getElementById('inquiryForm').style.display='none';
+  document.getElementById('inquirySuccess').style.display='block';
+  setTimeout(function(){closeInquiry();},3500);
+}
+document.getElementById('inquiryModal').addEventListener('click',function(e){if(e.target===this)closeInquiry();});
 </script>
 </body>
 </html>
