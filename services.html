@@ -1,166 +1,411 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Services | Plan For Me Events</title>
-<meta name="description" content="Wedding planning guidance sessions and month-of coordination for Central Florida brides. You Plan I Guide sessions from $150. Coordination from $1,500.">
+<meta name="description" content="Wedding planning guidance sessions and month-of coordination for Central Florida couples. You Plan, I Guide ($150), Intensive ($350), You Plan I Manage Petite ($1,500) and full coordination ($2,000).">
 <meta property="og:title" content="Services | Plan For Me Events">
-<meta property="og:description" content="Wedding planning guidance sessions and month-of coordination for Central Florida brides. You Plan I Guide sessions from $150. Coordination from $1,500.">
+<meta property="og:description" content="Wedding planning guidance sessions and month-of coordination for Central Florida couples. You Plan, I Guide ($150), Intensive ($350), You Plan I Manage Petite ($1,500) and full coordination ($2,000).">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300;1,500&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 
+<style>
+
+/* ── SERVICES PAGE ── */
+.svc-intro{padding:72px 10% 0;text-align:center;max-width:780px;margin:0 auto;}
+.svc-intro .h2{margin-bottom:16px;}
+.svc-intro .bt{font-size:14px;line-height:1.8;}
+
+.svc-cards{padding:64px 7%;display:grid;grid-template-columns:1fr 1fr;gap:3px;}
+.scard{background:var(--off);padding:56px 48px;position:relative;overflow:hidden;}
+.scard::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--cha);transform:scaleX(0);transform-origin:left;
+  transition:transform .4s cubic-bezier(.25,.46,.45,.94);
+}
+.scard:hover::before{transform:scaleX(1);}
+.scard-eyebrow{
+  font-size:7px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--cha);margin-bottom:18px;font-weight:500;
+}
+.scard-name{
+  font-family:var(--sc);font-weight:400;font-style:italic;
+  font-size:clamp(24px,2.8vw,36px);color:var(--aug);
+  line-height:1.15;margin-bottom:6px;
+}
+.scard-price{
+  font-size:32px;font-weight:300;color:var(--mer);
+  margin-bottom:4px;
+}
+.scard-duration{
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(35,31,32,.4);margin-bottom:28px;
+}
+.scard-who{
+  font-size:13px;line-height:1.8;color:rgba(35,31,32,.7);
+  margin-bottom:28px;font-weight:300;
+  border-left:2px solid var(--cha);padding-left:16px;
+  font-style:italic;
+}
+.scard-section-title{
+  font-size:7.5px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--aug);margin-bottom:12px;font-weight:600;margin-top:24px;
+}
+.scard-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
+.scard-list li{
+  font-size:12px;color:rgba(35,31,32,.7);line-height:1.6;
+  padding-left:16px;position:relative;font-weight:300;
+}
+.scard-list li::before{
+  content:'';position:absolute;left:0;top:8px;
+  width:5px;height:1px;background:var(--cha);
+}
+.scard-list li strong{color:var(--aug);font-weight:500;}
+.scard-tagline{
+  margin-top:28px;padding-top:24px;
+  border-top:1px solid rgba(35,31,32,.08);
+  font-family:var(--sc);font-style:italic;font-size:13px;
+  color:var(--mer);line-height:1.6;
+}
+.scard-cta{margin-top:28px;}
+
+/* Full-width cards for petite and full */
+.scard.full{grid-column:span 1;}
+
+/* Coming soon section */
+.coming-soon{
+  background:var(--aug);padding:72px 10%;
+  text-align:center;
+}
+.cs-eyebrow{
+  font-size:7px;letter-spacing:5px;text-transform:uppercase;
+  color:var(--cha);display:block;margin-bottom:20px;
+}
+.cs-title{
+  font-family:var(--sc);font-style:italic;font-weight:300;
+  font-size:clamp(28px,4vw,48px);color:#fff;margin-bottom:16px;
+}
+.cs-body{
+  font-size:13px;color:rgba(255,255,255,.45);
+  line-height:1.8;max-width:560px;margin:0 auto 32px;
+}
+.cs-items{
+  display:flex;gap:32px;justify-content:center;
+  flex-wrap:wrap;margin-top:32px;
+}
+.cs-item{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  padding:32px 40px;min-width:240px;
+}
+.cs-item-price{
+  font-size:28px;font-weight:300;color:var(--cha);
+  display:block;margin-bottom:4px;
+}
+.cs-item-name{
+  font-family:var(--sc);font-style:italic;font-size:20px;
+  color:#fff;display:block;margin-bottom:8px;
+}
+.cs-item-tag{
+  font-size:8px;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(255,255,255,.25);
+}
+
+/* credit note */
+.credit-note{
+  background:var(--wht);padding:32px 10%;text-align:center;
+  border-top:1px solid rgba(35,31,32,.06);
+}
+.credit-note p{
+  font-size:12px;color:rgba(35,31,32,.5);line-height:1.8;
+  max-width:600px;margin:0 auto;
+}
+.credit-note strong{color:var(--mer);}
+
+@media(max-width:1100px){
+  .svc-cards{grid-template-columns:1fr;}
+  .scard{padding:44px 36px;}
+}
+@media(max-width:768px){
+  .svc-cards{padding:40px 16px;}
+  .svc-intro{padding:56px 24px 0;}
+  .scard{padding:36px 28px;}
+  .cs-items{flex-direction:column;align-items:center;}
+}
+
+</style>
 </head>
 <body>
-<div class="cur" id="cur"></div><div class="crng" id="crng"></div>
+<div class="cur" id="cur"></div>
+<div class="crng" id="crng"></div>
+
 <nav id="nav">
   <a href="index.html" class="nlogo">
     <img class="lgt" src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998703/pfm-logo_ixua6l.png" alt="Plan For Me Events" style="height:72px;width:auto;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));">
     <img class="drk" src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998703/pfm-logo_ixua6l.png" alt="Plan For Me Events" style="height:72px;width:auto;">
   </a>
   <ul class="nls"><li><a href="index.html">Home</a></li><li><a href="services.html" style="color:var(--pnk);">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="testimonials.html">Reviews</a></li><li><a href="faq.html">FAQ</a></li><li><a href="blog/index.html">Blog</a></li></ul>
-  <a href="https://planformeevents.co" target="_blank" class="btn bp nbtn">Book a Session</a>
+  <a href="#" onclick="openInquiry();return false;" class="btn bp nbtn">Let&#39;s Plan Together</a>
 </nav>
 
-<div class="pghero" style="padding-top:112px;">
-  <div class="pghbg"></div>
-  <div class="pgc">
-    <span class="pgey">Guidance Sessions &amp; Coordination</span>
+<div class="mm" id="mm">
+  <button class="mm-close" onclick="cMM()">✕</button>
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="about.html">About</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="testimonials.html">Testimonials</a>
+  <a href="faq.html">FAQ</a>
+  <a href="blog/index.html">Blog</a>
+  
+</div>
+
+
+<div class="pghero" style="padding-top:112px;position:relative;overflow:hidden;height:320px;display:flex;align-items:flex-end;padding-bottom:48px;padding-left:56px;">
+  <div style="position:absolute;inset:0;z-index:1;">
+    <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1778521860/pfm-hero-3_dhnz1z.jpg" alt="Services" style="width:100%;height:100%;object-fit:cover;object-position:center;">
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,3,5,.85) 0%,rgba(10,3,5,.4) 60%,transparent 100%);"></div>
+    <div style="position:absolute;inset:0;background:rgba(35,31,32,.45);"></div>
+  </div>
+  <div class="pgc" style="position:relative;z-index:2;">
+    <span class="pgey">Guidance Sessions &middot; Coordination</span>
     <h1 class="pgt">Services</h1>
   </div>
 </div>
-<div class="svc-page">
-  <div class="svc-intro">
-    <span class="lbl">How We Work Together</span>
-    <h2 class="h2" style="margin-bottom:16px;">Built Around the Bride Who Leads Her Own Planning</h2>
-    <p class="bt">You're doing the work. These services are designed to meet you exactly where you are — with the right level of support at the right moment in your planning journey. Every session is one-on-one, focused entirely on your wedding, and followed by personalized tools built specifically for you.</p>
-  </div>
-  <div class="svc-card">
-    <div class="svc-card-left">
-      <span class="svc-card-num">01</span>
-      <div><h2 class="svc-card-name">You Plan, I Guide</h2><span class="svc-card-price">$150 &middot; 30-Minute Session</span></div>
-    </div>
-    <div class="svc-card-right">
-      <p class="svc-card-tagline">"For the bride who needs a certified planner in her corner — without the full retainer."</p>
-      <span class="svc-card-for">Who This Is For</span>
-      <p class="svc-card-desc">Designed for couples planning their wedding independently who need professional guidance to move forward with confidence. If you're overwhelmed by where to start — or unsure if you're on the right track — this is your next step.</p>
-      <span class="svc-includes-title">During Your Session</span>
-      <ul class="svc-includes">
-        <li>Review of your current planning stage</li>
-        <li>Answers to your specific wedding planning questions</li>
-        <li>Guidance on vendor selection and booking order</li>
-        <li>Basic timeline direction and budget guidance</li>
-        <li>Ceremony and reception flow suggestions</li>
-        <li>Identification of your immediate next steps</li>
-      </ul>
-      <span class="svc-includes-title">Your Personalized Planning Packet — Within 48–72 Hours</span>
-      <ul class="svc-includes">
-        <li><strong>Custom Priority Checklist</strong> — Not a template. Curated for your specific wedding, guest count, and timeline.</li>
-        <li><strong>Next 30 / Next 90 Priority Map</strong> — What to do in the next month and the next three months. No guessing.</li>
-        <li><strong>Vendor Priority Guide</strong> — Who to book now, who can wait, who you may not need — and why.</li>
-        <li><strong>Timeline Foundations Sheet</strong> — Key considerations based on your venue and vision.</li>
-        <li><strong>Budget Awareness Notes</strong> — Where your money should and shouldn't go.</li>
-      </ul>
-      <a href="https://planformeevents.co" target="_blank" class="btn bp">Book This Session &rarr;</a>
-    </div>
-  </div>
-  <div class="svc-card" style="margin-top:2px;">
-    <div class="svc-card-left" style="background:var(--mer);">
-      <span class="svc-card-num">02</span>
-      <div><h2 class="svc-card-name">You Plan, I Guide<br><em style="font-style:normal;color:var(--pnk);font-size:.8em;">Intensive</em></h2><span class="svc-card-price">$350 &middot; 60-Minute Session</span></div>
-    </div>
-    <div class="svc-card-right">
-      <p class="svc-card-tagline">"For the bride who's already deep in planning and wants a professional set of eyes on everything she's built — before it's too late to change it."</p>
-      <span class="svc-card-for">Who This Is For</span>
-      <p class="svc-card-desc">The Intensive is for the bride who has already booked vendors and wants reassurance her plan is on track, or needs help refining details and logistics. A full review — everything you've built, examined by a certified planner.</p>
-      <span class="svc-includes-title">During Your Session</span>
-      <ul class="svc-includes">
-        <li>Full review of your current wedding plans</li>
-        <li>Discussion of your booked vendors and venue</li>
-        <li>Detailed timeline evaluation and gap identification</li>
-        <li>Strategic vendor guidance and refinement</li>
-        <li>Logistics deep dive — setup, flow, vendor timing</li>
-        <li>Personalized recommendations to strengthen your plan</li>
-      </ul>
-      <span class="svc-includes-title">Everything from the Standard Session, Plus</span>
-      <ul class="svc-includes">
-        <li><strong>Contract Logistics Review</strong> — Planner's eyes on your vendor and venue contracts. We flag mismatched setup times, cancellation terms, and clauses that put the burden on you.</li>
-        <li><strong>Venue Layout Consult</strong> — We review your floor plan and tell you what a planner sees: guest flow, bar placement, ceremony-to-reception logistics.</li>
-        <li><strong>Your "Protect Your Day" Flag List</strong> — Every risk, gap, or conflict — in plain language with specific action items.</li>
-      </ul>
-      <a href="https://planformeevents.co" target="_blank" class="btn bp">Book This Session &rarr;</a>
+
+<div class="svc-intro fade-up">
+  <p class="lbl">How We Work Together</p>
+  <h2 class="h2">Built Around the Way You Plan</h2>
+  <p class="bt" style="margin-top:16px;">You're leading your own planning. These services are designed to meet you exactly where you are — whether you need expert direction for an hour, or someone to take over and run the day you've spent months building.</p>
+</div>
+
+<div class="svc-cards">
+
+  <!-- ─── YOU PLAN, I GUIDE ─── -->
+  <div class="scard fade-up">
+    <p class="scard-eyebrow">01 · Guidance Session</p>
+    <h2 class="scard-name">You Plan,<br>I Guide</h2>
+    <p class="scard-price">$150</p>
+    <p class="scard-duration">30-Minute Session</p>
+    <p class="scard-who">"This session is designed for couples who are planning their wedding independently and need professional guidance to move forward with confidence."</p>
+
+    <p class="scard-section-title">What Happens During Your Session</p>
+    <ul class="scard-list">
+      <li>Review of your current planning stage</li>
+      <li>Answers to your specific wedding planning questions</li>
+      <li>Guidance on vendor selection and booking order</li>
+      <li>Basic timeline direction</li>
+      <li>Budget guidance and prioritization</li>
+      <li>Ceremony and reception flow suggestions</li>
+      <li>Identification of your immediate next steps</li>
+    </ul>
+
+    <p class="scard-section-title">What You'll Receive After</p>
+    <ul class="scard-list">
+      <li><strong>Your Custom Priority Checklist</strong> — curated for your specific wedding, not a generic template</li>
+      <li><strong>The Next 30 / Next 90 Priority Map</strong> — clear breakdown of your next steps in order</li>
+      <li><strong>Vendor Priority Guide</strong> — who to book now, who can wait, and who you may not need</li>
+      <li><strong>Timeline Foundations Sheet</strong> — key considerations based on your venue and vision</li>
+      <li><strong>Budget Awareness Notes</strong> — where your money should and shouldn't go</li>
+    </ul>
+
+    <p class="scard-tagline">"You walk away feeling like you have a planner in your corner — without the full retainer. That's the whole point."</p>
+    <div class="scard-cta">
+      <a href="https://cal.com/planformeevents" target="_blank" rel="noopener" class="btn bp">Let's Plan Together</a>
     </div>
   </div>
-  <div class="svc-card" style="margin-top:2px;">
-    <div class="svc-card-left" style="background:#3a1a20;">
-      <span class="svc-card-num">03</span>
-      <div><h2 class="svc-card-name">You Plan, I Manage<br><em style="font-style:normal;color:var(--pnk);font-size:.8em;">Petite</em></h2><span class="svc-card-price">$1,500 &middot; Month-of &middot; Up to 20 Guests</span></div>
-    </div>
-    <div class="svc-card-right">
-      <p class="svc-card-tagline">"Small wedding. Professional execution. Every detail handled so you can be present for every moment."</p>
-      <span class="svc-card-for">Who This Is For</span>
-      <p class="svc-card-desc">Designed for elopements, micro weddings, and intimate celebrations with up to 20 guests. You've done the planning — now it's time to hand it off.</p>
-      <span class="svc-includes-title">What's Included</span>
-      <ul class="svc-includes">
-        <li>Planning check-in call prior to your wedding</li>
-        <li>Review of confirmed vendors and overall plan</li>
-        <li>Vendor confirmations 2–3 weeks prior</li>
-        <li>Creation of a simplified wedding day timeline</li>
-        <li>Light rehearsal guidance (if applicable)</li>
-        <li>Full coordination of key vendors on wedding day</li>
-        <li>Wedding day management and timeline alignment</li>
-      </ul>
-      <a href="https://planformeevents.co" target="_blank" class="btn bp">Book Coordination &rarr;</a>
-    </div>
-  </div>
-  <div class="svc-card" style="margin-top:2px;">
-    <div class="svc-card-left" style="background:var(--aug);">
-      <span class="svc-card-num">04</span>
-      <div><h2 class="svc-card-name">You Plan,<br>I Manage</h2><span class="svc-card-price">$2,000 &middot; Full Month-of Coordination</span></div>
-    </div>
-    <div class="svc-card-right">
-      <p class="svc-card-tagline">"You planned it. We'll make sure it happens exactly the way you envisioned."</p>
-      <span class="svc-card-for">Who This Is For</span>
-      <p class="svc-card-desc">For couples who planned their wedding independently and want a professional to take over in the final weeks and manage the entire wedding day. Traditional weddings, larger guest counts, multiple vendors — this is full coverage.</p>
-      <span class="svc-includes-title">What's Included</span>
-      <ul class="svc-includes">
-        <li>Kickoff coordination meeting 4–6 weeks before your wedding</li>
-        <li>Full review of wedding plans and all vendor details</li>
-        <li>Unlimited email communication during the final month</li>
-        <li>Vendor confirmations — we become the point of contact</li>
-        <li>Creation of a detailed wedding day timeline</li>
-        <li>Ceremony rehearsal coordination</li>
-        <li>Full-day wedding day management and coverage</li>
-        <li>Timeline execution and problem-solving throughout the day</li>
-        <li>Coordination of setup, transitions, and breakdown oversight</li>
-      </ul>
-      <a href="https://planformeevents.co" target="_blank" class="btn bp">Book Coordination &rarr;</a>
+
+  <!-- ─── YOU PLAN, I GUIDE INTENSIVE ─── -->
+  <div class="scard fade-up">
+    <p class="scard-eyebrow">02 · Deep Dive Session</p>
+    <h2 class="scard-name">You Plan,<br>I Guide Intensive</h2>
+    <p class="scard-price">$350</p>
+    <p class="scard-duration">60-Minute Session</p>
+    <p class="scard-who">"For the bride who is already in the thick of planning and wants a professional set of eyes on what she's already done — before it's too late to change it."</p>
+
+    <p class="scard-section-title">What Happens During Your Session</p>
+    <ul class="scard-list">
+      <li>Full review of your current wedding plans</li>
+      <li>Discussion of your booked vendors and venue</li>
+      <li>Detailed timeline evaluation</li>
+      <li>Identification of planning gaps and potential issues</li>
+      <li>Strategic vendor guidance and refinement</li>
+      <li>Logistics deep dive — setup, flow, vendor timing</li>
+      <li>Personalized recommendations to improve your overall plan</li>
+    </ul>
+
+    <p class="scard-section-title">Everything from the Standard Session, Plus</p>
+    <ul class="scard-list">
+      <li><strong>Contract Logistics Review</strong> — planner's eyes on your vendor and venue contracts, flagging anything that could create a problem on your wedding day</li>
+      <li><strong>Venue Layout Consult</strong> — guest flow, bar placement, ceremony-to-reception flip logistics, accessibility</li>
+      <li><strong>Your "Protect Your Day" Flag List</strong> — every risk, gap, or conflict spotted in your planning with specific action items</li>
+    </ul>
+
+    <p class="scard-tagline">"The Intensive is the session for the bride who wants to stop hoping everything works out — and start knowing it will."</p>
+    <div class="scard-cta">
+      <a href="https://cal.com/planformeevents" target="_blank" rel="noopener" class="btn bp">Let's Plan Together</a>
     </div>
   </div>
-  <div class="upgrade-note"><p><strong>Guidance session credit:</strong> Your $150 or $350 session fee is credited toward coordination if you decide to upgrade. The investment you make today comes off your coordination package.</p></div>
-  <div class="svc-coming" style="margin-top:48px;">
-    <span class="lbl" style="display:block;text-align:center;">Coming in 2027</span>
-    <h3 class="svc-coming-title">Partial Planning &amp; Full-Service Planning</h3>
-    <p class="svc-coming-sub">You Plan, I Plan Too ($4,500) and Signature Plan For Me ($6,500) are in development and will be available in 2027. Join the waitlist to be first to know.</p>
-    <a href="https://planformeevents.co" target="_blank" class="btn bd">Join the Waitlist</a>
+
+  <!-- ─── YOU PLAN, I MANAGE PETITE ─── -->
+  <div class="scard fade-up">
+    <p class="scard-eyebrow">03 · Month of Coordinator</p>
+    <h2 class="scard-name">You Plan,<br>I Manage <em style="color:var(--cha);font-style:normal;">Petite</em></h2>
+    <p class="scard-price">$1,500</p>
+    <p class="scard-duration">Month of Coordinator &nbsp;·&nbsp; Up to 20 Guests</p>
+    <p class="scard-who">"Designed for elopements, micro weddings, and intimate celebrations that still require professional coordination. You've done the planning — now it's time to hand it off."</p>
+
+    <p class="scard-section-title">What's Included</p>
+    <ul class="scard-list">
+      <li>Planning check-in call prior to your wedding</li>
+      <li>Review of confirmed vendors and overall plan</li>
+      <li>Vendor confirmations 2–3 weeks prior</li>
+      <li>Creation of a simplified wedding day timeline</li>
+      <li>Light rehearsal guidance (if applicable)</li>
+      <li>Coordination of key vendors on wedding day</li>
+      <li>Wedding day management — timeline flow and vendor alignment throughout</li>
+    </ul>
+
+    <p class="scard-tagline">"Small wedding, professional execution. Every detail handled so you can be present for every moment."</p>
+    <div class="scard-cta">
+      <a href="https://cal.com/planformeevents" target="_blank" rel="noopener" class="btn bp">Let's Plan Together</a>
+    </div>
+  </div>
+
+  <!-- ─── YOU PLAN, I MANAGE ─── -->
+  <div class="scard fade-up">
+    <p class="scard-eyebrow">04 · Full Coordination</p>
+    <h2 class="scard-name">You Plan,<br>I Manage</h2>
+    <p class="scard-price">$2,000</p>
+    <p class="scard-duration">Month of Coordinator</p>
+    <p class="scard-who">"For couples who have planned their wedding independently and want a professional to take over in the final weeks and manage the entire wedding day."</p>
+
+    <p class="scard-section-title">What's Included</p>
+    <ul class="scard-list">
+      <li>Kickoff coordination meeting 4–6 weeks before your wedding</li>
+      <li>Full review of wedding plans and vendor details</li>
+      <li>Unlimited email communication during the final month</li>
+      <li>Vendor confirmations — we become the point of contact</li>
+      <li>Creation of a detailed wedding day timeline</li>
+      <li>Ceremony rehearsal coordination</li>
+      <li>Full-day wedding day management and coverage</li>
+      <li>Timeline execution and problem-solving on the day</li>
+      <li>Coordination of setup, transitions, and breakdown oversight</li>
+    </ul>
+
+    <p class="scard-tagline">"You planned it. We'll make sure it happens exactly the way you envisioned."</p>
+    <div class="scard-cta">
+      <a href="https://cal.com/planformeevents" target="_blank" rel="noopener" class="btn bp">Let's Plan Together</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- Credit note -->
+<div class="credit-note fade-up">
+  <p>Your guidance session fee is <strong>credited toward coordination</strong> if you upgrade. Book a session first — if you decide you need someone to run the day, your investment carries forward.</p>
+</div>
+
+<!-- Coming soon -->
+<div class="coming-soon fade-up">
+  <span class="cs-eyebrow">Coming in 2027</span>
+  <h2 class="cs-title">More to Come</h2>
+  <p class="cs-body">The following services are currently in development and will be available beginning in 2027. Stay connected to be the first to know when bookings open.</p>
+  <div class="cs-items">
+    <div class="cs-item">
+      <span class="cs-item-price">$4,500</span>
+      <span class="cs-item-name">You Plan, I Plan Too</span>
+      <span class="cs-item-tag">Partial Planning · Available 2027</span>
+    </div>
+    <div class="cs-item">
+      <span class="cs-item-price">$6,500</span>
+      <span class="cs-item-name">Signature Plan For Me</span>
+      <span class="cs-item-tag">Full Service Planning · Available 2027</span>
+    </div>
   </div>
 </div>
 
+
 <footer>
-<div class="footer-creds"><span class="footer-creds-label">Certifications &amp; Awards</span><div class="badge-strip"><a href="https://www.thebridalsociety.com" target="_blank" rel="noopener" class="badge-link" title="The Bridal Society"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-bridal-society_oa2smb.png" alt="The Bridal Society" class="badge-img"></a><a href="https://www.certifiedweddingplanner.org" target="_blank" rel="noopener" class="badge-link" title="CWPS"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-cwps_y4zln5.png" alt="CWPS" class="badge-img"></a><a href="https://www.timelinegenius.com" target="_blank" rel="noopener" class="badge-link" title="Timeline Genius"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998907/pfm-badge-timeline-genius_embhqz.png" alt="Timeline Genius" class="badge-img"></a><a href="https://www.weddingwire.com" target="_blank" rel="noopener" class="badge-link" title="WeddingWire 2023"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-weddingwire-2023_z50evm.png" alt="WeddingWire 2023" class="badge-img"></a><a href="https://www.weddingwire.com" target="_blank" rel="noopener" class="badge-link" title="WeddingWire 2021"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998908/pfm-badge-weddingwire-2021_kxtugk.jpg" alt="WeddingWire 2021" class="badge-img"></a><a href="https://www.theknot.com" target="_blank" rel="noopener" class="badge-link" title="The Knot 2023"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998910/pfm-badge-theknot-2023_akhes4.png" alt="The Knot 2023" class="badge-img"></a></div></div>
-<div class="fi">
-  <div><span class="fls">pfm</span><span class="flsub">Plan For Me Events</span><p class="fbl">Premium wedding planning guidance and coordination across Central Florida.</p></div>
-  <div class="fc"><span class="fch">Services</span><ul><li><a href="services.html">Guidance Sessions</a></li><li><a href="services.html">Coordination</a></li></ul></div>
-  <div class="fc"><span class="fch">Navigate</span><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="testimonials.html">Reviews</a></li><li><a href="faq.html">FAQ</a></li><li><a href="blog/index.html">Blog</a></li></ul></div>
-  <div class="fc"><span class="fch">Areas Served</span><ul><li><a href="#">Orlando</a></li><li><a href="#">Kissimmee</a></li><li><a href="#">Tampa</a></li><li><a href="#">Daytona Beach</a></li><li><a href="#">Winter Haven</a></li><li><a href="#">Haines City</a></li></ul></div>
+<div class="footer-creds">
+  <span class="footer-creds-label">Certifications &amp; Awards</span>
+  <div class="badge-strip">
+    <a href="https://www.thebridalsociety.com" target="_blank" rel="noopener" class="badge-link">
+      <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-bridal-society_oa2smb.png" alt="The Bridal Society — Certified Wedding Planner" class="badge-img">
+    </a>
+    <a href="https://www.certifiedweddingplanner.org" target="_blank" rel="noopener" class="badge-link">
+      <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-cwps_y4zln5.png" alt="Certified Wedding Planner Society" class="badge-img">
+    </a>
+    <a href="https://www.timelinegenius.com" target="_blank" rel="noopener" class="badge-link">
+      <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998907/pfm-badge-timeline-genius_embhqz.png" alt="Certified Timeline Genius" class="badge-img">
+    </a>
+    <a href="https://www.weddingwire.com" target="_blank" rel="noopener" class="badge-link">
+      <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-weddingwire-2023_z50evm.png" alt="WeddingWire Couples Choice 2023" class="badge-img">
+    </a>
+    <a href="https://www.weddingwire.com" target="_blank" rel="noopener" class="badge-link">
+      <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998908/pfm-badge-weddingwire-2021_kxtugk.jpg" alt="WeddingWire Couples Choice 2021" class="badge-img">
+    </a>
+    <a href="https://www.theknot.com" target="_blank" rel="noopener" class="badge-link">
+      <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998910/pfm-badge-theknot-2023_akhes4.png" alt="The Knot Best of Weddings 2023" class="badge-img">
+    </a>
+  </div>
 </div>
-<div class="fbtm"><span class="fcp">&copy; 2025 Plan For Me Events</span><span class="far">Central Florida Wedding Planning</span></div>
+<div class="fi">
+  <div>
+    <span class="fls">pfm</span>
+    <span class="flsub">Plan For Me Events</span>
+    <p class="fbl">Premium wedding planning guidance and coordination across Central Florida.</p>
+  </div>
+  <div class="fc"><span class="fch">Services</span><ul>
+    <li><a href="services.html">Guidance Sessions</a></li>
+    <li><a href="services.html">Month of Coordinator</a></li>
+  </ul></div>
+  <div class="fc"><span class="fch">Navigate</span><ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="testimonials.html">Reviews</a></li>
+    <li><a href="blog/index.html">Blog</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+  </ul></div>
+  <div class="fc"><span class="fch">Areas Served</span><ul>
+    <li><a href="index.html">Orlando</a></li>
+    <li><a href="index.html">Kissimmee</a></li>
+    <li><a href="index.html">Tampa</a></li>
+    <li><a href="index.html">Daytona Beach</a></li>
+    <li><a href="index.html">Winter Haven</a></li>
+  </ul></div>
+</div>
+<div class="fbtm">
+  <span class="fcp">&copy; 2025 Plan For Me Events</span>
+  <span class="far">Central Florida Wedding Planning</span>
+</div>
 </footer>
+
 <script>
-window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('s',scrollY>55);});
+window.addEventListener('scroll',function(){
+  document.getElementById('nav').classList.toggle('s',scrollY>55);
+});
+function tMM(){document.getElementById('mm').classList.toggle('open');}
+function cMM(){document.getElementById('mm').classList.remove('open');}
+// Cursor
 var cur=document.getElementById('cur'),crng=document.getElementById('crng');
-if(cur&&crng){var mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});(function L(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;crng.style.left=rx+'px';crng.style.top=ry+'px';requestAnimationFrame(L);})();}
+if(cur&&crng){
+  var mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+  (function L(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;crng.style.left=rx+'px';crng.style.top=ry+'px';requestAnimationFrame(L);})();
+  document.querySelectorAll('a,button').forEach(function(el){
+    el.addEventListener('mouseenter',function(){cur.style.width='4px';cur.style.height='4px';crng.style.width='50px';crng.style.height='50px';});
+    el.addEventListener('mouseleave',function(){cur.style.width='8px';cur.style.height='8px';crng.style.width='36px';crng.style.height='36px';});
+  });
+}
+// Fade up animations
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:.08});
+document.querySelectorAll('.fade-up').forEach(function(el){io.observe(el);});
 </script>
 </body>
 </html>
