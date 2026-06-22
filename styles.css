@@ -235,7 +235,12 @@ hr.brand{
 }
 
 /* ── BADGE STRIP ── */
+
+
+
+
+
+
 .badge-strip{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:24px 36px;}
-.badge-link{display:inline-flex;align-items:center;transition:opacity .3s;}
-.badge-img{height:64px;width:auto;display:block;filter:brightness(0) invert(1);opacity:.8;}
-.badge-link:hover .badge-img{opacity:1;}
+.badge-link{display:inline-flex;align-items:center;}
+.badge-img{height:64px;width:auto;display:block;opacity:1;}
