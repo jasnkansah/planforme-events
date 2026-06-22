@@ -166,13 +166,10 @@ ul{list-style:none;}
   font-size:7px;letter-spacing:4px;text-transform:uppercase;
   color:rgba(255,191,204,.4);
 }
-.badge-strip{
-  display:flex;gap:24px;align-items:center;
-  flex-wrap:wrap;justify-content:center;
-}
-.badge-img{height:60px;width:auto;filter:brightness(0) invert(1);opacity:.7;transition:opacity .3s;display:block;}
-.badge-img:hover{opacity:1;}
-.badge-link{opacity:1;transition:opacity .3s;display:inline-flex;align-items:center;}
+
+
+
+
 .fi{
   background:var(--aug);padding:56px;
   display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;
@@ -236,3 +233,9 @@ hr.brand{
   .footer-creds{padding:32px 24px;}
   .fbtm{padding:16px 24px;flex-direction:column;gap:6px;text-align:center;}
 }
+
+/* ── BADGE STRIP ── */
+.badge-strip{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:24px 36px;}
+.badge-link{display:inline-flex;align-items:center;transition:opacity .3s;}
+.badge-img{height:64px;width:auto;display:block;filter:brightness(0) invert(1);opacity:.8;}
+.badge-link:hover .badge-img{opacity:1;}
