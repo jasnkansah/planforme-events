@@ -572,17 +572,9 @@ footer{background:var(--aug);}
   display:flex;align-items:center;justify-content:center;
   flex-wrap:wrap;gap:28px 40px;
 }
-.badge-link{
-  display:flex;align-items:center;justify-content:center;
-  opacity:.65;transition:opacity .3s;
-  text-decoration:none;
-}
-.badge-link:hover{opacity:1;}
-.badge-img{
-  height:80px;width:auto;
-  filter:grayscale(20%);
-  transition:filter .3s;
-}
+.badge-link{display:inline-flex;align-items:center;transition:opacity .3s;}
+.badge-link:hover .badge-img{opacity:1;}
+.badge-img{height:60px;width:auto;filter:brightness(0) invert(1);opacity:.75;transition:opacity .3s;display:block;}
 .badge-link:hover .badge-img{filter:grayscale(0%);}
 @media(max-width:768px){
   .footer-creds{padding:36px 22px 28px;}
