@@ -3,182 +3,518 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Reviews & Testimonials | Plan For Me Events</title>
+<title>Reviews | Plan For Me Events</title>
 <meta name="description" content="19 five-star reviews from real couples. Plan For Me Events is rated 4.9 out of 5 on WeddingWire and recommended by 99% of couples across Central Florida.">
-<meta property="og:title" content="Reviews & Testimonials | Plan For Me Events">
-<meta property="og:description" content="19 five-star reviews from real couples. Plan For Me Events is rated 4.9 out of 5 on WeddingWire and recommended by 99% of couples across Central Florida.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300;1,500&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<style>
 
+/* ── HERO ── */
+.rv-hero{
+  position:relative;
+  min-height:520px;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;
+  overflow:hidden;
+  padding:140px 56px 80px;
+}
+.rv-hero-bg{
+  position:absolute;inset:0;z-index:0;
+}
+.rv-hero-bg img{
+  width:100%;height:100%;object-fit:cover;object-position:center;display:block;
+}
+.rv-hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(10,3,5,.78) 0%,rgba(35,31,32,.85) 100%);
+}
+.rv-hero-inner{
+  position:relative;z-index:1;
+  max-width:800px;margin:0 auto;
+}
+.rv-hero-eyebrow{
+  font-size:7.5px;letter-spacing:5px;text-transform:uppercase;
+  color:var(--cha);display:block;margin-bottom:20px;
+}
+.tq-slide{display:none;}
+.tq-slide.active{display:block;animation:tqFade .7s ease;}
+@keyframes tqFade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.tq-quote-mark{
+  font-family:var(--sc);font-size:80px;line-height:.5;
+  color:var(--cha);opacity:.6;display:block;margin-bottom:16px;
+}
+.tq-text{
+  font-family:var(--sc);font-style:italic;font-weight:300;
+  font-size:clamp(20px,2.6vw,30px);
+  color:#fff;line-height:1.6;margin-bottom:24px;
+}
+.tq-attr{display:flex;align-items:center;justify-content:center;gap:10px;}
+.tq-name{font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--pnk);}
+.tq-sep{color:rgba(255,255,255,.3);font-size:12px;}
+.tq-event{font-size:9px;color:rgba(255,255,255,.4);letter-spacing:1px;}
+.tq-dots{
+  display:flex;gap:8px;justify-content:center;margin-top:32px;
+}
+.tq-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(255,255,255,.25);border:none;cursor:pointer;padding:0;
+  transition:background .3s,transform .3s;
+}
+.tq-dot.on{background:var(--pnk);transform:scale(1.3);}
+
+/* ── STATS BAR ── */
+.rv-stats{
+  background:var(--aug);
+  display:flex;align-items:center;justify-content:center;
+  gap:80px;padding:48px 56px;
+}
+.rv-stat{text-align:center;}
+.rv-stat-num{
+  font-family:var(--sc);font-size:56px;color:#fff;
+  line-height:1;display:block;
+}
+.rv-stat-stars{color:var(--pnk);font-size:16px;display:block;margin:6px 0;}
+.rv-stat-label{
+  font-size:7.5px;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,.4);display:block;
+}
+.rv-stat-divider{
+  width:1px;height:60px;
+  background:rgba(255,255,255,.1);
+}
+
+/* ── WW SOURCE BAR ── */
+.rv-source-bar{
+  background:var(--off);
+  display:flex;align-items:center;justify-content:center;
+  gap:12px;padding:20px 56px;
+  border-bottom:1px solid rgba(35,31,32,.06);
+}
+.rv-source-bar-text{
+  font-size:11px;color:rgba(35,31,32,.5);letter-spacing:.5px;
+}
+.rv-source-bar-stars{color:#D4AF37;font-size:14px;letter-spacing:2px;}
+.rv-source-bar-link{
+  font-size:10px;color:var(--mer);text-decoration:none;font-weight:500;
+}
+.rv-source-bar-link:hover{color:var(--cha);}
+
+/* ── REVIEW GRID ── */
+.rv-section{padding:72px 56px 80px;max-width:1360px;margin:0 auto;}
+.rv-section-hdr{margin-bottom:48px;}
+.rv-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:2px;
+}
+.rv-card{
+  background:#fff;
+  padding:40px 36px;
+  border-left:3px solid transparent;
+  transition:border-color .3s,background .3s;
+  display:flex;flex-direction:column;
+}
+.rv-card:hover{
+  border-left-color:var(--cha);
+  background:var(--off);
+}
+.rv-card-top{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:14px;
+}
+.rv-stars{display:flex;gap:3px;}
+.rv-star{color:#D4AF37;font-size:14px;}
+.rv-star-empty{color:rgba(35,31,32,.15);}
+.rv-source{
+  font-size:8px;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(35,31,32,.3);
+}
+.rv-title{
+  font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--mer);margin-bottom:14px;
+}
+.rv-quote{
+  font-family:var(--sc);font-style:italic;font-weight:300;
+  font-size:15px;line-height:1.8;
+  color:rgba(35,31,32,.8);
+  flex:1;margin-bottom:24px;
+}
+.rv-footer{
+  border-top:1px solid rgba(35,31,32,.06);
+  padding-top:16px;
+  display:flex;flex-direction:column;gap:4px;
+}
+.rv-name{
+  font-size:8px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--aug);font-weight:500;
+}
+.rv-meta{font-size:10px;color:rgba(35,31,32,.4);}
+
+/* ── CTA ── */
+.rv-cta{
+  background:var(--aug);
+  padding:72px 56px;text-align:center;
+  margin-top:0;
+}
+.rv-cta h2{
+  font-family:var(--sc);font-weight:300;font-style:italic;
+  font-size:clamp(28px,4vw,48px);color:#fff;
+  margin-bottom:14px;line-height:1.2;
+}
+.rv-cta p{
+  font-size:13px;color:rgba(255,255,255,.5);
+  max-width:480px;margin:0 auto 32px;line-height:1.8;
+}
+
+/* ── BADGE FIX ── */
+.badge-strip{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:24px 36px;}
+.badge-link{display:inline-flex;align-items:center;}
+.badge-img{height:64px;width:auto;display:block;opacity:1;}
+
+@media(max-width:1100px){.rv-grid{grid-template-columns:1fr;}}
+@media(max-width:768px){
+  .rv-hero{padding:120px 24px 64px;min-height:420px;}
+  .rv-stats{gap:40px;padding:36px 24px;flex-wrap:wrap;}
+  .rv-stat-divider{display:none;}
+  .rv-section{padding:48px 16px 64px;}
+  .rv-cta{padding:56px 24px;}
+  .rv-source-bar{padding:16px 24px;flex-wrap:wrap;gap:8px;text-align:center;}
+}
+</style>
 </head>
 <body>
-<div class="cur" id="cur"></div><div class="crng" id="crng"></div>
+
 <nav id="nav">
   <a href="index.html" class="nlogo">
-    <img class="lgt" src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998703/pfm-logo_ixua6l.png" alt="Plan For Me Events" style="height:72px;width:auto;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));">
+    <img class="lgt" src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998703/pfm-logo_ixua6l.png" alt="Plan For Me Events" style="height:72px;width:auto;filter:drop-shadow(0 2px 12px rgba(0,0,0,.3));">
     <img class="drk" src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998703/pfm-logo_ixua6l.png" alt="Plan For Me Events" style="height:72px;width:auto;">
   </a>
   <ul class="nls"><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="testimonials.html" style="color:var(--pnk);">Reviews</a></li><li><a href="faq.html">FAQ</a></li><li><a href="blog/index.html">Blog</a></li></ul>
-  <a href="https://planformeevents.co" target="_blank" class="btn bp nbtn">Book a Session</a>
+  <a href="#" onclick="openInquiry();return false;" class="btn bp nbtn">Let&#39;s Plan Together</a>
 </nav>
 
-<div class="tq-hero" style="padding-top:140px;">
-  <div class="tq-slides">
-    <div class="tq-slide active"><span class="tq-mark">“</span><p class="tq-text">My day would not have been as great as it was without the detail-oriented and structured planning of Jasmine. I cannot recommend her highly enough.</p><span class="tq-author">Latoya</span><span class="tq-event">Wedding · Orlando, FL</span></div><div class="tq-slide"><span class="tq-mark">“</span><p class="tq-text">Many of my guests told me it was the most beautiful wedding they had ever attended. Without Jasmine, I would have had far less energy for the sentimental moments.</p><span class="tq-author">Cassandra</span><span class="tq-event">Wedding · Winter Park, FL</span></div><div class="tq-slide"><span class="tq-mark">“</span><p class="tq-text">Jasmine was there for us every step of the way & we're forever grateful for her. She deserves a 10/10!</p><span class="tq-author">Victoria</span><span class="tq-event">Wedding · Lake Mary, FL</span></div><div class="tq-slide"><span class="tq-mark">“</span><p class="tq-text">She helped us find a last-minute videographer and negotiated a discount. We can't imagine the chaos that would have ensued had she not been there.</p><span class="tq-author">Kasey</span><span class="tq-event">Wedding · Central Florida</span></div><div class="tq-slide"><span class="tq-mark">“</span><p class="tq-text">PlanForMe made both my proposal and my wedding night exceptional — they helped honor my mother who had to watch from above.</p><span class="tq-author">Malcolm</span><span class="tq-event">Proposal + Wedding · Glenville, IL</span></div>
+<!-- HERO -->
+<div class="rv-hero">
+  <div class="rv-hero-bg">
+    <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1778521858/pfm-hero-1_wb0nq3.jpg" alt="Wedding photography Plan For Me Events">
   </div>
-  <div class="tq-dots"><button class="tq-dot on" onclick="goTQ(0)"></button><button class="tq-dot" onclick="goTQ(1)"></button><button class="tq-dot" onclick="goTQ(2)"></button><button class="tq-dot" onclick="goTQ(3)"></button><button class="tq-dot" onclick="goTQ(4)"></button></div>
+  <div class="rv-hero-inner">
+    <span class="rv-hero-eyebrow">What Our Couples Say</span>
+    <div class="tq-slides">
+      <div class="tq-slide active">
+  <div class="tq-quote-mark">&ldquo;</div>
+  <p class="tq-text">My day would not have been as great as it was without the detail-oriented and structured planning of Jasmine.</p>
+  <div class="tq-attr">
+    <span class="tq-name">Latoya</span>
+    <span class="tq-sep">·</span>
+    <span class="tq-event">Wedding · Orlando, FL</span>
+  </div>
+</div><div class="tq-slide">
+  <div class="tq-quote-mark">&ldquo;</div>
+  <p class="tq-text">Many of my guests told me it was the most beautiful wedding they had ever attended. Without Jasmine, I would have had far less energy for the sentimental moments.</p>
+  <div class="tq-attr">
+    <span class="tq-name">Cassandra</span>
+    <span class="tq-sep">·</span>
+    <span class="tq-event">Wedding · Winter Park, FL</span>
+  </div>
+</div><div class="tq-slide">
+  <div class="tq-quote-mark">&ldquo;</div>
+  <p class="tq-text">Jasmine was there for us every step of the way & we're forever grateful for her. She deserves a 10/10!</p>
+  <div class="tq-attr">
+    <span class="tq-name">Victoria</span>
+    <span class="tq-sep">·</span>
+    <span class="tq-event">Wedding · Lake Mary, FL</span>
+  </div>
+</div><div class="tq-slide">
+  <div class="tq-quote-mark">&ldquo;</div>
+  <p class="tq-text">She helped us find a last-minute videographer and negotiated a discount. We can't imagine the chaos that would have ensued had she not been there.</p>
+  <div class="tq-attr">
+    <span class="tq-name">Kasey</span>
+    <span class="tq-sep">·</span>
+    <span class="tq-event">Wedding · Central Florida</span>
+  </div>
+</div><div class="tq-slide">
+  <div class="tq-quote-mark">&ldquo;</div>
+  <p class="tq-text">PlanForMe made both my proposal and my wedding night exceptional — they helped honor my mother who had to watch from above.</p>
+  <div class="tq-attr">
+    <span class="tq-name">Malcolm</span>
+    <span class="tq-sep">·</span>
+    <span class="tq-event">Proposal + Wedding · Glenville, IL</span>
+  </div>
+</div>
+    </div>
+    <div class="tq-dots"><button class="tq-dot on" onclick="goTQ(0)"></button><button class="tq-dot" onclick="goTQ(1)"></button><button class="tq-dot" onclick="goTQ(2)"></button><button class="tq-dot" onclick="goTQ(3)"></button><button class="tq-dot" onclick="goTQ(4)"></button></div>
+  </div>
 </div>
 
-<div class="tc-rating-bar">
-  <div class="tc-rating-item">
-    <span class="tc-rating-num">4.9</span>
-    <span class="tc-rating-stars">★★★★★</span>
-    <span class="tc-rating-label">Average Rating</span>
+<!-- STATS -->
+<div class="rv-stats">
+  <div class="rv-stat">
+    <span class="rv-stat-num">4.9</span>
+    <span class="rv-stat-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+    <span class="rv-stat-label">Overall Rating</span>
   </div>
-  <div class="tc-rating-item">
-    <span class="tc-rating-num">19</span>
-    <span class="tc-rating-stars">&nbsp;</span>
-    <span class="tc-rating-label">WeddingWire Reviews</span>
-  </div>
-  <div class="tc-rating-item">
-    <span class="tc-rating-num">99%</span>
-    <span class="tc-rating-stars">&nbsp;</span>
-    <span class="tc-rating-label">Recommend Rate</span>
-  </div>
-  <div class="tc-rating-item">
-    <span class="tc-rating-num">2</span>
-    <span class="tc-rating-stars">&nbsp;</span>
-    <span class="tc-rating-label">Couples Choice Awards</span>
+  <div class="rv-stat-divider"></div>
+  <div class="rv-stat">
+    <span class="rv-stat-num">99%</span>
+    <span class="rv-stat-stars">&nbsp;</span>
+    <span class="rv-stat-label">Recommend Rate</span>
   </div>
 </div>
 
-<section class="testi-grid-section">
-  <div class="testi-grid-hdr">
-    <span class="lbl">Real Couples · Real Words · Unedited</span>
-    <h2 class="h2">What Our Couples Say</h2>
-    <p style="font-size:13px;color:rgba(35,31,32,.5);margin-top:12px;max-width:480px;margin-left:auto;margin-right:auto;">Every review below is from a real couple Jasmine had the privilege of serving. All sourced directly from WeddingWire.</p>
+<!-- SOURCE BAR -->
+<div class="rv-source-bar">
+  <span class="rv-source-bar-text">All reviews sourced directly from</span>
+  <a href="https://www.weddingwire.com" target="_blank" rel="noopener" class="rv-source-bar-link">WeddingWire</a>
+  <span class="rv-source-bar-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+  <span class="rv-source-bar-text">19 verified reviews &middot; Recommended by 99% of couples</span>
+</div>
+
+<!-- REVIEW GRID -->
+<div class="rv-section">
+  <div class="rv-section-hdr">
+    <span class="lbl">Real Couples &middot; Real Words &middot; Unedited</span>
+    <h2 class="h2">Every Review. Every Couple.</h2>
   </div>
-  <div class="testi-grid">
-    <div class="tc2">
-  <div class="tc2-stars"><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span></div>
-  <p class="tc2-title">Thee Best Wedding Planner in Central Florida</p>
-  <p class="tc2-quote">“Jasmine is absolutely phenomenal. Her work ethic & professionalism is top tier, which is immensely appreciated during one of the most stressful but rewarding moments of a couple's life. As a wedding planner one must be prompt, organized, detail oriented, display excellent communication skills and she far exceeded our expectations! Jasmine was there for us every step of the way & we're forever grateful for her. Jasmine deserves a 10/10! Highly recommended!!!”</p>
-  <span class="tc2-name">Victoria</span>
-  <span class="tc2-event">Wedding · Lake Mary, FL · June 2022</span>
-</div><div class="tc2">
-  <div class="tc2-stars"><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span></div>
-  <p class="tc2-title">Amazing planner!</p>
-  <p class="tc2-quote">“Jasmine was amazing — we hired her as our month-of coordinator due to us already having a lot of things planned out. Jasmine helped me so much with the planning process because there were a lot of things I was missing. She is also quick with responses and made sure she was readily available for us. Having Jasmine there during our big day made things flow so smoothly and stress free. Thanks Jasmine!”</p>
-  <span class="tc2-name">Necole</span>
-  <span class="tc2-event">Wedding · Daytona Beach, FL · April 2023</span>
-</div><div class="tc2">
-  <div class="tc2-stars"><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span></div>
-  <p class="tc2-title">Best Decision Ever!</p>
-  <p class="tc2-quote">“Jasmine and Plan For Me Events was God sent! I was a hands-on bride who had my venue and most vendors locked in, but I wanted a planner to be the point person so my family and I could enjoy the day. Jasmine did not disappoint. She was always available by phone, text, or email. She accompanied me to visit my venue a month prior — asking questions I hadn't thought to ask. When I had a vendor scare, she called immediately, took the lead, and ensured I received what was promised in the contract. Her vendor coordination was extraordinary — she emailed every vendor confirming logistics and created a detailed hourly timeline. My day would not have been as great without the detail-oriented planning of Jasmine. I cannot recommend her highly enough.”</p>
-  <span class="tc2-name">Latoya</span>
-  <span class="tc2-event">Wedding · Orlando, FL · July 2022</span>
-</div><div class="tc2">
-  <div class="tc2-stars"><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span></div>
-  <p class="tc2-title">Memories For a Lifetime</p>
-  <p class="tc2-quote">“PlanForMe made both my proposal and my wedding night exceptional. They helped my wife orchestrate a heartwarming plan to honor my mother who had to watch the ceremony from above — surprising me with a button with my mother's photo to pin on my tuxedo, and setting up a beautiful memorial table. Thank you so much Jasmine. You and your team are awesome.”</p>
-  <span class="tc2-name">Malcolm</span>
-  <span class="tc2-event">Proposal + Wedding · Glenville, IL · July 2022</span>
-</div><div class="tc2">
-  <div class="tc2-stars"><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span></div>
-  <p class="tc2-title">Wonderful!!!!</p>
-  <p class="tc2-quote">“I had the pleasure of hiring PlanForMe Events to plan & coordinate my wedding and may I say it was a fabulous experience. The PlanForMe team was so professional & helpful! They definitely brought to life everything I envisioned! Jasmine is thoughtful, creative, and quite frankly the BEST in the business!!!”</p>
-  <span class="tc2-name">J. Cherise</span>
-  <span class="tc2-event">Wedding · Central Florida · July 2022</span>
-</div><div class="tc2">
-  <div class="tc2-stars"><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span></div>
-  <p class="tc2-title">Wow, wow, wow!</p>
-  <p class="tc2-quote">“Words cannot describe how wonderful Jasmine was to plan with. She was organized and on top of everything — kind and honest. All of my vendors and guests complimented her organization and communication. Even my father was impressed! If you are planning a wedding, please consider Jasmine!!! She is organized, helpful, and will KEEP YOU IN YOUR BUDGET.”</p>
-  <span class="tc2-name">Erika</span>
-  <span class="tc2-event">Wedding · Winter Park, FL · March 2022</span>
-</div><div class="tc2">
-  <div class="tc2-stars"><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span></div>
-  <p class="tc2-title">The best planning experience one could ask for!</p>
-  <p class="tc2-quote">“Jasmine is simply fabulous. Extremely detailed, follows through, thinks ahead, creative, and a pleasure to work with. As a gal who works 50 hours a week and is a part-time student, I needed help staying organized. Jasmine was crucial in helping me put the pieces together, ultimately leading to the happiest day of my life. Many of my guests later told me it was the most beautiful wedding they had ever attended. Without Jasmine, I would have had far less energy for the sentimental moments. Would absolutely recommend her 10 times over!”</p>
-  <span class="tc2-name">Cassandra</span>
-  <span class="tc2-event">Wedding · Winter Park, FL · March 2022</span>
-</div><div class="tc2">
-  <div class="tc2-stars"><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span></div>
-  <p class="tc2-title">Organized, detailed, responsive, LOVELY to work with!</p>
-  <p class="tc2-quote">“I couldn't be happier that we chose PlanForMe to help us. Jasmine was on top of all the details from Day 1 — super responsive via phone, text, and email. On our wedding day, everything went perfectly. All I had to do was relax, get my hair and makeup done, and pop the bubbly! I would and will recommend Jasmine to any and all of my friends as soon as they get engaged!”</p>
-  <span class="tc2-name">Carly</span>
-  <span class="tc2-event">Wedding · Central Florida · December 2021</span>
-</div><div class="tc2">
-  <div class="tc2-stars"><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span></div>
-  <p class="tc2-title">Jasmine is incredible — a must hire!</p>
-  <p class="tc2-quote">“We are big DIYers, but weren't sure how to orchestrate the day-of pieces without burdening family members. We looked at 10+ coordinators and stopped our search the moment we chatted with Jasmine. She helped us find a last-minute videographer who was phenomenal — and negotiated a discounted price for us! Our wedding was perfect and we can't imagine the chaos that would have ensued had she not been there.”</p>
-  <span class="tc2-name">Kasey</span>
-  <span class="tc2-event">Wedding · Central Florida · April 2021</span>
-</div><div class="tc2">
-  <div class="tc2-stars"><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span></div>
-  <p class="tc2-title">Kept our wedding on Track!</p>
-  <p class="tc2-quote">“We hired Jasmine as our day-of coordinator and she helped keep everything on track. She did more than expected and I can't express how much we appreciated her on our Wedding Day!”</p>
-  <span class="tc2-name">Amanda</span>
-  <span class="tc2-event">Wedding · Orlando, FL · March 2021</span>
-</div><div class="tc2">
-  <div class="tc2-stars"><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span></div>
-  <p class="tc2-title">Everything we could have asked for in a PLANNER!!</p>
-  <p class="tc2-quote">“The team at PlanForMe Events really impressed us! We were hoping for seamless, stress-free planning and coordination — and that's what we got, and more! Jasmine and her team displayed tremendous professionalism, knowledge, attention to detail, and overall great attitudes.”</p>
-  <span class="tc2-name">Anne</span>
-  <span class="tc2-event">Wedding · Central Florida · February 2021</span>
-</div><div class="tc2">
-  <div class="tc2-stars"><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span></div>
-  <p class="tc2-title">Amazing planner!</p>
-  <p class="tc2-quote">“I have had the pleasure of working with Jasmine on a multitude of events and weddings. She is super efficient and always on top of things. She makes it her top priority to ensure all bases are covered well in advance, but is always ready to put out any fires with ease. A kindhearted professional who truly invests in creating the wedding of their dreams.”</p>
-  <span class="tc2-name">Tiffany</span>
-  <span class="tc2-event">Colleague Review · November 2020</span>
-</div><div class="tc2">
-  <div class="tc2-stars"><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span></div>
-  <p class="tc2-title">A very Awesome Planner</p>
-  <p class="tc2-quote">“Professional, considerate, compassionate about my concerns and very attentive to my needs.”</p>
-  <span class="tc2-name">Denette</span>
-  <span class="tc2-event">Wedding · Central Florida · November 2020</span>
-</div><div class="tc2">
-  <div class="tc2-stars"><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span></div>
-  <p class="tc2-title">Great Consultation!</p>
-  <p class="tc2-quote">“Spoke with Jasmine right off the bat and knew she was an excellent planner! She helped me navigate through the woes of COVID, thinking logically and strategically about budgeting and guest count. PlanForMe Events gave me a great starter plan and to-do list to have me prepared for the best day of my life. Very professional and well-organized! You won't be disappointed!”</p>
-  <span class="tc2-name">Alexandria</span>
-  <span class="tc2-event">Guidance Session · November 2020</span>
-</div><div class="tc2">
-  <div class="tc2-stars"><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span></div>
-  <p class="tc2-title">Jasmine was amazing!</p>
-  <p class="tc2-quote">“Jasmine was reliable and even provided me with extra tips to add to my vision of my big day! She was always professional and passionate about helping me achieve my dream wedding!”</p>
-  <span class="tc2-name">Sydney</span>
-  <span class="tc2-event">Wedding · Central Florida · November 2020</span>
-</div><div class="tc2">
-  <div class="tc2-stars"><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span></div>
-  <p class="tc2-title">PlanForMe Events</p>
-  <p class="tc2-quote">“Jasmine is literally amazing! She is so sweet and knowledgeable. One thing I love is that she's not a pushy planner — she genuinely cares about what's best for the bride and what the bride wants. If you're looking for an amazing planner, look no further!”</p>
-  <span class="tc2-name">Alexis</span>
-  <span class="tc2-event">Wedding · Central Florida · October 2019</span>
-</div><div class="tc2">
-  <div class="tc2-stars"><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span></div>
-  <p class="tc2-title">Amazing April Wedding</p>
-  <p class="tc2-quote">“PlanForMe Events took care of my wedding ceremony & reception and they were both AMAZING! We had tons of COVID hiccups leading up to the big day, but PlanForMe Events handled everything with so much professionalism & care! All of my family & friends are still telling me how beautiful everything was weeks later!! PlanForMe is honestly the best in the game!”</p>
-  <span class="tc2-name">Janele</span>
-  <span class="tc2-event">Wedding · Glenville, IL · September 2019</span>
-</div><div class="tc2">
-  <div class="tc2-stars"><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span></div>
-  <p class="tc2-title">Stress Free Bride!</p>
-  <p class="tc2-quote">“I had an amazing experience with PlanForMe Events! What really made my experience the absolute best was Jasmine's efficiency and professionalism — exactly what I needed to take the stress away from my planning anxiety. She checked in constantly, remembered details I never thought of. Having Jasmine by my side on my big day was one of the best decisions I made.”</p>
-  <span class="tc2-name">Ashlee</span>
-  <span class="tc2-event">Wedding · Central Florida · September 2019</span>
-</div><div class="tc2">
-  <div class="tc2-stars"><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">★</span><span class="tc2-star">☆</span></div>
-  <p class="tc2-title">Great Experience</p>
-  <p class="tc2-quote">“The service and quality of experience was excellent. I enjoyed having Jasmine planning my special day!!!”</p>
-  <span class="tc2-name">Buffy</span>
-  <span class="tc2-event">Wedding · Central Florida · December 2020</span>
+  <div class="rv-grid">
+    <div class="rv-card">
+  <div class="rv-card-top">
+    <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
+    <span class="rv-source">WeddingWire</span>
+  </div>
+  <h3 class="rv-title">Thee Best Wedding Planner in Central Florida</h3>
+  <p class="rv-quote">&ldquo;Jasmine is absolutely phenomenal. Her work ethic & professionalism is top tier, which is immensely appreciated during one of the most stressful but rewarding moments of a couple's life. As a wedding planner one must be prompt, organized, detail oriented, display excellent communication skills — and she far exceeded our expectations! Jasmine was there for us every step of the way & we're forever grateful for her. Jasmine deserves a 10/10! Highly recommended!!!&rdquo;</p>
+  <div class="rv-footer">
+    <span class="rv-name">Victoria</span>
+    <span class="rv-meta">Wedding · Lake Mary, FL &middot; June 2022</span>
+  </div>
+</div><div class="rv-card">
+  <div class="rv-card-top">
+    <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
+    <span class="rv-source">WeddingWire</span>
+  </div>
+  <h3 class="rv-title">Amazing planner!</h3>
+  <p class="rv-quote">&ldquo;Jasmine was amazing — we hired her as our month-of coordinator due to us already having a lot of things planned out. Jasmine helped me so much with the planning process because there were a lot of things I was missing. She is also quick with responses and made sure she was readily available for us. Having Jasmine there during our big day made things flow so smoothly and stress free.&rdquo;</p>
+  <div class="rv-footer">
+    <span class="rv-name">Necole</span>
+    <span class="rv-meta">Wedding · Daytona Beach, FL &middot; April 2023</span>
+  </div>
+</div><div class="rv-card">
+  <div class="rv-card-top">
+    <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
+    <span class="rv-source">WeddingWire</span>
+  </div>
+  <h3 class="rv-title">Best Decision Ever!</h3>
+  <p class="rv-quote">&ldquo;Jasmine and Plan For Me Events was God sent. She was always available by phone, text, or email — accompanying me to visit my venue a month prior, asking questions I hadn't thought to ask. When I had a vendor scare, she called immediately and took the lead. Her scheduling was extraordinary — she created a detailed hourly timeline for every vendor. My day would not have been as great without the detail-oriented planning of Jasmine. I cannot recommend her highly enough.&rdquo;</p>
+  <div class="rv-footer">
+    <span class="rv-name">Latoya</span>
+    <span class="rv-meta">Wedding · Orlando, FL &middot; July 2022</span>
+  </div>
+</div><div class="rv-card">
+  <div class="rv-card-top">
+    <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
+    <span class="rv-source">WeddingWire</span>
+  </div>
+  <h3 class="rv-title">Memories For a Lifetime</h3>
+  <p class="rv-quote">&ldquo;PlanForMe made both my proposal and my wedding night exceptional. They helped my wife orchestrate a heartwarming plan to honor my mother who had to watch the ceremony from above — surprising me with a button with my mother's photo to pin on my tuxedo, and setting up a beautiful memorial table. Thank you so much Jasmine. You and your team are awesome.&rdquo;</p>
+  <div class="rv-footer">
+    <span class="rv-name">Malcolm</span>
+    <span class="rv-meta">Proposal + Wedding · Glenville, IL &middot; July 2022</span>
+  </div>
+</div><div class="rv-card">
+  <div class="rv-card-top">
+    <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
+    <span class="rv-source">WeddingWire</span>
+  </div>
+  <h3 class="rv-title">Wonderful!!!!</h3>
+  <p class="rv-quote">&ldquo;I had the pleasure of hiring PlanForMe Events to plan & coordinate my wedding and may I say it was a fabulous experience. The PlanForMe team was so professional & helpful! They definitely brought to life everything I envisioned! Jasmine is thoughtful, creative, and quite frankly the BEST in the business!!!&rdquo;</p>
+  <div class="rv-footer">
+    <span class="rv-name">J. Cherise</span>
+    <span class="rv-meta">Wedding · Central Florida &middot; July 2022</span>
+  </div>
+</div><div class="rv-card">
+  <div class="rv-card-top">
+    <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
+    <span class="rv-source">WeddingWire</span>
+  </div>
+  <h3 class="rv-title">Wow, wow, wow!</h3>
+  <p class="rv-quote">&ldquo;Words cannot describe how wonderful Jasmine was to plan with. She was organized, on top of everything, kind and honest. All of my vendors and guests complimented her organization and communication. Even my father was impressed! She will KEEP YOU IN YOUR BUDGET. We will definitely be suggesting her to anyone we know getting married.&rdquo;</p>
+  <div class="rv-footer">
+    <span class="rv-name">Erika</span>
+    <span class="rv-meta">Wedding · Winter Park, FL &middot; March 2022</span>
+  </div>
+</div><div class="rv-card">
+  <div class="rv-card-top">
+    <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
+    <span class="rv-source">WeddingWire</span>
+  </div>
+  <h3 class="rv-title">The best planning experience one could ask for!</h3>
+  <p class="rv-quote">&ldquo;Jasmine is simply fabulous — extremely detailed, follows through, thinks ahead, creative, and a pleasure to work with. Jasmine was crucial in helping me put the pieces together, ultimately leading to the happiest day of my life. Many of my guests later told me it was the most beautiful wedding they had ever attended. Without Jasmine, I would have had far less energy for the sentimental moments. Would absolutely recommend her 10 times over!&rdquo;</p>
+  <div class="rv-footer">
+    <span class="rv-name">Cassandra</span>
+    <span class="rv-meta">Wedding · Winter Park, FL &middot; March 2022</span>
+  </div>
+</div><div class="rv-card">
+  <div class="rv-card-top">
+    <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
+    <span class="rv-source">WeddingWire</span>
+  </div>
+  <h3 class="rv-title">Organized, detailed, responsive, LOVELY to work with!</h3>
+  <p class="rv-quote">&ldquo;I couldn't be happier that we chose PlanForMe to help us. Jasmine was on top of all the details from Day 1 — super responsive via phone, text, and email. On our wedding day, everything went perfectly. All I had to do was relax, get my hair and makeup done, and pop the bubbly! I would and will recommend Jasmine to any and all of my friends as soon as they get engaged!&rdquo;</p>
+  <div class="rv-footer">
+    <span class="rv-name">Carly</span>
+    <span class="rv-meta">Wedding · Central Florida &middot; December 2021</span>
+  </div>
+</div><div class="rv-card">
+  <div class="rv-card-top">
+    <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
+    <span class="rv-source">WeddingWire</span>
+  </div>
+  <h3 class="rv-title">Jasmine is incredible — a must hire!</h3>
+  <p class="rv-quote">&ldquo;We are big DIYers but weren't sure how to orchestrate the day-of pieces without burdening family members. We stopped our search and signed with Jasmine on the spot. She helped us find a last-minute videographer who was phenomenal — and negotiated a discounted price! Our wedding was perfect. We can't imagine the chaos that would have ensued had she not been there.&rdquo;</p>
+  <div class="rv-footer">
+    <span class="rv-name">Kasey</span>
+    <span class="rv-meta">Wedding · Central Florida &middot; April 2021</span>
+  </div>
+</div><div class="rv-card">
+  <div class="rv-card-top">
+    <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
+    <span class="rv-source">WeddingWire</span>
+  </div>
+  <h3 class="rv-title">Kept our wedding on Track!</h3>
+  <p class="rv-quote">&ldquo;We hired Jasmine as our day-of coordinator and she helped keep everything on track. She did more than expected and I can't express how much we appreciated her on our Wedding Day!&rdquo;</p>
+  <div class="rv-footer">
+    <span class="rv-name">Amanda</span>
+    <span class="rv-meta">Wedding · Orlando, FL &middot; March 2021</span>
+  </div>
+</div><div class="rv-card">
+  <div class="rv-card-top">
+    <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
+    <span class="rv-source">WeddingWire</span>
+  </div>
+  <h3 class="rv-title">Everything we could have asked for in a PLANNER!!</h3>
+  <p class="rv-quote">&ldquo;The team at PlanForMe Events really impressed us! My husband and I were hoping for seamless, stress-free planning and coordination — and that's what we got, and more! Jasmine and her team displayed tremendous professionalism, knowledge, attention to detail, and overall great attitudes.&rdquo;</p>
+  <div class="rv-footer">
+    <span class="rv-name">Anne</span>
+    <span class="rv-meta">Wedding · Central Florida &middot; February 2021</span>
+  </div>
+</div><div class="rv-card">
+  <div class="rv-card-top">
+    <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
+    <span class="rv-source">WeddingWire</span>
+  </div>
+  <h3 class="rv-title">Amazing planner!</h3>
+  <p class="rv-quote">&ldquo;I have had the pleasure of working with Jasmine on a multitude of events and weddings. She is super efficient and always on top of things — making it her top priority to ensure all bases are covered, but always ready to put out any fires with ease. A kindhearted professional who truly invests in creating the wedding of their dreams.&rdquo;</p>
+  <div class="rv-footer">
+    <span class="rv-name">Tiffany</span>
+    <span class="rv-meta">Colleague Review &middot; November 2020</span>
+  </div>
+</div><div class="rv-card">
+  <div class="rv-card-top">
+    <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
+    <span class="rv-source">WeddingWire</span>
+  </div>
+  <h3 class="rv-title">A very Awesome Planner</h3>
+  <p class="rv-quote">&ldquo;Professional, considerate, compassionate about my concerns and very attentive to my needs.&rdquo;</p>
+  <div class="rv-footer">
+    <span class="rv-name">Denette</span>
+    <span class="rv-meta">Wedding · Central Florida &middot; November 2020</span>
+  </div>
+</div><div class="rv-card">
+  <div class="rv-card-top">
+    <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
+    <span class="rv-source">WeddingWire</span>
+  </div>
+  <h3 class="rv-title">Great Consultation!</h3>
+  <p class="rv-quote">&ldquo;Right off the bat I knew Jasmine was an excellent planner! She helped me navigate through the woes of COVID, thinking logically and strategically about budgeting and guest count. PlanForMe Events gave me a great starter plan and to-do list. Very professional and well-organized! You won't be disappointed!&rdquo;</p>
+  <div class="rv-footer">
+    <span class="rv-name">Alexandria</span>
+    <span class="rv-meta">Guidance Session &middot; November 2020</span>
+  </div>
+</div><div class="rv-card">
+  <div class="rv-card-top">
+    <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
+    <span class="rv-source">WeddingWire</span>
+  </div>
+  <h3 class="rv-title">Jasmine was amazing!</h3>
+  <p class="rv-quote">&ldquo;Jasmine was reliable and even provided me with extra tips to add to my vision of my big day! She was always professional and passionate about helping me achieve my dream wedding!&rdquo;</p>
+  <div class="rv-footer">
+    <span class="rv-name">Sydney</span>
+    <span class="rv-meta">Wedding · Central Florida &middot; November 2020</span>
+  </div>
+</div><div class="rv-card">
+  <div class="rv-card-top">
+    <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
+    <span class="rv-source">WeddingWire</span>
+  </div>
+  <h3 class="rv-title">PlanForMe Events</h3>
+  <p class="rv-quote">&ldquo;Jasmine is literally amazing! She is so sweet and knowledgeable. One thing I love is that she's not a pushy planner — she genuinely cares about what's best for the bride and what the bride wants. If you're looking for an amazing planner, look no further!&rdquo;</p>
+  <div class="rv-footer">
+    <span class="rv-name">Alexis</span>
+    <span class="rv-meta">Wedding · Central Florida &middot; October 2019</span>
+  </div>
+</div><div class="rv-card">
+  <div class="rv-card-top">
+    <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
+    <span class="rv-source">WeddingWire</span>
+  </div>
+  <h3 class="rv-title">Amazing April Wedding</h3>
+  <p class="rv-quote">&ldquo;PlanForMe Events took care of my wedding ceremony & reception and they were both AMAZING! We had tons of COVID hiccups leading up to the big day, but PlanForMe Events handled everything with so much professionalism & care! All of my family & friends are still telling me how beautiful everything was weeks later!! PlanForMe is honestly the best in the game!&rdquo;</p>
+  <div class="rv-footer">
+    <span class="rv-name">Janele</span>
+    <span class="rv-meta">Wedding · Glenville, IL &middot; September 2019</span>
+  </div>
+</div><div class="rv-card">
+  <div class="rv-card-top">
+    <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span></div>
+    <span class="rv-source">WeddingWire</span>
+  </div>
+  <h3 class="rv-title">Stress Free Bride!</h3>
+  <p class="rv-quote">&ldquo;What really made my experience the absolute best was Jasmine's efficiency and professionalism — exactly what I needed to take the stress away from my planning anxiety. She checked in constantly and remembered details I never thought of. Having Jasmine by my side on my big day was one of the best decisions I made during this whole wedding planning process!&rdquo;</p>
+  <div class="rv-footer">
+    <span class="rv-name">Ashlee</span>
+    <span class="rv-meta">Wedding · Central Florida &middot; September 2019</span>
+  </div>
+</div><div class="rv-card">
+  <div class="rv-card-top">
+    <div class="rv-stars"><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star">&#9733;</span><span class="rv-star rv-star-empty">&#9733;</span></div>
+    <span class="rv-source">WeddingWire</span>
+  </div>
+  <h3 class="rv-title">Great Experience</h3>
+  <p class="rv-quote">&ldquo;The service and quality of experience was excellent. I enjoyed having Jasmine planning my special day!!!&rdquo;</p>
+  <div class="rv-footer">
+    <span class="rv-name">Buffy</span>
+    <span class="rv-meta">Wedding · Central Florida &middot; December 2020</span>
+  </div>
 </div>
   </div>
-</section>
+</div>
+
+<!-- CTA -->
+<div class="rv-cta">
+  <h2>Ready to have your own story to tell?</h2>
+  <p>Join the couples who trusted Plan For Me Events with one of the most important days of their lives.</p>
+  <a href="#" onclick="openInquiry();return false;" class="btn bw">Let&#39;s Plan Together &rarr;</a>
+</div>
+
+<footer>
+<div class="footer-creds"><span class="footer-creds-label">Certifications &amp; Awards</span><div class="badge-strip"><a href="https://www.thebridalsociety.com" target="_blank" rel="noopener" class="badge-link" title="The Bridal Society"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-bridal-society_oa2smb.png" alt="The Bridal Society" class="badge-img"></a><a href="https://www.certifiedweddingplanner.org" target="_blank" rel="noopener" class="badge-link" title="CWPS"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-cwps_y4zln5.png" alt="CWPS" class="badge-img"></a><a href="https://www.timelinegenius.com" target="_blank" rel="noopener" class="badge-link" title="Timeline Genius"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998907/pfm-badge-timeline-genius_embhqz.png" alt="Timeline Genius" class="badge-img"></a><a href="https://www.weddingwire.com" target="_blank" rel="noopener" class="badge-link" title="WeddingWire 2023"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-weddingwire-2023_z50evm.png" alt="WeddingWire 2023" class="badge-img"></a><a href="https://www.weddingwire.com" target="_blank" rel="noopener" class="badge-link" title="WeddingWire 2021"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998908/pfm-badge-weddingwire-2021_kxtugk.jpg" alt="WeddingWire 2021" class="badge-img"></a><a href="https://www.theknot.com" target="_blank" rel="noopener" class="badge-link" title="The Knot 2023"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998910/pfm-badge-theknot-2023_akhes4.png" alt="The Knot 2023" class="badge-img"></a></div></div>
+<div class="fi">
+  <div>
+    <a href="index.html"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998703/pfm-logo_ixua6l.png" alt="Plan For Me Events" style="height:56px;width:auto;display:block;margin-bottom:10px;"></a>
+    <span class="flsub">Plan For Me Events</span>
+    <p class="fbl">Premium wedding planning guidance and coordination across Central Florida.</p>
+  </div>
+  <div class="fc"><span class="fch">Services</span><ul><li><a href="services.html">Guidance Sessions</a></li><li><a href="services.html">Coordination</a></li></ul></div>
+  <div class="fc"><span class="fch">Navigate</span><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="testimonials.html">Reviews</a></li><li><a href="faq.html">FAQ</a></li><li><a href="blog/index.html">Blog</a></li></ul></div>
+  <div class="fc"><span class="fch">Areas Served</span><ul><li><a href="#">Orlando</a></li><li><a href="#">Kissimmee</a></li><li><a href="#">Tampa</a></li><li><a href="#">Daytona Beach</a></li><li><a href="#">Winter Haven</a></li></ul></div>
+</div>
+<div class="fbtm"><span class="fcp">&copy; 2025 Plan For Me Events</span><span class="far">Central Florida Wedding Planning</span></div>
+</footer>
 
 <script>
+window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('s',scrollY>55);});
 var tqIdx=0,tqTimer;
 var tqSlides=document.querySelectorAll('.tq-slide');
 var tqDots=document.querySelectorAll('.tq-dot');
@@ -186,25 +522,14 @@ function goTQ(n){
   tqSlides[tqIdx].classList.remove('active');tqDots[tqIdx].classList.remove('on');
   tqIdx=n;
   tqSlides[tqIdx].classList.add('active');tqDots[tqIdx].classList.add('on');
-  clearInterval(tqTimer);tqTimer=setInterval(function(){goTQ((tqIdx+1)%tqSlides.length);},5500);
+  clearInterval(tqTimer);
+  tqTimer=setInterval(function(){goTQ((tqIdx+1)%tqSlides.length);},5500);
 }
 tqTimer=setInterval(function(){goTQ((tqIdx+1)%tqSlides.length);},5500);
-</script>
 
-<footer>
-<div class="footer-creds"><span class="footer-creds-label">Certifications &amp; Awards</span><div class="badge-strip"><a href="https://www.thebridalsociety.com" target="_blank" rel="noopener" class="badge-link" title="The Bridal Society"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-bridal-society_oa2smb.png" alt="The Bridal Society" class="badge-img"></a><a href="https://www.certifiedweddingplanner.org" target="_blank" rel="noopener" class="badge-link" title="CWPS"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-cwps_y4zln5.png" alt="CWPS" class="badge-img"></a><a href="https://www.timelinegenius.com" target="_blank" rel="noopener" class="badge-link" title="Timeline Genius"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998907/pfm-badge-timeline-genius_embhqz.png" alt="Timeline Genius" class="badge-img"></a><a href="https://www.weddingwire.com" target="_blank" rel="noopener" class="badge-link" title="WeddingWire 2023"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-weddingwire-2023_z50evm.png" alt="WeddingWire 2023" class="badge-img"></a><a href="https://www.weddingwire.com" target="_blank" rel="noopener" class="badge-link" title="WeddingWire 2021"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998908/pfm-badge-weddingwire-2021_kxtugk.jpg" alt="WeddingWire 2021" class="badge-img"></a><a href="https://www.theknot.com" target="_blank" rel="noopener" class="badge-link" title="The Knot 2023"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998910/pfm-badge-theknot-2023_akhes4.png" alt="The Knot 2023" class="badge-img"></a></div></div>
-<div class="fi">
-  <div><span class="fls">pfm</span><span class="flsub">Plan For Me Events</span><p class="fbl">Premium wedding planning guidance and coordination across Central Florida.</p></div>
-  <div class="fc"><span class="fch">Services</span><ul><li><a href="services.html">Guidance Sessions</a></li><li><a href="services.html">Coordination</a></li></ul></div>
-  <div class="fc"><span class="fch">Navigate</span><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="testimonials.html">Reviews</a></li><li><a href="faq.html">FAQ</a></li><li><a href="blog/index.html">Blog</a></li></ul></div>
-  <div class="fc"><span class="fch">Areas Served</span><ul><li><a href="#">Orlando</a></li><li><a href="#">Kissimmee</a></li><li><a href="#">Tampa</a></li><li><a href="#">Daytona Beach</a></li><li><a href="#">Winter Haven</a></li><li><a href="#">Haines City</a></li></ul></div>
-</div>
-<div class="fbtm"><span class="fcp">&copy; 2025 Plan For Me Events</span><span class="far">Central Florida Wedding Planning</span></div>
-</footer>
-<script>
-window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('s',scrollY>55);});
-var cur=document.getElementById('cur'),crng=document.getElementById('crng');
-if(cur&&crng){var mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});(function L(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;crng.style.left=rx+'px';crng.style.top=ry+'px';requestAnimationFrame(L);})();}
+function openInquiry(){
+  alert("Inquiry form coming soon! Please email planformeevents@gmail.com to get started.");
+}
 </script>
 </body>
 </html>
