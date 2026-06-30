@@ -3,167 +3,323 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FAQs | Plan For Me Events</title>
+<title>FAQ | Plan For Me Events</title>
 <meta name="description" content="Frequently asked questions about Plan For Me Events wedding planning guidance sessions and month-of coordination in Central Florida.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300;1,500&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
+
+/* ── HERO ── */
+.faq-hero{
+  position:relative;
+  min-height:400px;
+  display:flex;align-items:flex-end;
+  padding:140px 72px 64px;
+  overflow:hidden;
+}
+.faq-hero-bg{position:absolute;inset:0;z-index:0;}
+.faq-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;}
+.faq-hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(10,3,5,.9) 0%,rgba(35,31,32,.6) 60%,rgba(35,31,32,.3) 100%);
+}
+.faq-hero-content{position:relative;z-index:1;max-width:680px;}
+.faq-hero-eyebrow{font-size:7.5px;letter-spacing:5px;text-transform:uppercase;color:var(--cha);display:block;margin-bottom:14px;}
+.faq-hero-title{font-family:var(--sc);font-weight:300;font-size:clamp(36px,5.5vw,68px);color:#fff;line-height:1.05;margin-bottom:16px;}
+.faq-hero-sub{font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;max-width:480px;}
+
+/* ── LAYOUT ── */
+.faq-page{
+  max-width:1000px;margin:0 auto;
+  padding:72px 56px 80px;
+}
+
+/* ── CATEGORY ── */
+.faq-category{margin-bottom:56px;}
+.faq-cat-title{
+  font-size:8px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--cha);margin-bottom:24px;
+  padding-bottom:12px;
+  border-bottom:1px solid rgba(35,31,32,.08);
+}
+
+/* ── ACCORDION ITEM ── */
+.faq-item{
+  border-bottom:1px solid rgba(35,31,32,.08);
+}
+.faq-q{
+  width:100%;background:none;border:none;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:24px;
+  padding:22px 0;
+  cursor:pointer;text-align:left;
+  transition:color .2s;
+}
+.faq-q:hover .faq-q-text{color:var(--mer);}
+.faq-q-text{
+  font-family:var(--sc);font-weight:500;
+  font-size:18px;color:var(--aug);line-height:1.4;
+  flex:1;
+}
+.faq-icon{
+  width:28px;height:28px;border-radius:50%;
+  border:1px solid rgba(35,31,32,.15);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;color:var(--cha);font-weight:300;
+  flex-shrink:0;transition:all .3s;
+  line-height:1;
+}
+.faq-item.open .faq-icon{
+  background:var(--aug);color:#fff;
+  border-color:var(--aug);
+  transform:rotate(45deg);
+}
+.faq-item.open .faq-q-text{color:var(--mer);}
+
+/* ── ACCORDION ANSWER ── */
+.faq-a{
+  max-height:0;overflow:hidden;
+  transition:max-height .4s cubic-bezier(.4,0,.2,1);
+}
+.faq-item.open .faq-a{max-height:600px;}
+.faq-a-inner{
+  font-size:14px;line-height:1.9;
+  color:rgba(35,31,32,.7);
+  padding:4px 0 28px;
+  padding-right:52px;
+}
+.faq-a-inner strong{color:var(--aug);font-weight:500;}
+
+/* ── CTA ── */
+.faq-cta{
+  background:var(--aug);padding:72px 56px;text-align:center;
+}
+.faq-cta h2{
+  font-family:var(--sc);font-weight:300;font-style:italic;
+  font-size:clamp(26px,4vw,44px);color:#fff;
+  margin-bottom:12px;line-height:1.2;
+}
+.faq-cta p{font-size:13px;color:rgba(255,255,255,.5);max-width:440px;margin:0 auto 28px;line-height:1.8;}
+
+/* ── BADGE FIX ── */
 .badge-strip{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:24px 36px;}
 .badge-link{display:inline-flex;align-items:center;}
 .badge-img{height:64px;width:auto;display:block;opacity:1;}
+
+@media(max-width:768px){
+  .faq-hero{padding:120px 24px 48px;min-height:320px;}
+  .faq-page{padding:48px 24px 60px;}
+  .faq-cta{padding:56px 24px;}
+  .faq-a-inner{padding-right:0;}
+}
 </style>
 </head>
 <body>
+
 <nav id="nav">
   <a href="index.html" class="nlogo">
-    <img class="lgt" src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998703/pfm-logo_ixua6l.png" alt="Plan For Me Events" style="height:72px;width:auto;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));">
+    <img class="lgt" src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998703/pfm-logo_ixua6l.png" alt="Plan For Me Events" style="height:72px;width:auto;filter:drop-shadow(0 2px 12px rgba(0,0,0,.3));">
     <img class="drk" src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998703/pfm-logo_ixua6l.png" alt="Plan For Me Events" style="height:72px;width:auto;">
   </a>
   <ul class="nls"><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="testimonials.html">Reviews</a></li><li><a href="faq.html" style="color:var(--pnk);">FAQ</a></li><li><a href="blog/index.html">Blog</a></li></ul>
   <a href="#" onclick="openInquiry();return false;" class="btn bp nbtn">Let&#39;s Plan Together</a>
 </nav>
-<div class="pghero" style="padding-top:112px;position:relative;overflow:hidden;height:320px;display:flex;align-items:flex-end;padding-bottom:48px;padding-left:56px;">
-  <div style="position:absolute;inset:0;z-index:1;">
-    <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1778521857/pfm-couple-1_oi9hee.jpg" alt="FAQs" style="width:100%;height:100%;object-fit:cover;object-position:center;">
-    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,3,5,.85) 0%,rgba(10,3,5,.4) 60%,transparent 100%);"></div>
-    <div style="position:absolute;inset:0;background:rgba(35,31,32,.45);"></div>
+
+<!-- HERO -->
+<div class="faq-hero">
+  <div class="faq-hero-bg">
+    <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1778521860/pfm-hero-3_dhnz1z.jpg" alt="Plan For Me Events FAQ">
   </div>
-  <div class="pgc" style="position:relative;z-index:2;">
-    <span class="pgey">Everything You Need to Know</span>
-    <h1 class="pgt">FAQs</h1>
+  <div class="faq-hero-content">
+    <span class="faq-hero-eyebrow">Clear Answers &middot; No Guesswork</span>
+    <h1 class="faq-hero-title">Frequently Asked Questions</h1>
+    <p class="faq-hero-sub">Everything you need to know about guidance sessions, coordination, policies, and what to expect when you work with Plan For Me Events.</p>
   </div>
 </div>
 
-<section class="faq-section" style="background:var(--wht);">
-  <div class="faq-hdr"><span class="lbl">Clear Answers, No Guesswork</span><h2 class="h2" style="margin-bottom:10px;font-size:clamp(26px,4vw,48px);">Frequently Asked Questions</h2><p class="bt" style="max-width:580px;margin:0 auto;">Everything you need to know about guidance sessions, coordination, policies, and what to expect.</p></div>
-  <div class="faq-list">
-    <div class="faq-item open">
-      <button class="faq-q"><span class="faq-q-text">What is a guidance session and who is it for?</span><span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>A guidance session is a focused, one-time, one-on-one consultation with a certified wedding planner — designed for couples leading their own planning who need expert direction. Following your session, you receive personalized planning tools within 48–72 hours.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q"><span class="faq-q-text">How do I know if I need You Plan I Guide or the Intensive?</span><span class="faq-icon">+</span></button>
-      <div class="faq-a">
-        <ul>
-          <li><strong style="color:var(--mer);font-weight:400;">You Plan, I Guide ($150)</strong> — early or mid-planning, need timeline help, haven't booked most vendors yet</li>
-          <li><strong style="color:var(--mer);font-weight:400;">You Plan, I Guide Intensive ($350)</strong> — vendors are booked, want contract review and timeline evaluation</li>
-        </ul>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q"><span class="faq-q-text">What is NOT included in a guidance session?</span><span class="faq-icon">+</span></button>
-      <div class="faq-a">
-        <ul>
-          <li>Vendor sourcing, booking, or ongoing vendor communication on your behalf</li>
-          <li>Day-of coordination or wedding day presence</li>
-          <li>Unlimited access or ongoing support between sessions</li>
-          <li>Refunds — all sessions and packages are non-refundable once booked</li>
-        </ul>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q"><span class="faq-q-text">What is month-of coordination and how does it differ from a session?</span><span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Month-of coordination begins 45 days before your wedding and includes vendor confirmations, timeline creation, rehearsal coordination, and full in-person wedding day management. Guidance sessions give you expert knowledge to plan better. Coordination gives you a professional to execute the plan you built. Your session fee is credited toward coordination if you upgrade.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q"><span class="faq-q-text">What is the difference between Petite and Full coordination?</span><span class="faq-icon">+</span></button>
-      <div class="faq-a">
-        <ul>
-          <li><strong style="color:var(--mer);font-weight:400;">You Plan, I Manage Petite ($1,500)</strong> — elopements, micro weddings, and intimate ceremonies</li>
-          <li><strong style="color:var(--mer);font-weight:400;">You Plan, I Manage ($2,000)</strong> — mid-size to larger weddings with full ceremony and reception</li>
-        </ul>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q"><span class="faq-q-text">What should I expect after booking?</span><span class="faq-icon">+</span></button>
-      <div class="faq-a">
-        <ul>
-          <li>Guidance sessions are one-time — not recurring or ongoing</li>
-          <li>Personalized planning tools delivered within 48–72 hours after your session</li>
-          <li>All bookings are non-refundable — please confirm availability before booking</li>
-          <li>Need to reschedule? Reach out early and I will do my best to accommodate</li>
-        </ul>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q"><span class="faq-q-text">Are guidance sessions available for elopements and proposals?</span><span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Absolutely — and they are especially valuable for both. Elopements in Florida involve permit considerations, officiant coordination, venue logistics, and photography timing. A guidance session ensures even the most intimate celebration is planned with intention and expertise.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q"><span class="faq-q-text">Where are you located and what areas do you serve?</span><span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Plan For Me Events is based in Central Florida and serves couples across Orlando, Kissimmee, Tampa, Daytona Beach, Poinciana, Winter Haven, and Haines City. Guidance sessions are conducted virtually. Month-of coordination is provided in person within the Central Florida service area.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q"><span class="faq-q-text">How far in advance should I book?</span><span class="faq-icon">+</span></button>
-      <div class="faq-a"><p>Guidance sessions — there is no wrong time. Month-of coordination — active work begins 45 days before your wedding, but I recommend booking at least 3–4 months out to guarantee availability. Coordination spots are limited.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q"><span class="faq-q-text">How do I book?</span><span class="faq-icon">+</span></button>
-      <div class="faq-a">
-        <ul>
-          <li>Submit your inquiry with your celebration type, date, and service you are interested in</li>
-          <li>You will receive a response within 48 hours with available times and next steps</li>
-          <li>Payment confirms your booking — all sessions are non-refundable</li>
-          <li>After your session, personalized planning tools are delivered within 48–72 hours</li>
-        </ul>
-      </div>
-    </div>
+<!-- FAQ ACCORDION -->
+<div class="faq-page">
+  <div class="faq-category">
+  <h3 class="faq-cat-title">Guidance Sessions</h3>
+  <div class="faq-item" id="faq-0-0">
+  <button class="faq-q" onclick="toggleFaq('faq-0-0')">
+    <span class="faq-q-text">What is a guidance session and who is it for?</span>
+    <span class="faq-icon">+</span>
+  </button>
+  <div class="faq-a">
+    <div class="faq-a-inner">A guidance session is a focused, one-time, one-on-one consultation with a certified wedding planner — designed for couples leading their own planning who need expert direction, clarity, and a clear path forward. Following your session, you receive personalized planning tools built specifically for your wedding within 48–72 hours.</div>
   </div>
-  <div class="faq-cta"><p class="bt" style="margin-bottom:22px;">Still have a question? I am happy to help before you book.</p><a href="/cdn-cgi/l/email-protection#8ce4e9e0e0e3ccfce0ede2eae3fee1e9e9fae9e2f8ffa2efe3e1" class="btn bd">Send Me a Question</a></div>
-</section>
+</div><div class="faq-item" id="faq-0-1">
+  <button class="faq-q" onclick="toggleFaq('faq-0-1')">
+    <span class="faq-q-text">How do I know if I need You Plan I Guide or the Intensive?</span>
+    <span class="faq-icon">+</span>
+  </button>
+  <div class="faq-a">
+    <div class="faq-a-inner"><strong>You Plan, I Guide ($150)</strong> — ideal if you're early or mid-planning, need help knowing where to start, or have questions about vendors, budget, or timeline and haven't booked most vendors yet.<br><br><strong>You Plan, I Guide Intensive ($350)</strong> — ideal if you're already deep in planning, have booked vendors, and want a professional to review your contracts, evaluate your timeline, and identify any gaps before it's too late to change anything.</div>
+  </div>
+</div><div class="faq-item" id="faq-0-2">
+  <button class="faq-q" onclick="toggleFaq('faq-0-2')">
+    <span class="faq-q-text">What is NOT included in a guidance session?</span>
+    <span class="faq-icon">+</span>
+  </button>
+  <div class="faq-a">
+    <div class="faq-a-inner">Guidance sessions do not include vendor sourcing, booking, or ongoing vendor communication on your behalf. They do not include day-of coordination or wedding day presence, unlimited access or ongoing support between sessions, or refunds — all sessions and packages are non-refundable once booked.</div>
+  </div>
+</div><div class="faq-item" id="faq-0-3">
+  <button class="faq-q" onclick="toggleFaq('faq-0-3')">
+    <span class="faq-q-text">What do I receive after my session?</span>
+    <span class="faq-icon">+</span>
+  </button>
+  <div class="faq-a">
+    <div class="faq-a-inner">Within 48–72 hours you receive a personalized planning packet built around your specific wedding. This includes your Custom Priority Checklist, a Next 30 / Next 90 Priority Map, a Vendor Priority Guide, a Timeline Foundations Sheet, and Budget Awareness Notes. Nothing in this packet is a template — it is built for your wedding specifically.</div>
+  </div>
+</div><div class="faq-item" id="faq-0-4">
+  <button class="faq-q" onclick="toggleFaq('faq-0-4')">
+    <span class="faq-q-text">Are guidance sessions available for elopements and proposals?</span>
+    <span class="faq-icon">+</span>
+  </button>
+  <div class="faq-a">
+    <div class="faq-a-inner">Absolutely — and they are especially valuable for both. Elopements in Florida involve permit considerations, officiant coordination, venue logistics, and photography timing. A guidance session helps you navigate all of it with confidence. Proposals benefit from planning guidance around location, timing, vendor coordination, and the details that make the moment unforgettable.</div>
+  </div>
+</div>
+</div><div class="faq-category">
+  <h3 class="faq-cat-title">Month-of Coordination</h3>
+  <div class="faq-item" id="faq-1-0">
+  <button class="faq-q" onclick="toggleFaq('faq-1-0')">
+    <span class="faq-q-text">What is month-of coordination and how does it differ from a session?</span>
+    <span class="faq-icon">+</span>
+  </button>
+  <div class="faq-a">
+    <div class="faq-a-inner">Month-of coordination begins 45 days before your wedding and includes vendor confirmations, timeline creation, rehearsal coordination, and full in-person wedding day management. A guidance session gives you expert knowledge to plan better. Coordination gives you a professional to execute the plan you built. Your session fee is credited toward coordination if you decide to upgrade.</div>
+  </div>
+</div><div class="faq-item" id="faq-1-1">
+  <button class="faq-q" onclick="toggleFaq('faq-1-1')">
+    <span class="faq-q-text">What is the difference between You Plan I Manage Petite and You Plan I Manage?</span>
+    <span class="faq-icon">+</span>
+  </button>
+  <div class="faq-a">
+    <div class="faq-a-inner"><strong>You Plan, I Manage Petite ($1,500)</strong> — designed for elopements, micro weddings, and intimate celebrations with up to 20 guests. Full coordination and wedding day management tailored to smaller celebrations.<br><br><strong>You Plan, I Manage ($2,000)</strong> — designed for mid-size to larger traditional weddings with multiple vendors, a full ceremony and reception, and a detailed day-of timeline. Full-day management and coverage.</div>
+  </div>
+</div><div class="faq-item" id="faq-1-2">
+  <button class="faq-q" onclick="toggleFaq('faq-1-2')">
+    <span class="faq-q-text">When does coordination officially begin?</span>
+    <span class="faq-icon">+</span>
+  </button>
+  <div class="faq-a">
+    <div class="faq-a-inner">Coordination kicks off with a planning meeting 4–6 weeks before your wedding. From there, we review all vendor details, begin vendor confirmations, build your wedding day timeline, and coordinate your rehearsal. On your wedding day, we are your single point of contact for every vendor and every detail.</div>
+  </div>
+</div><div class="faq-item" id="faq-1-3">
+  <button class="faq-q" onclick="toggleFaq('faq-1-3')">
+    <span class="faq-q-text">Do you attend the rehearsal?</span>
+    <span class="faq-icon">+</span>
+  </button>
+  <div class="faq-a">
+    <div class="faq-a-inner">Yes — rehearsal coordination is included in the You Plan, I Manage package. For the Petite package, light rehearsal guidance is included where applicable based on the size and structure of the event.</div>
+  </div>
+</div>
+</div><div class="faq-category">
+  <h3 class="faq-cat-title">Booking & Policies</h3>
+  <div class="faq-item" id="faq-2-0">
+  <button class="faq-q" onclick="toggleFaq('faq-2-0')">
+    <span class="faq-q-text">What should I expect after booking?</span>
+    <span class="faq-icon">+</span>
+  </button>
+  <div class="faq-a">
+    <div class="faq-a-inner">Guidance sessions are one-time — not recurring or ongoing. After booking you will receive a confirmation with next steps and session details. Your personalized planning tools are delivered within 48–72 hours of your session. All bookings are non-refundable — please confirm your availability before booking. If you need to reschedule, reach out early and we will do our best to accommodate.</div>
+  </div>
+</div><div class="faq-item" id="faq-2-1">
+  <button class="faq-q" onclick="toggleFaq('faq-2-1')">
+    <span class="faq-q-text">How do I book a session or coordination package?</span>
+    <span class="faq-icon">+</span>
+  </button>
+  <div class="faq-a">
+    <div class="faq-a-inner">Click the "Let's Plan Together" button anywhere on this site to submit a short inquiry. We'll review your wedding details and confirm availability within 48 hours. Once confirmed, you'll receive a booking link and contract to make it official.</div>
+  </div>
+</div><div class="faq-item" id="faq-2-2">
+  <button class="faq-q" onclick="toggleFaq('faq-2-2')">
+    <span class="faq-q-text">Do you serve couples outside of Central Florida?</span>
+    <span class="faq-icon">+</span>
+  </button>
+  <div class="faq-a">
+    <div class="faq-a-inner">Our primary service area is Central Florida including Orlando, Kissimmee, Winter Haven, Daytona Beach, Tampa, Poinciana, and Haines City. We have also coordinated destination weddings and styled shoots in Illinois, New York, and beyond. Reach out and we'll let you know what's possible for your location.</div>
+  </div>
+</div><div class="faq-item" id="faq-2-3">
+  <button class="faq-q" onclick="toggleFaq('faq-2-3')">
+    <span class="faq-q-text">Is my session fee applied toward coordination if I upgrade?</span>
+    <span class="faq-icon">+</span>
+  </button>
+  <div class="faq-a">
+    <div class="faq-a-inner">Yes. If you book a You Plan, I Guide session and later decide to upgrade to a coordination package, your session fee ($150 or $350) is credited toward your coordination investment. The earlier you book, the more time we have to work together effectively.</div>
+  </div>
+</div>
+</div><div class="faq-category">
+  <h3 class="faq-cat-title">Working With Jasmine</h3>
+  <div class="faq-item" id="faq-3-0">
+  <button class="faq-q" onclick="toggleFaq('faq-3-0')">
+    <span class="faq-q-text">How long have you been planning weddings?</span>
+    <span class="faq-icon">+</span>
+  </button>
+  <div class="faq-a">
+    <div class="faq-a-inner">Jasmine Nkansah has over 10 years of experience planning weddings, elopements, proposals, and special celebrations across Central Florida and beyond. She is a Certified Wedding Planner through The Bridal Society and the Certified Wedding Planner Society, a certified Timeline Genius user, and a two-time WeddingWire Couples' Choice Award recipient.</div>
+  </div>
+</div><div class="faq-item" id="faq-3-1">
+  <button class="faq-q" onclick="toggleFaq('faq-3-1')">
+    <span class="faq-q-text">What makes Plan For Me Events different?</span>
+    <span class="faq-icon">+</span>
+  </button>
+  <div class="faq-a">
+    <div class="faq-a-inner">Plan For Me Events is built specifically for the self-planning bride. Rather than taking over your planning, we step into your process at exactly the level of support you need — whether that's one focused session or full month-of coverage. Every session is one-on-one with Jasmine, every planning packet is built for your specific wedding, and every coordination client works directly with her on their wedding day. Nothing is handed off.</div>
+  </div>
+</div><div class="faq-item" id="faq-3-2">
+  <button class="faq-q" onclick="toggleFaq('faq-3-2')">
+    <span class="faq-q-text">Do you offer full-service planning?</span>
+    <span class="faq-icon">+</span>
+  </button>
+  <div class="faq-a">
+    <div class="faq-a-inner">Full-service planning (Signature Plan For Me) and partial planning (You Plan, I Plan Too) are currently in development and will be available beginning 2027. Join our waitlist to be the first to know when bookings open.</div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- CTA -->
+<div class="faq-cta">
+  <h2>Still have questions?</h2>
+  <p>We&#39;re happy to help. Submit a quick inquiry and we&#39;ll get back to you within 48 hours.</p>
+  <a href="#" onclick="openInquiry();return false;" class="btn bw">Let&#39;s Plan Together &rarr;</a>
+</div>
 
 <footer>
-<div class="footer-creds">
-  <span class="footer-creds-label">Certifications &amp; Awards</span>
-  <div class="badge-strip">
-  <a href="https://www.thebridalsociety.com" target="_blank" rel="noopener" class="badge-link" title="The Bridal Society"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-bridal-society_oa2smb.png" alt="The Bridal Society" class="badge-img"></a>
-  <a href="https://www.certifiedweddingplanner.org" target="_blank" rel="noopener" class="badge-link" title="Certified Wedding Planner Society"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-cwps_y4zln5.png" alt="Certified Wedding Planner Society" class="badge-img"></a>
-  <a href="https://www.timelinegenius.com" target="_blank" rel="noopener" class="badge-link" title="Timeline Genius"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998907/pfm-badge-timeline-genius_embhqz.png" alt="Timeline Genius" class="badge-img"></a>
-  <a href="https://www.weddingwire.com" target="_blank" rel="noopener" class="badge-link" title="WeddingWire Couples Choice 2023"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-weddingwire-2023_z50evm.png" alt="WeddingWire Couples Choice 2023" class="badge-img"></a>
-  <a href="https://www.weddingwire.com" target="_blank" rel="noopener" class="badge-link" title="WeddingWire Couples Choice 2021"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998908/pfm-badge-weddingwire-2021_kxtugk.jpg" alt="WeddingWire Couples Choice 2021" class="badge-img"></a>
-  <a href="https://www.theknot.com" target="_blank" rel="noopener" class="badge-link" title="The Knot Best of Weddings 2023"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998910/pfm-badge-theknot-2023_akhes4.png" alt="The Knot Best of Weddings 2023" class="badge-img"></a>
-</div>
-</div>
+<div class="footer-creds"><span class="footer-creds-label">Certifications &amp; Awards</span><div class="badge-strip"><a href="https://www.thebridalsociety.com" target="_blank" rel="noopener" class="badge-link" title="The Bridal Society"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-bridal-society_oa2smb.png" alt="The Bridal Society" class="badge-img"></a><a href="https://www.certifiedweddingplanner.org" target="_blank" rel="noopener" class="badge-link" title="CWPS"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-cwps_y4zln5.png" alt="CWPS" class="badge-img"></a><a href="https://www.timelinegenius.com" target="_blank" rel="noopener" class="badge-link" title="Timeline Genius"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998907/pfm-badge-timeline-genius_embhqz.png" alt="Timeline Genius" class="badge-img"></a><a href="https://www.weddingwire.com" target="_blank" rel="noopener" class="badge-link" title="WeddingWire 2023"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-weddingwire-2023_z50evm.png" alt="WeddingWire 2023" class="badge-img"></a><a href="https://www.weddingwire.com" target="_blank" rel="noopener" class="badge-link" title="WeddingWire 2021"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998908/pfm-badge-weddingwire-2021_kxtugk.jpg" alt="WeddingWire 2021" class="badge-img"></a><a href="https://www.theknot.com" target="_blank" rel="noopener" class="badge-link" title="The Knot 2023"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998910/pfm-badge-theknot-2023_akhes4.png" alt="The Knot 2023" class="badge-img"></a></div></div>
 <div class="fi">
   <div>
-    <a href="index.html">
-      <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998703/pfm-logo_ixua6l.png" alt="Plan For Me Events" style="height:64px;width:auto;filter:brightness(0) invert(1);opacity:.85;display:block;margin-bottom:10px;">
-    </a>
+    <a href="index.html"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998703/pfm-logo_ixua6l.png" alt="Plan For Me Events" style="height:56px;width:auto;display:block;margin-bottom:10px;"></a>
     <span class="flsub">Plan For Me Events</span>
-    <p class="fbl">Premium wedding planning guidance and coordination for couples across Central Florida.</p>
+    <p class="fbl">Premium wedding planning guidance and coordination across Central Florida.</p>
   </div>
-  <div class="fc"><span class="fch">Services</span><ul>
-    <li><a href="services.html">Guidance Sessions</a></li>
-    <li><a href="services.html">Month of Coordination</a></li>
-  </ul></div>
-  <div class="fc"><span class="fch">Navigate</span><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="testimonials.html">Testimonials</a></li><li><a href="faq.html">FAQ</a></li><li><a href="blog/index.html">Blog</a></li></ul></div>
-  <div class="fc"><span class="fch">Areas Served</span><ul>
-    <li><a href="#">Orlando</a></li>
-    <li><a href="#">Kissimmee</a></li>
-    <li><a href="#">Tampa</a></li>
-    <li><a href="#">Daytona Beach</a></li>
-    <li><a href="#">Winter Haven</a></li>
-    <li><a href="#">Haines City</a></li>
-  </ul></div>
+  <div class="fc"><span class="fch">Services</span><ul><li><a href="services.html">Guidance Sessions</a></li><li><a href="services.html">Coordination</a></li></ul></div>
+  <div class="fc"><span class="fch">Navigate</span><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="testimonials.html">Reviews</a></li><li><a href="faq.html">FAQ</a></li><li><a href="blog/index.html">Blog</a></li></ul></div>
+  <div class="fc"><span class="fch">Areas Served</span><ul><li><a href="#">Orlando</a></li><li><a href="#">Kissimmee</a></li><li><a href="#">Tampa</a></li><li><a href="#">Daytona Beach</a></li><li><a href="#">Winter Haven</a></li></ul></div>
 </div>
-<div class="fbtm">
-  <span class="fcp">&copy; 2025 Plan For Me Events &middot; All Rights Reserved &middot; Central Florida</span>
-  <span class="far">Wedding Planning Guidance &middot; Elopement Planning &middot; Micro Wedding Coordination &middot; Proposal Planning &middot; Central Florida</span>
-</div>
+<div class="fbtm"><span class="fcp">&copy; 2025 Plan For Me Events</span><span class="far">Central Florida Wedding Planning</span></div>
 </footer>
+
 <script>
 window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('s',scrollY>55);});
-</script>
-<script>
-document.querySelectorAll('.faq-q').forEach(function(btn){
-  btn.addEventListener('click',function(){
-    var item=this.closest('.faq-item');
-    var open=item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open');});
-    if(!open)item.classList.add('open');
-  });
-});
+
+function toggleFaq(id){
+  var item = document.getElementById(id);
+  var isOpen = item.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.faq-item').forEach(function(el){el.classList.remove('open');});
+  // Open this one if it was closed
+  if(!isOpen) item.classList.add('open');
+}
+
+function openInquiry(){
+  alert("Please email planformeevents@gmail.com or use the inquiry form on our homepage to get started.");
+}
 </script>
 </body>
 </html>
