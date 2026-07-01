@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Let&#39;s Plan Together | Plan For Me Events</title>
+<meta name="description" content="Start your wedding planning journey with Plan For Me Events. Submit your inquiry and Jasmine will reach out within 24 hours with next steps and a booking link.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300;1,500&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+
+/* ── SPLIT LAYOUT ── */
+.inq-wrap{
+  display:grid;grid-template-columns:42% 58%;
+  min-height:100vh;
+}
+
+/* ── LEFT PANEL (image + brand) ── */
+.inq-left{
+  position:relative;
+  background:var(--aug);
+  display:flex;flex-direction:column;
+  padding:140px 56px 56px;
+  overflow:hidden;
+}
+.inq-left-bg{position:absolute;inset:0;z-index:0;}
+.inq-left-bg img{width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block;opacity:.55;}
+.inq-left-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(10,3,5,.55) 0%,rgba(10,3,5,.75) 55%,rgba(10,3,5,.95) 100%);
+}
+.inq-left-content{position:relative;z-index:1;display:flex;flex-direction:column;height:100%;}
+.inq-eyebrow{font-size:7.5px;letter-spacing:5px;text-transform:uppercase;color:var(--cha);display:block;margin-bottom:18px;}
+.inq-headline{
+  font-family:var(--sc);font-weight:300;font-style:italic;
+  font-size:clamp(32px,4vw,52px);color:#fff;line-height:1.2;
+  margin-bottom:24px;
+}
+.inq-sub{font-size:14px;color:rgba(255,255,255,.6);line-height:1.85;max-width:380px;margin-bottom:auto;}
+
+.inq-steps{margin-top:48px;display:flex;flex-direction:column;gap:24px;}
+.inq-step{display:flex;gap:18px;align-items:flex-start;}
+.inq-step-num{
+  width:32px;height:32px;border-radius:50%;
+  border:1px solid rgba(255,191,204,.4);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--sc);font-style:italic;font-size:14px;
+  color:var(--pnk);flex-shrink:0;
+}
+.inq-step-text strong{display:block;font-size:12.5px;color:#fff;margin-bottom:3px;font-weight:500;}
+.inq-step-text span{font-size:11.5px;color:rgba(255,255,255,.5);line-height:1.6;}
+
+.inq-quote{
+  margin-top:48px;padding-top:28px;
+  border-top:1px solid rgba(255,255,255,.12);
+}
+.inq-quote p{
+  font-family:var(--sc);font-style:italic;font-size:15px;
+  color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:12px;
+}
+.inq-quote span{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--pnk);}
+
+/* ── RIGHT PANEL (form) ── */
+.inq-right{
+  padding:140px 80px 80px;
+  display:flex;align-items:center;
+}
+.inq-form-wrap{max-width:560px;margin:0 auto;width:100%;}
+.inq-form-hdr{margin-bottom:40px;}
+.inq-form-title{font-family:var(--sc);font-weight:500;font-size:32px;color:var(--aug);margin-bottom:10px;line-height:1.2;}
+.inq-form-sub{font-size:13px;color:rgba(35,31,32,.55);line-height:1.7;}
+
+.inq-form{display:flex;flex-direction:column;gap:22px;}
+.inq-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.inq-field label{
+  font-size:7.5px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--aug);display:block;margin-bottom:8px;font-weight:500;
+}
+.inq-field input,.inq-field select,.inq-field textarea{
+  width:100%;padding:14px 16px;
+  border:none;border-bottom:1px solid rgba(35,31,32,.18);
+  background:transparent;font-size:14px;font-family:var(--ss);
+  color:var(--aug);outline:none;
+  transition:border-color .25s;
+  box-sizing:border-box;
+}
+.inq-field input:focus,.inq-field select:focus,.inq-field textarea:focus{
+  border-bottom-color:var(--cha);
+}
+.inq-field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%23231F20' d='M6 8 0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 4px center;background-size:10px;}
+.inq-field textarea{resize:vertical;min-height:100px;}
+.inq-field input::placeholder,.inq-field textarea::placeholder{color:rgba(35,31,32,.3);}
+
+.inq-services{display:flex;flex-direction:column;gap:10px;margin-top:4px;}
+.inq-svc-option{
+  display:flex;align-items:center;gap:12px;
+  padding:14px 16px;border:1px solid rgba(35,31,32,.12);
+  cursor:pointer;transition:all .2s;
+}
+.inq-svc-option:hover{border-color:var(--cha);}
+.inq-svc-option input{width:auto;accent-color:var(--mer);}
+.inq-svc-option.checked{border-color:var(--mer);background:var(--off);}
+.inq-svc-name{font-size:12.5px;color:var(--aug);font-weight:500;}
+.inq-svc-price{font-size:10.5px;color:rgba(35,31,32,.45);margin-left:auto;}
+
+.inq-submit{
+  width:100%;padding:18px;margin-top:8px;
+  background:var(--aug);color:#fff;border:none;
+  font-family:var(--ss);font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  cursor:pointer;transition:background .3s;
+}
+.inq-submit:hover{background:var(--mer);}
+.inq-disclaimer{font-size:10.5px;color:rgba(35,31,32,.4);text-align:center;margin-top:16px;line-height:1.6;}
+
+/* ── SUCCESS STATE ── */
+.inq-success{display:none;text-align:center;padding:40px 0;}
+.inq-success-icon{
+  width:56px;height:56px;border-radius:50%;background:var(--mer);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 24px;font-size:24px;color:#fff;
+}
+.inq-success h3{font-family:var(--sc);font-size:28px;color:var(--aug);margin-bottom:12px;}
+.inq-success p{font-size:13.5px;color:rgba(35,31,32,.6);line-height:1.8;max-width:380px;margin:0 auto 28px;}
+
+@media(max-width:1024px){
+  .inq-wrap{grid-template-columns:1fr;}
+  .inq-left{padding:120px 32px 48px;min-height:380px;}
+  .inq-right{padding:56px 24px 80px;}
+  .inq-steps{display:none;}
+  .inq-quote{margin-top:24px;}
+}
+@media(max-width:560px){
+  .inq-row{grid-template-columns:1fr;}
+  .inq-right{padding:48px 20px 60px;}
+}
+
+/* ── BADGE FIX (in case form page ever shows footer badges) ── */
+.badge-strip{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:24px 36px;}
+.badge-link{display:inline-flex;align-items:center;}
+.badge-img{height:64px;width:auto;display:block;opacity:1;}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nlogo">
+    <img class="lgt" src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998703/pfm-logo_ixua6l.png" alt="Plan For Me Events" style="height:72px;width:auto;filter:drop-shadow(0 2px 12px rgba(0,0,0,.3));">
+    <img class="drk" src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998703/pfm-logo_ixua6l.png" alt="Plan For Me Events" style="height:72px;width:auto;">
+  </a>
+  <ul class="nls"><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="testimonials.html">Reviews</a></li><li><a href="faq.html">FAQ</a></li><li><a href="blog/index.html">Blog</a></li></ul>
+  <a href="inquire.html" class="btn bp nbtn" style="color:var(--pnk);">Let&#39;s Plan Together</a>
+</nav>
+
+<div class="inq-wrap">
+
+  <!-- LEFT PANEL -->
+  <div class="inq-left">
+    <div class="inq-left-bg"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1778521858/pfm-hero-1_wb0nq3.jpg" alt="Plan For Me Events"></div>
+    <div class="inq-left-content">
+      <span class="inq-eyebrow">Let&#39;s Plan Together</span>
+      <h1 class="inq-headline">Tell us about<br>your wedding.</h1>
+      <p class="inq-sub">Whether you're just starting to plan or ready to hand off the final details, this is the first step. Share a few details below and Jasmine will personally follow up within 24 hours.</p>
+
+      <div class="inq-steps">
+        <div class="inq-step">
+          <span class="inq-step-num">1</span>
+          <div class="inq-step-text"><strong>Submit your inquiry</strong><span>Takes less than 3 minutes</span></div>
+        </div>
+        <div class="inq-step">
+          <span class="inq-step-num">2</span>
+          <div class="inq-step-text"><strong>Jasmine reaches out within 24 hours</strong><span>By email or phone, whichever you prefer</span></div>
+        </div>
+        <div class="inq-step">
+          <span class="inq-step-num">3</span>
+          <div class="inq-step-text"><strong>Receive your booking link</strong><span>Confirm your session or coordination date</span></div>
+        </div>
+      </div>
+
+      <div class="inq-quote">
+        <p>&ldquo;Jasmine was there for us every step of the way &amp; we&#39;re forever grateful for her. She deserves a 10/10!&rdquo;</p>
+        <span>Victoria &middot; Wedding, Lake Mary FL</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="inq-right">
+    <div class="inq-form-wrap">
+
+      <div class="inq-form-hdr" id="formHeader">
+        <h2 class="inq-form-title">Start Your Inquiry</h2>
+        <p class="inq-form-sub">All fields marked * are required. We respond to every inquiry within 24 hours.</p>
+      </div>
+
+      <form class="inq-form" id="inquiryForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+        <div class="inq-row">
+          <div class="inq-field">
+            <label>First Name *</label>
+            <input type="text" name="first_name" placeholder="Jasmine" required>
+          </div>
+          <div class="inq-field">
+            <label>Last Name *</label>
+            <input type="text" name="last_name" placeholder="Nkansah" required>
+          </div>
+        </div>
+
+        <div class="inq-row">
+          <div class="inq-field">
+            <label>Email Address *</label>
+            <input type="email" name="email" placeholder="you@email.com" required>
+          </div>
+          <div class="inq-field">
+            <label>Phone Number *</label>
+            <input type="tel" name="phone" placeholder="(407) 555-0123" required>
+          </div>
+        </div>
+
+        <div class="inq-row">
+          <div class="inq-field">
+            <label>Wedding / Event Date</label>
+            <input type="date" name="event_date">
+          </div>
+          <div class="inq-field">
+            <label>Estimated Guest Count</label>
+            <input type="number" name="guest_count" placeholder="e.g. 75">
+          </div>
+        </div>
+
+        <div class="inq-field">
+          <label>City / Venue Location</label>
+          <input type="text" name="location" placeholder="e.g. Winter Park, FL or venue name">
+        </div>
+
+        <div class="inq-field">
+          <label>Which Service Are You Interested In? *</label>
+          <div class="inq-services">
+            <label class="inq-svc-option">
+              <input type="radio" name="service" value="You Plan, I Guide ($150)" required>
+              <span class="inq-svc-name">You Plan, I Guide</span>
+              <span class="inq-svc-price">$150</span>
+            </label>
+            <label class="inq-svc-option">
+              <input type="radio" name="service" value="You Plan, I Guide Intensive ($350)" required>
+              <span class="inq-svc-name">You Plan, I Guide Intensive</span>
+              <span class="inq-svc-price">$350</span>
+            </label>
+            <label class="inq-svc-option">
+              <input type="radio" name="service" value="You Plan, I Manage Petite ($1,500)" required>
+              <span class="inq-svc-name">You Plan, I Manage Petite</span>
+              <span class="inq-svc-price">$1,500</span>
+            </label>
+            <label class="inq-svc-option">
+              <input type="radio" name="service" value="You Plan, I Manage ($2,000)" required>
+              <span class="inq-svc-name">You Plan, I Manage</span>
+              <span class="inq-svc-price">$2,000</span>
+            </label>
+            <label class="inq-svc-option">
+              <input type="radio" name="service" value="Not sure yet" required>
+              <span class="inq-svc-name">Not sure yet — help me decide</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="inq-field">
+          <label>Tell Us About Your Wedding</label>
+          <textarea name="message" placeholder="Venue, vision, where you are in the planning process, or anything you'd like Jasmine to know before reaching out..."></textarea>
+        </div>
+
+        <button type="submit" class="inq-submit">Submit Inquiry &rarr;</button>
+        <p class="inq-disclaimer">By submitting, you agree to be contacted by Plan For Me Events regarding your inquiry. We never share your information.</p>
+      </form>
+
+      <div class="inq-success" id="inquirySuccess">
+        <div class="inq-success-icon">&#10003;</div>
+        <h3>Thank you!</h3>
+        <p>Your inquiry has been received. Jasmine will personally reach out within 24 hours with next steps and a booking link.</p>
+        <a href="index.html" class="btn bd">Back to Home</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<footer>
+<div class="footer-creds"><span class="footer-creds-label">Certifications &amp; Awards</span><div class="badge-strip"><a href="https://www.thebridalsociety.com" target="_blank" rel="noopener" class="badge-link" title="The Bridal Society"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-bridal-society_oa2smb.png" alt="The Bridal Society" class="badge-img"></a><a href="https://www.certifiedweddingplanner.org" target="_blank" rel="noopener" class="badge-link" title="CWPS"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-cwps_y4zln5.png" alt="CWPS" class="badge-img"></a><a href="https://www.timelinegenius.com" target="_blank" rel="noopener" class="badge-link" title="Timeline Genius"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998907/pfm-badge-timeline-genius_embhqz.png" alt="Timeline Genius" class="badge-img"></a><a href="https://www.weddingwire.com" target="_blank" rel="noopener" class="badge-link" title="WeddingWire 2023"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998909/pfm-badge-weddingwire-2023_z50evm.png" alt="WeddingWire 2023" class="badge-img"></a><a href="https://www.weddingwire.com" target="_blank" rel="noopener" class="badge-link" title="WeddingWire 2021"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998908/pfm-badge-weddingwire-2021_kxtugk.jpg" alt="WeddingWire 2021" class="badge-img"></a><a href="https://www.theknot.com" target="_blank" rel="noopener" class="badge-link" title="The Knot 2023"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998910/pfm-badge-theknot-2023_akhes4.png" alt="The Knot 2023" class="badge-img"></a></div></div>
+<div class="fi">
+  <div>
+    <a href="index.html"><img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998703/pfm-logo_ixua6l.png" alt="Plan For Me Events" style="height:56px;width:auto;display:block;margin-bottom:10px;"></a>
+    <span class="flsub">Plan For Me Events</span>
+    <p class="fbl">Premium wedding planning guidance and coordination across Central Florida.</p>
+  </div>
+  <div class="fc"><span class="fch">Services</span><ul><li><a href="services.html">Guidance Sessions</a></li><li><a href="services.html">Coordination</a></li></ul></div>
+  <div class="fc"><span class="fch">Navigate</span><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="testimonials.html">Reviews</a></li><li><a href="faq.html">FAQ</a></li><li><a href="blog/index.html">Blog</a></li></ul></div>
+  <div class="fc"><span class="fch">Areas Served</span><ul><li><a href="#">Orlando</a></li><li><a href="#">Kissimmee</a></li><li><a href="#">Tampa</a></li><li><a href="#">Daytona Beach</a></li><li><a href="#">Winter Haven</a></li></ul></div>
+</div>
+<div class="fbtm"><span class="fcp">&copy; 2025 Plan For Me Events</span><span class="far">Central Florida Wedding Planning</span></div>
+</footer>
+
+<script>
+window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('s',scrollY>55);});
+
+// Highlight selected service option
+document.querySelectorAll('.inq-svc-option input').forEach(function(input){
+  input.addEventListener('change', function(){
+    document.querySelectorAll('.inq-svc-option').forEach(function(opt){opt.classList.remove('checked');});
+    this.closest('.inq-svc-option').classList.add('checked');
+  });
+});
+
+// Form submission handling
+document.getElementById('inquiryForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var form = e.target;
+  var data = new FormData(form);
+  
+  fetch(form.action, {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  }).then(function(response){
+    if(response.ok){
+      document.getElementById('formHeader').style.display = 'none';
+      form.style.display = 'none';
+      document.getElementById('inquirySuccess').style.display = 'block';
+      window.scrollTo({top:0,behavior:'smooth'});
+    } else {
+      alert('Something went wrong. Please email planformeevents@gmail.com directly.');
+    }
+  }).catch(function(){
+    alert('Something went wrong. Please email planformeevents@gmail.com directly.');
+  });
+});
+</script>
+</body>
+</html>
