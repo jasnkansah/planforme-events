@@ -25,6 +25,7 @@
   </a>
   <ul class="nls"><li><a href="../index.html">Home</a></li><li><a href="../services.html">Services</a></li><li><a href="../gallery.html">Gallery</a></li><li><a href="../testimonials.html">Reviews</a></li><li><a href="../faq.html">FAQ</a></li><li><a href="../blog/index.html" style="color:var(--pnk);">Blog</a></li></ul>
   <a href="https://planformeevents.co" target="_blank" class="btn bp nbtn">Book a Session</a>
+<button class="hm" id="hm" onclick="tMM()"><span></span><span></span><span></span></button>
 </nav>
 
 <div style="margin-top:80px;">
@@ -120,5 +121,17 @@ window.addEventListener('scroll',function(){document.getElementById('nav').class
 var cur=document.getElementById('cur'),crng=document.getElementById('crng');
 if(cur&&crng){var mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});(function L(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;crng.style.left=rx+'px';crng.style.top=ry+'px';requestAnimationFrame(L);})();}
 </script>
+<div class="mm" id="mm">
+  <button class="mm-close" onclick="cMM()">&#10005;</button>
+  <a href="../index.html" onclick="cMM()">Home</a>
+  <a href="../services.html" onclick="cMM()">Services</a>
+  <a href="../about.html" onclick="cMM()">About</a>
+  <a href="../gallery.html" onclick="cMM()">Gallery</a>
+  <a href="../testimonials.html" onclick="cMM()">Testimonials</a>
+  <a href="../faq.html" onclick="cMM()">FAQ</a>
+  <a href="index.html" onclick="cMM()">Blog</a>
+  <a href="../inquire.html" class="mm-cta" onclick="cMM()">Let&#39;s Plan Together</a>
+</div>
+<script>function tMM(){var mm=document.getElementById("mm");if(mm)mm.classList.toggle("open");}function cMM(){var mm=document.getElementById("mm");if(mm)mm.classList.remove("open");}</script>
 </body>
 </html>
