@@ -596,6 +596,158 @@ footer{background:var(--aug);}
 .badge-link{display:inline-flex;align-items:center;}
 .badge-img{height:64px;width:auto;display:block;opacity:1;}
 
+
+/* ═══════════════════════════════════
+   MOBILE SWEEP — Complete Fix
+   ═══════════════════════════════════ */
+
+/* NAV — mobile */
+@media(max-width:900px){
+  #nav{
+    padding:0 20px;
+    height:68px;
+    background:var(--wht) !important;
+    box-shadow:0 1px 0 rgba(35,31,32,.08);
+  }
+  #nav .nls{display:none;}
+  #nav .nbtn{display:none;}
+  .hm{display:flex !important;}
+  .nlogo img{
+    height:52px !important;
+    filter:none !important;
+  }
+  .lgt{display:block !important;}
+  .drk{display:none !important;}
+}
+
+/* MOBILE FULL-SCREEN MENU */
+.mm{
+  position:fixed;inset:0;
+  background:var(--aug);
+  z-index:9999;
+  display:none;
+  flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:0;
+}
+.mm.open{display:flex;}
+.mm a{
+  font-size:9px;letter-spacing:4px;text-transform:uppercase;
+  color:rgba(255,255,255,.7);text-decoration:none;
+  padding:18px 0;width:100%;text-align:center;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  transition:color .2s;
+  max-width:300px;
+}
+.mm a:first-of-type{border-top:1px solid rgba(255,255,255,.06);}
+.mm a:hover{color:#fff;}
+.mm-cta{
+  margin-top:24px !important;
+  background:var(--mer) !important;
+  color:#fff !important;
+  border:none !important;
+  padding:16px 40px !important;
+  width:auto !important;
+}
+.mm-close{
+  position:absolute;top:24px;right:24px;
+  background:none;border:none;cursor:pointer;
+  color:rgba(255,255,255,.6);font-size:20px;
+  padding:8px;
+}
+.hm{
+  display:none;
+  flex-direction:column;gap:5px;cursor:pointer;
+  background:none;border:none;padding:8px;
+}
+.hm span{
+  display:block;width:24px;height:1.5px;
+  background:var(--aug);transition:all .3s;
+}
+
+/* GALLERY — uniform squares on ALL screens */
+.gal-grid{
+  grid-template-columns:repeat(3,1fr) !important;
+  gap:3px !important;
+  padding:0 !important;
+}
+.gal-img{
+  aspect-ratio:1/1 !important;
+  height:auto !important;
+  grid-column:span 1 !important;
+  grid-row:span 1 !important;
+}
+@media(max-width:768px){
+  .gal-grid{grid-template-columns:repeat(2,1fr) !important;gap:2px !important;}
+}
+@media(max-width:420px){
+  .gal-grid{grid-template-columns:repeat(2,1fr) !important;gap:2px !important;}
+}
+
+/* FOOTER — mobile */
+@media(max-width:900px){
+  .fi{
+    grid-template-columns:1fr !important;
+    gap:32px;
+    padding:40px 24px !important;
+  }
+  .footer-creds{padding:32px 24px !important;}
+  .badge-strip{gap:16px 24px !important;}
+  .badge-img{height:48px !important;}
+  .fbtm{
+    flex-direction:column;gap:8px;
+    padding:16px 24px !important;
+    text-align:center;
+  }
+}
+
+/* PAGE HERO — mobile */
+@media(max-width:768px){
+  .pghero{
+    padding:90px 24px 36px !important;
+    height:auto !important;
+    min-height:220px !important;
+  }
+  .pgt{font-size:36px !important;}
+}
+
+/* GENERAL SECTION PADDING — mobile */
+@media(max-width:768px){
+  .svc-page,.rv-section,.blog-page,.faq-page,
+  .testi-grid-section,.post-wrap{
+    padding-left:16px !important;
+    padding-right:16px !important;
+  }
+  .rv-grid{grid-template-columns:1fr !important;}
+  .testi-grid{grid-template-columns:1fr !important;}
+  .tc-rating-bar{gap:24px !important;padding:32px 16px !important;}
+  .svc-card{grid-template-columns:1fr !important;}
+}
+
+/* HERO — mobile */
+@media(max-width:768px){
+  .hero{height:100svh;}
+  .hero-c{padding:0 24px !important;text-align:center !important;}
+  .hero-h1{font-size:clamp(36px,10vw,52px) !important;}
+  .hero-btns{flex-direction:column;align-items:center;gap:12px;}
+  .hero-btns .btn{width:100%;max-width:280px;text-align:center;}
+}
+
+/* ABOUT split section — mobile */
+@media(max-width:900px){
+  section[style*="grid-template-columns:1fr 1fr"]{
+    grid-template-columns:1fr !important;
+  }
+}
+
+/* INQUIRY PAGE — mobile */
+@media(max-width:900px){
+  .inq-wrap{grid-template-columns:1fr !important;}
+  .inq-left{min-height:300px;padding:100px 24px 40px !important;}
+  .inq-right{padding:48px 20px 60px !important;}
+  .inq-row{grid-template-columns:1fr !important;}
+  .inq-steps{display:none !important;}
+}
 </style>
 
 <script type="application/ld+json">
@@ -640,17 +792,19 @@ footer{background:var(--aug);}
 
 
 <div class="mm" id="mm">
-  <a href="#" onclick="go('home');cMM()">Home</a>
-  <a href="#" onclick="go('services');cMM()">Services</a>
-  <a href="#" onclick="go('about');cMM()">About</a>
-  <a href="#" onclick="go('gallery');cMM()">Gallery</a>
-  <a href="#" onclick="go('testimonials');cMM()">Testimonials</a>
-  <a href="#" onclick="go('faq');cMM()">FAQ</a>
-  <a href="#" onclick="go('blog');cMM()">Blog</a>
+  <button class="mm-close" onclick="cMM()">&#10005;</button>
+  <a href="index.html" onclick="cMM()">Home</a>
+  <a href="services.html" onclick="cMM()">Services</a>
+  <a href="about.html" onclick="cMM()">About</a>
+  <a href="gallery.html" onclick="cMM()">Gallery</a>
+  <a href="testimonials.html" onclick="cMM()">Testimonials</a>
+  <a href="faq.html" onclick="cMM()">FAQ</a>
+  <a href="blog/index.html" onclick="cMM()">Blog</a>
+  <a href="inquire.html" class="mm-cta" onclick="cMM()">Let&#39;s Plan Together</a>
 </div>
 
 <nav id="nav">
-  <a href="#" class="nlogo" onclick="go('home');return false;">
+  <a href="index.html" class="nlogo">
     <img class="lgt" src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998703/pfm-logo_ixua6l.png" alt="Plan For Me Events" style="height:72px;width:auto;filter:drop-shadow(0 2px 12px rgba(0,0,0,0.4));">
     <img class="drk" src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1777998703/pfm-logo_ixua6l.png" alt="Plan For Me Events" style="height:72px;width:auto;">
   </a>
@@ -1233,10 +1387,7 @@ Without the full retainer.<br>They should always be <em style="color:var(--pnk);
   padding:0 56px;
 }
 /* First photo in each album spans 2 columns for visual hierarchy */
-.gal-grid .gal-img:first-child{aspect-ratio:16/9;height:auto;
-  grid-column:span 2;
-  
-}
+
 .gal-img{aspect-ratio:4/3;height:auto;
   overflow:hidden;
   
@@ -1302,13 +1453,13 @@ Without the full retainer.<br>They should always be <em style="color:var(--pnk);
 }
 @media(max-width:1100px){
   .gal-grid{grid-template-columns:repeat(2,1fr);padding:0 32px;}
-  .gal-grid .gal-img:first-child{grid-column:span 2;}
+  
   .gal-section-hdr{margin-left:32px;padding-left:24px;}
   .gal-divider{margin:0 32px 60px;}
 }
 @media(max-width:768px){
   .gal-grid{grid-template-columns:1fr 1fr;gap:2px;padding:0 16px;}
-  .gal-grid .gal-img:first-child{grid-column:span 2;height:300px;}
+  
   .gal-img{height:220px;}
   .gal-section-hdr{margin-left:16px;padding-left:16px;padding-right:16px;}
   .gal-divider{margin:0 16px 48px;}
