@@ -163,15 +163,21 @@ body {
   padding: 12px 16px;
   background: var(--ivory);
   border: 1px solid #D8CFCA;
-  transition: border 0.2s;
+  transition: border 0.2s, background 0.2s;
+  user-select: none;
 }
 .check-item:hover { border-color: var(--champagne); }
+.check-item:has(input:checked) { border-color: var(--champagne); background: #fdf6ee; }
 .check-item input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
   accent-color: var(--champagne);
   flex-shrink: 0;
   cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  z-index: 1;
 }
 .check-item span {
   font-size: 13.5px;
@@ -267,7 +273,7 @@ body {
 </div>
 
 <div class="form-wrap">
-  <form id="inquiry-form">
+  <form id="inquiry-form" action="https://formspree.io/f/xykrpdzg" method="POST">
 
     <!-- SECTION 1: ABOUT YOU -->
     <div class="form-section">
@@ -276,22 +282,22 @@ body {
       <div class="field-row">
         <div class="field">
           <label>Your Name <span style="color:var(--merlot)">*</span></label>
-          <input type="text" placeholder="First and last name" required/>
+          <input type="text" name="your_name" placeholder="First and last name" required/>
         </div>
         <div class="field">
           <label>Partner's Name <span style="color:var(--merlot)">*</span></label>
-          <input type="text" placeholder="First and last name (or N/A if not applicable)" required/>
+          <input type="text" name="partner_name" placeholder="First and last name (or N/A if not applicable)" required/>
         </div>
       </div>
 
       <div class="field-row">
         <div class="field">
           <label>Email Address <span style="color:var(--merlot)">*</span></label>
-          <input type="email" placeholder="your@email.com" required/>
+          <input type="email" name="email" placeholder="your@email.com" required/>
         </div>
         <div class="field">
           <label>Phone Number <span style="color:var(--merlot)">*</span></label>
-          <input type="tel" placeholder="(000) 000-0000" required/>
+          <input type="tel" name="phone" placeholder="(000) 000-0000" required/>
         </div>
       </div>
     </div>
@@ -316,7 +322,7 @@ body {
       <div class="field-row">
         <div class="field">
           <label>Wedding / Event Date <span style="color:var(--merlot)">*</span></label>
-          <input type="date" required/>
+          <input type="date" name="event_date" required/>
           <div class="field-hint">Estimated date is fine if not confirmed</div>
         </div>
         <div class="field">
@@ -346,7 +352,7 @@ body {
 
       <div class="conditional field" id="venue-name-field">
         <label>Venue Name</label>
-        <input type="text" placeholder="Name of your venue"/>
+        <input type="text" name="venue_name" placeholder="Name of your venue"/>
       </div>
 
       <div class="field">
@@ -364,7 +370,7 @@ body {
 
       <div class="field">
         <label>Any Colors, Themes, or Vibes in Mind?</label>
-        <input type="text" placeholder="e.g. romantic garden, moody floral, minimalist modern"/>
+        <input type="text" name="aesthetic" placeholder="e.g. romantic garden, moody floral, minimalist modern"/>
       </div>
     </div>
 
@@ -374,14 +380,14 @@ body {
       <div class="field">
         <label>Which vendors have you already secured?</label>
         <div class="check-group">
-          <label class="check-item"><input type="checkbox"/><span>Photographer</span></label>
-          <label class="check-item"><input type="checkbox"/><span>Videographer</span></label>
-          <label class="check-item"><input type="checkbox"/><span>Caterer / Catering Included with Venue</span></label>
-          <label class="check-item"><input type="checkbox"/><span>Florist</span></label>
-          <label class="check-item"><input type="checkbox"/><span>DJ or Band</span></label>
-          <label class="check-item"><input type="checkbox"/><span>Hair and Makeup</span></label>
-          <label class="check-item"><input type="checkbox"/><span>Officiant</span></label>
-          <label class="check-item"><input type="checkbox"/><span>None booked yet</span></label>
+          <label class="check-item"><input type="checkbox" name="vendor_photographer" value="Photographer"/><span>Photographer</span></label>
+          <label class="check-item"><input type="checkbox" name="vendor_videographer" value="Videographer"/><span>Videographer</span></label>
+          <label class="check-item"><input type="checkbox" name="vendor_caterer___catering_included_with_venue" value="Caterer / Catering Included with Venue"/><span>Caterer / Catering Included with Venue</span></label>
+          <label class="check-item"><input type="checkbox" name="vendor_florist" value="Florist"/><span>Florist</span></label>
+          <label class="check-item"><input type="checkbox" name="vendor_dj_or_band" value="DJ or Band"/><span>DJ or Band</span></label>
+          <label class="check-item"><input type="checkbox" name="vendor_hair_and_makeup" value="Hair and Makeup"/><span>Hair and Makeup</span></label>
+          <label class="check-item"><input type="checkbox" name="vendor_officiant" value="Officiant"/><span>Officiant</span></label>
+          <label class="check-item"><input type="checkbox" name="vendor_none_booked_yet" value="None booked yet"/><span>None booked yet</span></label>
         </div>
       </div>
     </div>
@@ -420,7 +426,7 @@ body {
 
       <div class="field">
         <label>Anything else you'd like me to know?</label>
-        <textarea placeholder="Optional — share anything that feels important"></textarea>
+        <textarea name="additional_notes" placeholder="Optional — share anything that feels important"></textarea>
       </div>
     </div>
 
@@ -453,9 +459,30 @@ body {
 
   document.getElementById('inquiry-form').addEventListener('submit', function(e) {
     e.preventDefault();
-    document.getElementById('inquiry-form').style.display = 'none';
-    document.getElementById('thankyou').classList.add('visible');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    var form = e.target;
+    var btn = form.querySelector('.submit-btn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res) {
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('thankyou').classList.add('visible');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        btn.textContent = 'Submit My Inquiry';
+        btn.disabled = false;
+        alert('Something went wrong. Please email planformeevents@gmail.com directly.');
+      }
+    }).catch(function() {
+      btn.textContent = 'Submit My Inquiry';
+      btn.disabled = false;
+      alert('Something went wrong. Please email planformeevents@gmail.com directly.');
+    });
   });
 </script>
 </body>
