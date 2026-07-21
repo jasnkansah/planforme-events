@@ -208,10 +208,34 @@ a{text-decoration:none;}
 /* ── GALLERY ── */
 .gallery-section{padding:80px 60px;background:var(--light);}
 .gallery-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:10px;margin-top:32px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:32px;
 }
-.gallery-grid img{width:100%;height:220px;object-fit:cover;}
+.gallery-item{display:block;text-decoration:none;}
+.gallery-img-wrap{
+  position:relative;
+  width:100%;
+  padding-bottom:100%;
+  overflow:hidden;
+  background:var(--stone);
+}
+.gallery-img-wrap img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  transition:transform .5s ease;
+}
+.gallery-item:hover .gallery-img-wrap img{transform:scale(1.04);}
+.gallery-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:42px;color:var(--aug);font-weight:600;
+  line-height:1.15;margin-bottom:0;
+}
 .gallery-link{
   display:inline-block;margin-top:28px;
   font-family:"DM Sans",sans-serif;
@@ -277,7 +301,7 @@ a{text-decoration:none;}
   .testi-grid{grid-template-columns:1fr;gap:14px;}
   .gallery-section{padding:56px 24px;}
   .gallery-grid{grid-template-columns:repeat(2,1fr);gap:6px;}
-  .gallery-grid img{height:160px;}
+  
   .footer{padding:48px 24px 0;}
   .footer-top{grid-template-columns:1fr;gap:32px;margin-bottom:32px;}
   .footer-bottom{padding:20px 0 28px;}
@@ -431,17 +455,85 @@ a{text-decoration:none;}
 <!-- GALLERY -->
 <section class="gallery-section">
   <span class="sec-label">Gallery</span>
-  <h2 class="sec-title" style="font-family:'Cormorant Garamond',serif;font-size:42px;color:var(--aug);font-weight:600;line-height:1.15;margin-bottom:16px;">Real celebrations. Real couples.</h2>
+  <h2 class="gallery-title">Real celebrations. Real couples.</h2>
   <div class="gallery-grid">
-    <img src="https://lh3.googleusercontent.com/pw/AP1GczP-RFXCLyFEnY7yqidmXghdoGFnuksaSeGegwR=w800-no" alt="Plan For Me Events Real Wedding" loading="lazy">
-<img src="https://lh3.googleusercontent.com/pw/AP1GczOPYEcGOJEoL0lSRxt0grpmHOTUdVvm2qQfliJ=w800-no" alt="Plan For Me Events Real Wedding" loading="lazy">
-<img src="https://lh3.googleusercontent.com/pw/AP1GczNWG6hIM_dewIzjalSvLe5cY2fTd8ooedtfNim=w800-no" alt="Plan For Me Events Real Wedding" loading="lazy">
-<img src="https://lh3.googleusercontent.com/pw/AP1GczN8GSnDOQ-gSmPIoEjj7jvtgWPgBL8BDx32ma5=w800-no" alt="Plan For Me Events Real Wedding" loading="lazy">
-<img src="https://lh3.googleusercontent.com/pw/AP1GczNj4ImH_-8gYzEiBcLhZcwwwzwAvGT8_jQyYfr=w800-no" alt="Plan For Me Events Real Wedding" loading="lazy">
-<img src="https://lh3.googleusercontent.com/pw/AP1GczNp6Z1KPyLVZP61GpwMtRznFEH72T4FzcdXRv2=w800-no" alt="Plan For Me Events Real Wedding" loading="lazy">
-<img src="https://lh3.googleusercontent.com/pw/AP1GczO9H-x9S7pkidppqLbxp9NjeLeB6nsJq4G1G-R=w800-no" alt="Plan For Me Events Real Wedding" loading="lazy">
-<img src="https://lh3.googleusercontent.com/pw/AP1GczOIbFU8Iv5MH0pWEpV9ll6sFN-4Pj-SV5S1X-m=w800-no" alt="Plan For Me Events Real Wedding" loading="lazy">
-
+    <a href="gallery.html" class="gallery-item" title="Wedding Reception Central Florida">
+      <div class="gallery-img-wrap">
+        <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1778521858/pfm-hero-1_wb0nq3.jpg" alt="Wedding Reception Central Florida" loading="lazy">
+      </div>
+    </a>
+    <a href="gallery.html" class="gallery-item" title="Brooklyn Bridge Elopement">
+      <div class="gallery-img-wrap">
+        <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1778521859/pfm-hero-2_rtog0f.jpg" alt="Brooklyn Bridge Elopement" loading="lazy">
+      </div>
+    </a>
+    <a href="gallery.html" class="gallery-item" title="Wedding Sweetheart Table">
+      <div class="gallery-img-wrap">
+        <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1778521860/pfm-hero-3_dhnz1z.jpg" alt="Wedding Sweetheart Table" loading="lazy">
+      </div>
+    </a>
+    <a href="gallery.html" class="gallery-item" title="Couple Walking Brooklyn Bridge">
+      <div class="gallery-img-wrap">
+        <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1778521860/pfm-hero-4_yj97xn.jpg" alt="Couple Walking Brooklyn Bridge" loading="lazy">
+      </div>
+    </a>
+    <a href="gallery.html" class="gallery-item" title="Wedding Detail Plan For Me Events">
+      <div class="gallery-img-wrap">
+        <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1778521861/pfm-photo-1_pjaskx.jpg" alt="Wedding Detail Plan For Me Events" loading="lazy">
+      </div>
+    </a>
+    <a href="gallery.html" class="gallery-item" title="Wedding Portrait Plan For Me Events">
+      <div class="gallery-img-wrap">
+        <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1778521862/pfm-photo-2_e4rk9z.jpg" alt="Wedding Portrait Plan For Me Events" loading="lazy">
+      </div>
+    </a>
+    <a href="gallery.html" class="gallery-item" title="Wedding Ceremony Plan For Me Events">
+      <div class="gallery-img-wrap">
+        <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1778521863/pfm-photo-3_rkahhp.jpg" alt="Wedding Ceremony Plan For Me Events" loading="lazy">
+      </div>
+    </a>
+    <a href="gallery.html" class="gallery-item" title="Wedding Florals Plan For Me Events">
+      <div class="gallery-img-wrap">
+        <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1778521865/pfm-photo-7_rveqbn.jpg" alt="Wedding Florals Plan For Me Events" loading="lazy">
+      </div>
+    </a>
+  </div>
+    </a>
+    <a href="gallery.html" class="gallery-item" title="Cassandra & Alexander">
+      <div class="gallery-img-wrap">
+        <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1778521863/pfm-photo-4_esyvqe.jpg=w800-no" alt="Cassandra & Alexander - Plan For Me Events" loading="lazy">
+      </div>
+    </a>
+    <a href="gallery.html" class="gallery-item" title="Latoya & DeVar">
+      <div class="gallery-img-wrap">
+        <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1778521864/pfm-photo-5_ojpbl5.jpg=w800-no" alt="Latoya & DeVar - Plan For Me Events" loading="lazy">
+      </div>
+    </a>
+    <a href="gallery.html" class="gallery-item" title="Kasey & Austin">
+      <div class="gallery-img-wrap">
+        <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1778521864/pfm-photo-6_bsockp.jpg=w800-no" alt="Kasey & Austin - Plan For Me Events" loading="lazy">
+      </div>
+    </a>
+    <a href="gallery.html" class="gallery-item" title="Erika & Aaron">
+      <div class="gallery-img-wrap">
+        <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1778521865/pfm-photo-7_rveqbn.jpg=w800-no" alt="Erika & Aaron - Plan For Me Events" loading="lazy">
+      </div>
+    </a>
+    <a href="gallery.html" class="gallery-item" title="Brooklyn Bridge">
+      <div class="gallery-img-wrap">
+        <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1778521866/pfm-photo-8_p8kcur.jpg=w800-no" alt="Brooklyn Bridge - Plan For Me Events" loading="lazy">
+      </div>
+    </a>
+    <a href="gallery.html" class="gallery-item" title="Hillary & Michael">
+      <div class="gallery-img-wrap">
+        <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1778521866/pfm-photo-9_iwa5rb.jpg=w800-no" alt="Hillary & Michael - Plan For Me Events" loading="lazy">
+      </div>
+    </a>
+    <a href="gallery.html" class="gallery-item" title="Necole & Nicholas">
+      <div class="gallery-img-wrap">
+        <img src="https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/v1778521867/pfm-strip-1_wcaxu1.jpg=w800-no" alt="Necole & Nicholas - Plan For Me Events" loading="lazy">
+      </div>
+    </a>
   </div>
   <a href="gallery.html" class="gallery-link">View Full Gallery &#8594;</a>
 </section>
