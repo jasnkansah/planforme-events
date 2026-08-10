@@ -279,7 +279,15 @@ ul{list-style:none;}
   margin-top:14px;
 }
 .related-card{display:block;}
-.related-card-img{border-radius:2px;margin-bottom:12px;}
+.related-card-img{
+  position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;
+  border-radius:2px;margin-bottom:12px;background:var(--off);
+}
+.related-card-img img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .6s ease;
+}
+.related-card:hover .related-card-img img{transform:scale(1.06);}
 .related-card-cat{
   display:block;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;
   color:var(--mer);margin-bottom:6px;font-weight:500;
