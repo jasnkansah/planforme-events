@@ -51,7 +51,7 @@
       grid.innerHTML = picks
         .map(function (p) {
           var imgHtml = p.img
-            ? '<img src="' + p.img + '" alt="' + p.title.replace(/"/g, '&quot;') + '" loading="lazy" onerror="this.closest(\'.related-card-img\').classList.add(\'related-card-img-fallback\');this.remove();">'
+            ? '<img src="' + p.img + '" alt="' + p.title.replace(/"/g, '&quot;') + '" onerror="this.closest(\'.related-card-img\').classList.add(\'related-card-img-fallback\');this.remove();">'
             : '';
           return (
             '<a href="' + p.href + '" class="related-card">' +
