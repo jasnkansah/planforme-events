@@ -21,7 +21,7 @@
     return arr;
   }
 
-  fetch('index.html')
+  fetch('index.html', { cache: 'no-store' })
     .then(function (r) { return r.text(); })
     .then(function (html) {
       var doc = new DOMParser().parseFromString(html, 'text/html');
@@ -51,7 +51,7 @@
       grid.innerHTML = picks
         .map(function (p) {
           var imgHtml = p.img
-            ? '<img src="' + p.img + '" alt="' + p.title.replace(/"/g, '&quot;') + '" loading="lazy">'
+            ? '<img src="' + p.img + '" alt="' + p.title.replace(/"/g, '&quot;') + '" loading="lazy" onerror="this.closest(\'.related-card-img\').classList.add(\'related-card-img-fallback\');this.remove();">'
             : '';
           return (
             '<a href="' + p.href + '" class="related-card">' +
