@@ -200,6 +200,7 @@ ul{list-style:none;}
   padding-bottom:24px;margin-bottom:32px;
   border-bottom:1px solid rgba(35,31,32,.08);
 }
+.post-byline-img{display:none;}
 .post-byline-name{
   font-size:11px;font-weight:500;color:var(--aug);
   letter-spacing:.02em;
