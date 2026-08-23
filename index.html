@@ -224,6 +224,70 @@ a { text-decoration: none; }
 }
 .gallery-link:hover { color: var(--merlot); }
 
+/* ── LLL + NEWSLETTER STRIP ── */
+.lln-row { display: grid; grid-template-columns: 1fr 1fr; }
+.lln-col { position: relative; padding: 64px 56px; overflow: hidden; }
+.lll-col {
+  background-image: linear-gradient(rgba(59,31,43,0.85), rgba(59,31,43,0.85)),
+    url('https://res.cloudinary.com/dsc26soxd/image/upload/q_auto/f_auto/PASTE_LLL_PHOTO_PUBLIC_ID_HERE.jpg');
+  background-size: cover; background-position: center;
+}
+.news-col { background: var(--ivory); }
+.lln-label {
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--champagne); display: block; margin-bottom: 14px;
+}
+.lll-title {
+  font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 400;
+  font-size: 44px; line-height: 1.05; color: white; margin-bottom: 18px;
+}
+.lll-title span { display: block; color: var(--blush); }
+.lln-rule { width: 40px; height: 1.5px; background: var(--champagne); margin-bottom: 20px; }
+.lll-body { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.68); max-width: 380px; margin-bottom: 24px; }
+.lll-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+.lll-pill {
+  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.65); border: 1px solid rgba(255,255,255,0.4);
+  padding: 7px 14px; border-radius: 20px;
+}
+.lll-cta {
+  display: inline-block; background: var(--champagne); color: white;
+  font-family: "DM Sans", sans-serif;
+  font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 14px 30px; text-decoration: none; transition: background 0.2s;
+}
+.lll-cta:hover { background: #b8915a; }
+.lll-note { display: block; font-size: 11px; font-style: italic; color: rgba(255,255,255,0.35); margin-top: 16px; }
+
+.news-title {
+  font-family: "Cormorant Garamond", serif; font-weight: 600;
+  font-size: 38px; line-height: 1.1; color: var(--aubergine); margin-bottom: 18px;
+}
+.news-body { font-size: 14px; line-height: 1.8; color: #6b6b6b; max-width: 380px; margin-bottom: 24px; }
+.news-form { display: flex; flex-direction: column; gap: 12px; max-width: 380px; }
+.news-form input {
+  font-family: "DM Sans", sans-serif; font-size: 13px;
+  padding: 14px 16px; border: 1px solid rgba(59,31,43,0.18);
+  background: white; color: var(--aubergine); outline: none;
+}
+.news-form input::placeholder { color: rgba(59,31,43,0.4); }
+.news-form input:focus { border-color: var(--champagne); }
+.news-submit {
+  font-family: "DM Sans", sans-serif; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+  background: var(--aubergine); color: white; border: none;
+  padding: 15px 24px; cursor: pointer; transition: background 0.2s;
+}
+.news-submit:hover { background: #2a1520; }
+.news-note { display: block; font-size: 11px; font-style: italic; color: rgba(59,31,43,0.4); margin-top: 14px; }
+.news-success { display: none; font-size: 13px; color: var(--merlot); font-style: italic; }
+
+@media(max-width:960px) {
+  .lln-row { grid-template-columns: 1fr; }
+  .lln-col { padding: 48px 28px; }
+  .lll-title { font-size: 36px; }
+  .news-title { font-size: 30px; }
+}
+
 /* ── FOOTER ── */
 .footer { background: #1a0f15; padding: 60px 60px 0; }
 .footer-creds {
@@ -289,6 +353,7 @@ a { text-decoration: none; }
     <a href="testimonials.html">Testimonials</a>
     <a href="faq.html">FAQ</a>
     <a href="blog/index.html">Blog</a>
+    <a href="lll.html">Lunch, Layouts &amp; Logistics</a>
   </div>
   <a href="inquire.html" class="nav-cta">Let&#39;s Plan Together</a>
   <button class="nav-hm" onclick="tMM()" aria-label="Open menu">
@@ -306,6 +371,7 @@ a { text-decoration: none; }
   <a href="testimonials.html" onclick="cMM()">Testimonials</a>
   <a href="faq.html" onclick="cMM()">FAQ</a>
   <a href="blog/index.html" onclick="cMM()">Blog</a>
+  <a href="lll.html" onclick="cMM()">Lunch, Layouts &amp; Logistics</a>
   <a href="inquire.html" class="mm-cta-link" onclick="cMM()">Let&#39;s Plan Together</a>
 </div>
 
@@ -456,6 +522,36 @@ a { text-decoration: none; }
   </a>
   </div>
   <a href="gallery.html" class="gallery-link">View Full Gallery &#8594;</a>
+</div>
+
+<!-- LLL + NEWSLETTER STRIP -->
+<div class="lln-row">
+  <div class="lln-col lll-col">
+    <span class="lln-label">Free Monthly Webinar</span>
+    <div class="lll-title">Lunch, Layouts<span>&amp; Logistics</span></div>
+    <div class="lln-rule"></div>
+    <p class="lll-body">A free hour with a certified wedding planner, once a month. Jasmine covers a planning topic, then opens the floor. Bring your questions.</p>
+    <div class="lll-pills">
+      <span class="lll-pill">Free</span>
+      <span class="lll-pill">Once a Month</span>
+      <span class="lll-pill">One Hour</span>
+      <span class="lll-pill">Zoom</span>
+    </div>
+    <a href="lll.html" class="lll-cta">Save My Spot &#8594;</a>
+    <span class="lll-note">No package required &middot; Open to all brides</span>
+  </div>
+  <div class="lln-col news-col">
+    <span class="lln-label">Stay in the Loop</span>
+    <div class="news-title">The PFM Newsletter</div>
+    <div class="lln-rule"></div>
+    <p class="news-body">Planning tips, blog highlights, real bride spotlights, and a heads-up when the next Lunch, Layouts &amp; Logistics session opens. Straight to your inbox, no fluff.</p>
+    <form class="news-form" action="https://formspree.io/f/PASTE_NEWSLETTER_FORM_ID_HERE" method="POST">
+      <input type="text" name="first_name" placeholder="Your first name" required>
+      <input type="email" name="email" placeholder="your@email.com" required>
+      <button type="submit" class="news-submit">Subscribe &mdash; It&#39;s Free</button>
+    </form>
+    <span class="news-note">No spam. Unsubscribe anytime.</span>
+  </div>
 </div>
 
 <!-- FOOTER -->
